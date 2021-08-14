@@ -40,31 +40,31 @@ run well.
 ## Configiration layout
 --------------------------------------------------------------------------------
 ```
+Flags:
+n - doesnt releated to the editor directly or at all
+a - automatically runs (Doesn't need to get sourced to init)
+s - does need to be sourced to init
+
 nvim/
-|- init.vim                 F-> File that initializes the editor's settings
-|- plugins.vim              F-> Specifies the plugins that need to be installed or loaded (for the plugin manager)
-|- README.md                F-> You'r here, the general data about the configiration
-|- FILEGUIDE.md             F-> Specifies complicated file arrangements (i.e duplicates for different OS etc)
-|- after/                   D-> Overrule or add to the system-wide configiration
-|  |- ftplugin/             D-> File type specific configiration
-|- autoload/                D-> Place to put scripts that will load automatically and can be accessed from anywhere
-|  |- plug.vim              F-> The plugin manager (vim-plug)
-|  |- plugged/              D-> All the installed plugins are here
-|  |  |- nvim-compe/        |
-|  |  |- nvim-lspconfig/    |
-|  |  |- nvim-treesitter/   |
-|  |  |- playground/        |
-|  |  |- vim-fugitive/      |
-|  |  |- vim-hexokinase/    |
-|  |  |- vim-repeat/        |
-|  |  |- vim-surround/      |
-|- colors/                  D-> Colorschemes
-|- configs/                 D-> All the configirations
+|- init.vim                 F(a) File that initializes the editor's settings
+|- plugins.vim              F(s) Specifies the plugins that need to be installed or loaded (for the plugin manager)
+|- README.md                F(n) You'r here, the general data about the configiration
+|- FILEGUIDE.md             F(n) Specifies complicated file arrangements (i.e duplicates for different OS etc)
+|- after/                   D(a) Overrule or add to the system-wide configiration
+|  |- ftplugin/             D(a) File type specific configiration
+|- autoload/                D(a) Place to put scripts that will load automatically and can be accessed from anywhere
+|  |- plug.vim              F(a) The plugin manager (vim-plug)
+|  |- plugged/              D(a) All the installed plugins are here
+|  |  |- plugin1/           |   // example
+|  |  |- plugin2/           |   // example
+|  |  |- plugin3/           |   // example
+|- colors/                  D(a) Colorschemes
+|- configs/                 D(s) All the configirations
 |  |- general-vim-config/   |
 |  |- lsp-servers-configs/  |
 |  |- plugins-configs/      |
-|- releated/                D-> Files for editor releated things (e.g Language-server wrappers)
-|- scripts/                 D-> External scripts used by the editor or the user
+|- releated/                D(n) Files for editor releated things (e.g Language-server wrappers)
+|- scripts/                 D(s) External scripts used by the editor or the user
 ```
 
 ## Requirements
@@ -128,7 +128,7 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 > Microsoft's python ls
 
 * [jdtls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers-configs/java_lsconfig.lua)
-> Eclipse's ls, many say that it is hard to configure but it's the best out there so for that you have the jdtls.sh wrapper
+> Eclipse's ls, many say that it is hard to configure but it's the best out there so for that you have the [jdtls.sh](./releated/jdtls.sh) wrapper
 
 * [vimls](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers-configs/vim_lsconfig.lua)
 > Usefull to have if your customizing your vim
