@@ -134,7 +134,7 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 > Usefull to have if your customizing your vim
 
 * [sumneko_lua](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers-configs/lua_lsconfig.lua)
-> Helped me control the scripts i saw without knowing the language
+> Helped me edit the scripts i saw before knowing the language
 
 ## Colorscheme pics
 --------------------------------------------------------------------------------

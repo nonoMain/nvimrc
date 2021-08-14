@@ -1,7 +1,7 @@
 --startOfFile
 -- Filename: nvim_compe.lua
 
-CONFIG_FOLDER_PATH = vim.fn.expand('$VIMRCFOLDER')
+CONFIG_FOLDER_PATH = vim.fn.expand('$MYVIMRCFOLDER')
 
 package.path = package.path .. ";" .. CONFIG_FOLDER_PATH .. "configs/plugins-configs/nvim_compe.lua"
 

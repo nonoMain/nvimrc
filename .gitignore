@@ -1,3 +1,2 @@
 autoload/plugged/*
-autoload/plug.vim
 colors/codedark.vim

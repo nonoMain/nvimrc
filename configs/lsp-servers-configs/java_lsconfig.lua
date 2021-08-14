@@ -1,7 +1,7 @@
 --startOfFile
 -- Filename: java_lsconfig.lua
 
-HOME = vim.fn.expand('$VIMRCFOLDER')
+HOME = vim.fn.expand('$MYVIMRCFOLDER')
 
 local java_language_server_wrapper = "/releated/jdtls.sh"
 

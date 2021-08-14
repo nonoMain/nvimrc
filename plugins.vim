@@ -1,7 +1,7 @@
 "startOfFile
 " Filename: plugins.vim
 
-call plug#begin($VIMRCFOLDER .. '/autoload/plugged')
+call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 
 " Autocompletion (for lsp and snippets)
 	Plug 'hrsh7th/nvim-compe'
