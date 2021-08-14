@@ -138,7 +138,7 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 
 ## Colorscheme pics
 --------------------------------------------------------------------------------
-![alt text](https://github.com/nonoMain/nvimrc/blob/main/pictures/cplex_dark_bg.png?raw=true "dark background")
-![alt text](https://github.com/nonoMain/nvimrc/blob/main/pictures/cplex_clear_bg.png?raw=true "clear background")
+![](https://github.com/nonoMain/nvimrc/blob/master/pictures/cplex_dark_bg.png?raw=true "dark background")
+![](https://github.com/nonoMain/nvimrc/blob/master/pictures/cplex_clear_bg.png?raw=true "clear background")
 
 //endOfFile
