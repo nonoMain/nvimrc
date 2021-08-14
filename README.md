@@ -23,8 +23,8 @@ and other usefull tweaks.
 
 Tested on:
 - [x] Linux
-- [ ] Windows - soon
-- [ ] Mac - less soon
+- [x] Windows (less community support tho)
+- [ ] Mac - coming soon
 
 ## Notes
 --------------------------------------------------------------------------------
