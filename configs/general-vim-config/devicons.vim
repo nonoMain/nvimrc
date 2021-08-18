@@ -1,3 +1,6 @@
+"startOfFile
+" Filename: devicons.vim
+
 function s:getDistro()
 	if exists('s:distroSymbol')
 	return s:distroSymbol
@@ -243,3 +246,5 @@ function! g:GetPathSymbol(mode)
 	endif
 	return l:symbol
 endfunction
+
+"endOfFile
