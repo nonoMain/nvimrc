@@ -1,6 +1,6 @@
 //startOfFile
 
-# NVIMRC V1.2.9
+# NVIMRC V1.3
 
 ## Authors
 --------------------------------------------------------------------------------
@@ -18,8 +18,9 @@ My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/), i
 4. Git commands and management from inside the editor
 5. Easy to modify [colorscheme](./colors/cplex.vim)
 6. Fast general [mappings](./configs/general-vim-config/keybindings.vim)
-7. Efficient [scripts](./scripts/)
+7. Efficient [scripts](./plugin)
 	- [x] History browser
+	- [x] Status line
 	- [ ] Easy doc - less soon
 
 and other usefull tweaks.

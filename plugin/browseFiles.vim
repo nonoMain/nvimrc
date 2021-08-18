@@ -25,7 +25,7 @@ function! s:openFileUnderCursor()
 	execute 'e' fnameescape(s:file)
 endfunction
 
-function! g:PullHistory()
+function! browseFiles#PullHistory()
 	belowright new + file
 	resize
 

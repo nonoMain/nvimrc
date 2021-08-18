@@ -34,7 +34,7 @@ let s:CP['repeat']             = '#D787D7'       | let s:CP['T_repeat']         
 let s:CP['function']           = '#D7D7AF'       | let s:CP['T_function']          = 187
 let s:CP['constant']           = '#D7D7AF'       | let s:CP['T_constant']          = 187
 let s:CP['include']            = '#D75F87'       | let s:CP['T_include']           = 168
-let s:CP['object']             = '#E4E4E4'       | let s:CP['T_object']            = 117
+let s:CP['object']             = '#E4E4E4'       | let s:CP['T_object']            = 254
 let s:CP['operator']           = '#AF5F87'       | let s:CP['T_operator']          = 132
 let s:CP['bracket']            = '#D7875F'       | let s:CP['T_bracket']           = 173
 let s:CP['special']            = '#5FAFFF'       | let s:CP['T_special']           =  75
@@ -106,7 +106,7 @@ let s:HG['Special']      = { "GFG":s:CP['special'],          "TFG":s:CP['T_speci
 
 " Enviorment highlight groups
 let s:HG['Pmenu']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
-let s:HG['PmenuSel']     = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
+let s:HG['PmenuSel']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
 let s:HG['PmenuSbar']    = { "GBG":s:ECP['limitLines'],      "TBG":s:ECP['T_limitLines'] }
 let s:HG['PmenuThumb']   = { "GBG":s:ECP['selected'],        "TBG":s:ECP['T_selected'] }
 let s:HG['TabLine']      = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
@@ -193,6 +193,7 @@ hi! link diffRemoved DiffDelete
 
 " vim highlight groups
 hi! link vimCommand Keyword
+hi! link vimIsCommand Keyword
 hi! link vimNotFunc Repeat
 
 " json highlight groups
@@ -218,7 +219,7 @@ hi! link TSCharacter String
 hi! link TSNumber Number
 hi! link TSBoolean Boolean
 hi! link TSFloat Float
-hi! link TSAnnotation Annotation
+hi! link TSAnnotation COmment
 hi! link TSAttribute Attribute
 hi! link TSNamespace Namespace
 hi! link TSParameter Identifier

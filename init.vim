@@ -12,11 +12,6 @@
 	source $MYVIMRCFOLDER/configs/general-vim-config/keybindings.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/devicons.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/netrw.vim
-	source $MYVIMRCFOLDER/configs/general-vim-config/statusline.vim
-
-" source all my scripts
-	source $MYVIMRCFOLDER/scripts/browseFiles.vim
-"	luafile $MYVIMRCFOLDER/scripts/saveCodeActions/saveCodeActions.lua
 
 " source the plugins call file
 	source $MYVIMRCFOLDER/plugins.vim
