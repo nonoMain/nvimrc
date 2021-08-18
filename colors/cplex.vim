@@ -79,8 +79,9 @@ let s:HG = {}
 "	line_col_alt  = '%#LineColAlt#'
 
 " User's usage highlight groups
-let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],        "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
-let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],           "TFG":s:ECP['T_limitLines'],        "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
+let s:HG['User1']        = { "GFG":s:ECP['selected'],        "TFG":s:ECP['T_selected'],        "GBG":s:ECP['objBg'], "TBG": s:ECP['T_objBg'] }
+let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
+let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'],      "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
 
 " Text syntax highlight groups
 let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }

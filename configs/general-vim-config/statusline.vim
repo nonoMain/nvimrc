@@ -18,8 +18,12 @@ function! GetStatusLine(mode)
 		if a:mode == 'active'
 			let tmp.="%#PmenuSel#"
 			let tmp.="%m%r%w\ bf:%n\ %{GetGitBranch()}"
+			let tmp.="%#User1#" " seperator
+			let tmp.=""
 			let tmp.="%#statusline#"
 			let tmp.="\ %f %m\ %="
+			let tmp.="%#User1#" " seperator
+			let tmp.=""
 			let tmp.="%#PmenuSel#"
 			let tmp.="\[%{g:GetPathSymbol('in_use')}\]%p%%\ %l,%c\ 0x%04b"
 			let tmp.="\ "
