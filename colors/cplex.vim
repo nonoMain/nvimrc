@@ -48,7 +48,7 @@ else
 endif
 let s:ECP['selected']          = '#005F87'       | let s:ECP['T_selected']         =  24
 let s:ECP['fg']                = '#E4E4E4'       | let s:ECP['T_fg']               = 254
-let s:ECP['objFg']             = '#767676'       | let s:ECP['T_objFg']            = 243
+let s:ECP['objFg']             = '#b2b2b2'       | let s:ECP['T_objFg']            = 249
 let s:ECP['objBg']             = '#303030'       | let s:ECP['T_objBg']            = 236
 let s:ECP['limitLines']        = '#444444'       | let s:ECP['T_limitLines']       = 238
 let s:ECP['cursorLines']       = '#1C1C1C'       | let s:ECP['T_cursorLines']      = 234
@@ -67,8 +67,20 @@ let s:ECP['visualSelection']   = '#005F87'       | let s:ECP['T_visualSelection'
 
 let s:HG = {}
 
+"	active        = '%#StatusLine#',
+"	inactive      = '%#StatuslineNC#',
+"	mode          = '%#Mode#',
+"	mode_alt      = '%#ModeAlt#',
+"	git           = '%#Git#',
+"	git_alt       = '%#GitAlt#',
+"	filetype      = '%#Filetype#',
+"	filetype_alt  = '%#FiletypeAlt#',
+"	line_col      = '%#LineCol#',
+"	line_col_alt  = '%#LineColAlt#'
+
 " User's usage highlight groups
-let s:HG['User1']        = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'], "TBG":s:ECP['T_selected'] }
+let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],        "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
+let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],           "TFG":s:ECP['T_limitLines'],        "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
 
 " Text syntax highlight groups
 let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
@@ -92,7 +104,7 @@ let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error
 let s:HG['Special']      = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
 
 " Enviorment highlight groups
-let s:HG['Pmenu']        = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
+let s:HG['Pmenu']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
 let s:HG['PmenuSel']     = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
 let s:HG['PmenuSbar']    = { "GBG":s:ECP['limitLines'],      "TBG":s:ECP['T_limitLines'] }
 let s:HG['PmenuThumb']   = { "GBG":s:ECP['selected'],        "TBG":s:ECP['T_selected'] }
@@ -218,7 +230,7 @@ hi! link TSConditional Conditional
 hi! link TSRepeat Repeat
 hi! link TSLabel Label
 hi! link TSKeyword Keyword
-hi! link TSKeywordFunction Repeat
+hi! link TSKeywordFunction Keyword
 hi! link TSKeywordOperator Keyword
 hi! link TSException Exception
 hi! link TSType Type
@@ -240,10 +252,4 @@ hi! link TSTagDelimiter TagDelimiter
 unlet s:CP
 unlet s:ECP
 unlet s:HG
-
-function! g:SynGroup()
-	let l:s = synID(line('.'), col('.'), 1)
-	echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun
-command SynG call g:SynGroup()
 "endOfFile

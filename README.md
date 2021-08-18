@@ -10,7 +10,7 @@
 ## Description
 --------------------------------------------------------------------------------
 
-My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim), including my scripts and colorscheme.
+My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/), including my scripts and colorscheme.
 
 1. Using external parser (better imo)
 2. Auto completion from many sources (e.g buffer, Language-server, Parser, paths)
@@ -18,13 +18,16 @@ My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim), in
 4. Git commands and management from inside the editor
 5. Easy to modify [colorscheme](./colors/cplex.vim)
 6. Fast general [mappings](./configs/general-vim-config/keybindings.vim)
+7. Efficient [scripts](./scripts/)
+	- [x] History browser
+	- [ ] Easy doc - less soon
 
 and other usefull tweaks.
 
 Tested on:
 - [x] Linux
-- [x] Windows (less community support tho)
-- [ ] Mac - coming soon
+- [x] Windows
+- [ ] Mac - soon
 
 ## Notes
 --------------------------------------------------------------------------------
@@ -37,13 +40,35 @@ and for their type of use (as I mentioned, for me it is mainly programming)
 and is planned to work in a manner that most systems and terminal emulators will
 run well.
 
+* There are a lot of parts in this configiration that need things to go right and be installed (compilers, Language-servers, etc)
+so for that reason everything used here comes with links for the original pages
+(didn't included them because they'd bloat the repo and won't be up to date)
+
+## Requirements
+--------------------------------------------------------------------------------
+
+### The requirements for the configiration
+
+* Neovim [nightly](https://github.com/neovim/neovim/releases/nightly/)
+* [Git](https://git-scm.com/downloads/)
+* [Node](https://nodejs.org/en/download/)
+* [Python2 & Python3](https://www.python.org/)
+* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) **with libstdc++ installed!**
+* Go language - either [binaries](https://golang.org/dl/) **or** using a package manager
+
+### Recommended:
+* [Devicons](https://github.com/devicons/devicon) font (e.g [nerd fonts](https://www.nerdfonts.com/))
+> If you don't want it set `let g:Use_dev_icons = ?` to 0 in [init.vim](./init.vim)
+* [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
+> More options with the parser
+
 ## Configiration layout
 --------------------------------------------------------------------------------
 ```
 Flags:
-n - doesnt releated to the editor directly or at all
 a - automatically runs (Doesn't need to get sourced to init)
 s - does need to be sourced to init
+n - doesnt releated to the editor directly or at all
 
 nvim/
 |- init.vim                 F(a) File that initializes the editor's settings
@@ -67,54 +92,39 @@ nvim/
 |- scripts/                 D(s) External scripts used by the editor or the user
 ```
 
-## Requirements
---------------------------------------------------------------------------------
-
-### The requirements for the configiration
-
-* Neovim [nightly](https://github.com/neovim/neovim/releases/nightly)
-* [Git](https://git-scm.com/downloads)
-* [Node](https://nodejs.org/en/download/)
-* [Python2 & Python3](https://www.python.org/)
-* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html))
-* Go language - either [binaries](https://golang.org/dl/) **or** using a package manager
-
-### Recommended for more options:
-* [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli)
-
 ## Plugins
 --------------------------------------------------------------------------------
 
 Plugin manager is [vim-plug](https://github.com/junegunn/vim-plug)
 
-* [nvim-compe](https://github.com/hrsh7th/nvim-compe/)
+1. [nvim-compe](https://github.com/hrsh7th/nvim-compe/)
 Auto completion for neovim
 > Works well and doesn't come with more features then necessary
 
-* [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/)
+2. [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/)
 Neovim built in language server protocol manager
 > For running code actions, code diagonstics and smart auto completion
 > + it's built in so it's the most trusted on terms of support or maintenance
 
-* [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/)
+3. [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/)
 Better (and faster) text parser
 > faster, well equipped and good for creating scripts (refactoring, definition tamplates, etc..) for complex code
-* [treesitter-playground](https://github.com/nvim-treesitter/playground/)
+4. [treesitter-playground](https://github.com/nvim-treesitter/playground/)
 > Allowes you to view the 'behind the scenes' of tree-sitter directly in neovim
 
-* [vim-fugitive](https://github.com/tpope/vim-fugitive/)
+5. [vim-fugitive](https://github.com/tpope/vim-fugitive/)
 Makes Git a seamless part of the vim workflow
 > "Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's 'so awesome, it should be illegal'. That's why it's called Fugitive." - From it's README.markdown
 
-* [vim-surround](https://github.com/tpope/vim-surround/)
+6. [vim-surround](https://github.com/tpope/vim-surround/)
 The best way imo to manage surrounded text, which is essential for code editing
 > Well integrated into vim's text actions and saves a lot of time
 
-* [vim-repeat](https://github.com/tpope/vim-repeat/)
+7. [vim-repeat](https://github.com/tpope/vim-repeat/)
 Enables using the `.` for repeating a plugin map
 > "Repeat.vim remaps `.` in a way that plugins can tap into it." - From it's README.markdown
 
-* [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
+8. [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
 Preview colors by coloring their value in their color (e.g #ffffff will be displyed in white)
 > A true life saver when working on front-end color tables or any other place where coloring by rgb/hex/hsl values
 

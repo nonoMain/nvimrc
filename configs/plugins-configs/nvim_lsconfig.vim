@@ -10,6 +10,6 @@ set completeopt=menuone,noinsert,noselect
 	nnoremap <silent> gi        :lua vim.lsp.buf.implementation()<CR>
 	nnoremap <silent> <leader>r :lua vim.lsp.buf.rename()<CR>
 	nnoremap <silent> <C-k>     :lua vim.lsp.buf.hover()<CR>
-	nnoremap <silent> <C-n>     :lua vim.lsp.diagnostic.goto_prev()<CR>
-	nnoremap <silent> <C-p>     :lua vim.lsp.diagnostic.goto_next()<CR>
+	nnoremap <silent> <C-p>     :lua vim.lsp.diagnostic.goto_prev()<CR>
+	nnoremap <silent> <C-n>     :lua vim.lsp.diagnostic.goto_next()<CR>
 "endOfFile

@@ -1,29 +1,36 @@
 "startOfFile
 " Filename: general.vim
 
-" Enables 24 bit color support if possible
-if str2nr(&t_Co) > 16
-	set termguicolors
-else
-	set notermguicolors
-endif
-
 " sets the leader key
 let mapleader = ' '
 
+if (empty($TMUX))
+  if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 " Smart redraw
 set lazyredraw
+" Set the cursor highlight
+set guicursor=
+set cursorcolumn
+set cursorline
+
+" Undo
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
 
 " sets the general colorscheme
 colorscheme cplex
 
 " navigate to another buffer without saving current buffer
 set hidden
-
-" Set the cursor highlight
-set guicursor=
-set cursorcolumn
-set cursorline
 
 " show current line number
 set number

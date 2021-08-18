@@ -3,29 +3,49 @@
 
 function! GetGitBranch()
 	if exists('g:loaded_fugitive')
-		let l:maybeBranch = g:FugitiveStatusline()
-		return ( strlen(l:maybeBranch) > 0)? l:maybeBranch : '-'
+		let l:maybeBranch = g:FugitiveHead()
+		if g:Use_dev_icons
+			return ( strlen(l:maybeBranch) > 0)? " "..l:maybeBranch : '-'
+		else
+			return ( strlen(l:maybeBranch) > 0)? "ᚠ "..l:maybeBranch : '-'
+		endif
 	endif
 endfunction
 
 function! GetStatusLine(mode)
 	let tmp=""
-	if a:mode == 'active'
-		let tmp.="%#User1#"
-		let tmp.="%m%r%w\ bf:%n\ %{GetGitBranch()}"
-		let tmp.="%#CursorLineNr#"
-		let tmp.="\ %f %m\ %="
-		let tmp.="%#User1#"
-		let tmp.="%y%p%%\|%l:%c\ 0x%04b"
-		let tmp.="\ "
-	else
-		let tmp.="%#Pmenu#"
-		let tmp.="%m%r%w\ bf:%n\|\ %{GetGitBranch()}"
-		let tmp.="%#LineNr#"
-		let tmp.="\ %f %m\ %="
-		let tmp.="%#Pmenu#"
-		let tmp.="%y\ %l:%c"
-		let tmp.="\ "
+	if g:Use_dev_icons " Dev icons
+		if a:mode == 'active'
+			let tmp.="%#PmenuSel#"
+			let tmp.="%m%r%w\ bf:%n\ %{GetGitBranch()}"
+			let tmp.="%#statusline#"
+			let tmp.="\ %f %m\ %="
+			let tmp.="%#PmenuSel#"
+			let tmp.="\[%{g:GetPathSymbol('in_use')}\]%p%%\ %l,%c\ 0x%04b"
+			let tmp.="\ "
+		else
+			let tmp.="%#statusline#"
+			let tmp.="%m%r%w\ bf:%n"
+			let tmp.="\ %f %m\ %="
+			let tmp.="%y\ %l:%c"
+			let tmp.="\ "
+		endif
+	else " utf-8
+		if a:mode == 'active'
+			let tmp.="%#PmenuSel#"
+			let tmp.="%m%r%w\ bf:%n\ %{GetGitBranch()}"
+			let tmp.="%#statusline#"
+			let tmp.="\ %f %m\ %="
+			let tmp.="%#PmenuSel#"
+			let tmp.="%y%p%%\ %l,%c\ 0x%04b"
+			let tmp.="\ "
+		else
+			let tmp.="%#statusline#"
+			let tmp.="%m%r%w\ bf:%n"
+			let tmp.="\ %f %m\ %="
+			let tmp.="%y\ %l:%c"
+			let tmp.="\ "
+		endif
 	endif
 	return tmp
 endfunction

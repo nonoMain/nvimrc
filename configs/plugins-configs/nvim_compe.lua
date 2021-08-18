@@ -1,10 +1,6 @@
 --startOfFile
 -- Filename: nvim_compe.lua
 
-CONFIG_FOLDER_PATH = vim.fn.expand('$MYVIMRCFOLDER')
-
-package.path = package.path .. ";" .. CONFIG_FOLDER_PATH .. "configs/plugins-configs/nvim_compe.lua"
-
 vim.o.completeopt = "menuone,noselect"
 
 compe = require('compe')

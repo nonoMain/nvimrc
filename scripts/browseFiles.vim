@@ -3,12 +3,12 @@
 " Description: broswer for recent and existing files
 
 if exists("g:historyPulled")
-    finish
+	finish
 endif
 let g:historyPulled = 1
 
 if !exists('g:historyIgnore')
-    let g:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
+	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
 endif
 
 function! s:fileExists(path)
@@ -20,29 +20,32 @@ function! s:fileExists(path)
 endfunction
 
 function! s:openFileUnderCursor()
-    let l:file = getline('.') | q | execute 'e' fnameescape(l:file)
+	let s:file = getline('.')
+	q
+	execute 'e' fnameescape(s:file)
 endfunction
 
-function! s:pullHistory()
-    belowright new + file
+function! g:PullHistory()
+	belowright new + file
+	resize
 
 	for file in v:oldfiles
 		if s:fileExists(file)
 			silent put = file
-    		silent call matchadd('Conceal', '^\zs.*\ze\/.*\/.*\/', 10, 99, {'conceal': '…'})
+			silent! call matchadd('Conceal', '^\zs.*\ze\/.*\/.*\/', 10, 99, {'conceal': '…'})
 		endif
 	endfor
 
-	for pattern in g:historyIgnore
+	for pattern in s:historyIgnore
 		silent execute 'g/' . pattern . '/d_'
 	endfor
 
 	nnoremap <silent> <buffer> q :q<CR>
-	nnoremap <silent> <buffer> o :call <SID>openFileUnderCursor()<CR>
+	nnoremap <silent> <buffer> <CR> :call <SID>openFileUnderCursor()<CR>
 
 	setlocal nomodifiable noswapfile nospell nowrap
 	setlocal buftype=nofile bufhidden=delete conceallevel=2
 endfunction
 
-command! BrowseRecent silent! call <SID>pullHistory()
+command! BrowseRecent silent! call g:PullHistory()
 "endOfFile

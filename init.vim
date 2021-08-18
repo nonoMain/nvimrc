@@ -4,17 +4,20 @@
 " global/environment variables:
 	" get the folder that the config goes to (different on each OS)
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
-	let g:Use_unicode = 1 " if 0 then will use ASCII
+	let g:Use_dev_icons = 1 " such as braches and directories
 
 " source the general vim settings - file settings, color settings, cursor...
 	source $MYVIMRCFOLDER/configs/general-vim-config/general.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/file_settings.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/keybindings.vim
+	source $MYVIMRCFOLDER/configs/general-vim-config/devicons.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/netrw.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/statusline.vim
+"	set statusline=%f\ %{WebDevIconsGetFileTypeSymbol()}\ %h%w%m%r\ %=%(%l,%c%V\ %Y\ %=\ %P%)
 
 " source all my scripts
 	source $MYVIMRCFOLDER/scripts/browseFiles.vim
+"	luafile $MYVIMRCFOLDER/scripts/saveCodeActions/saveCodeActions.lua
 
 " source the plugins call file
 	source $MYVIMRCFOLDER/plugins.vim
