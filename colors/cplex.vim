@@ -79,9 +79,13 @@ let s:HG = {}
 "	line_col_alt  = '%#LineColAlt#'
 
 " User's usage highlight groups
-let s:HG['User1']        = { "GFG":s:ECP['selected'],        "TFG":s:ECP['T_selected'],        "GBG":s:ECP['objBg'], "TBG": s:ECP['T_objBg'] }
-let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
-let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'],      "GBG":s:ECP['objBg'], "TBG":s:ECP['T_objBg'] }
+" User1: Statuline sides
+" User2: Statuline seperator
+let s:HG['User1']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
+let s:HG['User2']        = { "GFG":s:HG['User1']["GBG"],     "TFG":s:HG['User1']["TBG"],       "GBG":s:ECP['bg'],       "TBG": s:ECP['T_bg'] }
+
+let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
+let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'],      "GBG":s:ECP['objBg'],    "TBG":s:ECP['T_objBg'] }
 
 " Text syntax highlight groups
 let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
@@ -94,14 +98,14 @@ let s:HG['Character']    = { "GFG":s:CP['string'],           "TFG":s:CP['T_strin
 let s:HG['Boolean']      = { "GFG":s:CP['bool'],             "TFG":s:CP['T_bool'] }
 let s:HG['Number']       = { "GFG":s:CP['number'],           "TFG":s:CP['T_number'] }
 let s:HG['Float']        = { "GFG":s:CP['number'],           "TFG":s:CP['T_number'] }
-let s:HG['Repeat']       = { "GFG":s:CP['repeat'],           "TFG":s:CP['T_repeat'],           "G":'bold',            "T":'bold' }
-let s:HG['Keyword']      = { "GFG":s:CP['keyword'],          "TFG":s:CP['T_keyword'],          "G":'bold',            "T":'bold' }
+let s:HG['Repeat']       = { "GFG":s:CP['repeat'],           "TFG":s:CP['T_repeat'],           "G":'bold',              "T":'bold' }
+let s:HG['Keyword']      = { "GFG":s:CP['keyword'],          "TFG":s:CP['T_keyword'],          "G":'bold',              "T":'bold' }
 let s:HG['Operator']     = { "GFG":s:CP['operator'],         "TFG":s:CP['T_operator'] }
 let s:HG['Function']     = { "GFG":s:CP['function'],         "TFG":s:CP['T_function'] }
 let s:HG['Identifier']   = { "GFG":s:CP['object'],           "TFG":s:CP['T_object'] }
 let s:HG['Type']         = { "GFG":s:CP['identifier'],       "TFG":s:CP['T_identifier'] }
 let s:HG['Directory']    = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
-let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error'],            "G": 'bold',            "T": 'bold' }
+let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error'],            "G": 'bold',             "T": 'bold' }
 let s:HG['Special']      = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
 
 " Enviorment highlight groups

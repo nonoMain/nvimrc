@@ -4,7 +4,8 @@
 " global/environment variables:
 	" get the folder that the config goes to (different on each OS)
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
-	let g:Use_dev_icons = 1 " needs supported font
+	let g:clearBackground = 1 " for 'cplex' colorscheme
+	let g:Use_dev_icons   = 1 " needs supported font
 
 " source the general vim settings - file settings, color settings, cursor...
 	source $MYVIMRCFOLDER/configs/general-vim-config/general.vim
