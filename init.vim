@@ -11,7 +11,6 @@
 	source $MYVIMRCFOLDER/configs/general-vim-config/general.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/file_settings.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/keybindings.vim
-	source $MYVIMRCFOLDER/configs/general-vim-config/devicons.vim
 	source $MYVIMRCFOLDER/configs/general-vim-config/netrw.vim
 
 " source the plugins call file

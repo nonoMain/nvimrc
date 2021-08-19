@@ -3,7 +3,6 @@
 
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 HOME = vim.fn.expand('$HOME')
-
 local lua_language_server_path = "/.ls-servers/lua-language-server"
 local sumneko_root_path = ""
 local sumneko_binary = ""

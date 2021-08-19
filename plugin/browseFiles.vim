@@ -2,10 +2,11 @@
 " Filename: browseFiles.vim
 " Description: broswer for recent and existing files
 
-if exists("g:historyPulled")
-	finish
-endif
-let g:historyPulled = 1
+let g:historyPulled = 0
+
+let s:conceal_Hi_Lvl = 10
+let s:conceal_match_id = 99
+let s:symbol_len = 0
 
 if !exists('g:historyIgnore')
 	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
@@ -20,19 +21,34 @@ function! s:fileExists(path)
 endfunction
 
 function! s:openFileUnderCursor()
-	let s:file = getline('.')
+	let l:file = getline('.')
+	let l:file = strpart(l:file, 0, strlen(l:file) - s:symbol_len)
 	q
-	execute 'e' fnameescape(s:file)
+	execute 'e' fnameescape(l:file)
+	call s:closeBrowser()
+	let g:historyPulled = 0
 endfunction
 
-function! browseFiles#PullHistory()
+function! s:closeBrowser()
+	let l:i = bufnr("$")
+	while (l:i >= 1)
+		if (getbufvar(l:i, "&filetype") == "filebroswer")
+			silent exe "bwipeout " . l:i 
+		endif
+		let l:i-=1
+	endwhile
+endfunction
+
+function! s:openBrowser()
+	let l:tmp = ""
 	belowright new + file
 	resize
 
-	for file in v:oldfiles
-		if s:fileExists(file)
-			silent put = file
-			silent! call matchadd('Conceal', '^\zs.*\ze\/.*\/.*\/', 10, 99, {'conceal': '…'})
+	for l:file in v:oldfiles
+		if s:fileExists(l:file)
+			if g:Use_dev_icons | let l:tmp = " " .. Devicons#GetPathSymbol(l:file, 'view') | endif
+			silent put = l:file .. l:tmp
+			silent! call matchadd('Conceal', '^\zs.*\ze\/.*\/.*\/', s:conceal_Hi_Lvl, s:conceal_match_id, {'conceal': '…'})
 		endif
 	endfor
 
@@ -40,11 +56,23 @@ function! browseFiles#PullHistory()
 		silent execute 'g/' . pattern . '/d_'
 	endfor
 
+	let s:symbol_len = strlen(l:tmp)
+
 	nnoremap <silent> <buffer> q :q<CR>
 	nnoremap <silent> <buffer> <CR> :call <SID>openFileUnderCursor()<CR>
 
 	setlocal nomodifiable noswapfile nospell nowrap
-	setlocal buftype=nofile bufhidden=delete conceallevel=2
+	setlocal buftype=nofile bufhidden=delete conceallevel=2 filetype=filebroswer
+endfunction
+
+function! browseFiles#ToggleHistory()
+	if g:historyPulled
+		call s:closeBrowser()
+		let g:historyPulled = 0
+	else
+		call s:openBrowser()
+		let g:historyPulled = 1
+	endif
 endfunction
 
 command! BrowseRecent silent! call g:PullHistory()

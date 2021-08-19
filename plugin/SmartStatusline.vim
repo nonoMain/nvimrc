@@ -25,7 +25,7 @@ endfunction
 function! GetRightSide(win_id) abort
 	let l:symbol = ''
 	if g:Use_dev_icons
-		let l:symbol = "\ %{g:GetSystemSymbol()}"
+		let l:symbol = "\ %{Devicons#GetSystemSymbol()}"
 	else
 		let l:symbol = "\ %{&fileformat}"
 	endif
@@ -47,7 +47,7 @@ endfunction
 function! GetLeftSide(win_id) abort
 	let l:symbol = ''
 	if g:Use_dev_icons
-		let l:symbol = "\ %{g:GetPathSymbol('in_use')}\ "
+		let l:symbol = "\ %{Devicons#GetPathSymbol(expand('%'), 'in_use')}\ "
 	else
 		let l:symbol = "%y"
 	endif
@@ -118,6 +118,7 @@ augroup statusLine
 	autocmd InsertLeave  * call SmartStatusline#Update()
 
 	autocmd WinNew       * call SmartStatusline#Update()
+	autocmd BufWipeout   * call SmartStatusline#Update()
 	autocmd WinEnter     * call SmartStatusline#Update()
 	autocmd BufWinEnter  * call SmartStatusline#Update()
 	autocmd BufWinLeave  * call SmartStatusline#Update()

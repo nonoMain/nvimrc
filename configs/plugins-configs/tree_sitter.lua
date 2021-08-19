@@ -14,7 +14,7 @@ require'nvim-treesitter.configs'.setup
 		"python",
 		"lua",
 		"bash",
-		"java"
+		"java",
 	},
 	playground = {
 		enable = true,

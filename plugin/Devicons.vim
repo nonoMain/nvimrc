@@ -30,18 +30,6 @@ function s:getDistro()
 	return s:distroSymbol
 endfunction
 
-function! g:GetSystemSymbol()
-	let format = ''
-	if &fileformat ==? 'unix'
-		let format = s:getDistro()
-	elseif &fileformat ==? 'dos'
-		let format = ''
-	elseif &fileformat ==? 'mac' || has('macunix')
-		let format = ''
-	endif
-	return format
-endfunction
-
 let s:fileExtentionsToSymbols = {
 	\'ai'          : '',
 	\'awk'         : '',
@@ -187,6 +175,7 @@ let s:specificFilesToSymbols = {
 	\'.gvimrc'           : '',
 	\'_gvimrc'           : '',
 	\'license'           : '',
+	\'License'           : '',
 	\'LICENSE'           : '',
 	\'makefile'          : '',
 	\'Makefile'          : '',
@@ -219,10 +208,10 @@ function! s:dirToSymbol(mode)
 	endif
 endfunction
 
-function! s:fileToSymbol()
+function! s:fileToSymbol(path)
 	let l:default = ''
-	let l:file = expand('%:t')
-	let l:fileExtention = expand('%:e')
+	let l:file = fnamemodify(a:path, ":t")
+	let l:fileExtention = fnamemodify(l:file, ":e")
 	for key in keys(s:fileExtentionsToSymbols)
 		if key == l:fileExtention
 			return s:fileExtentionsToSymbols[key]
@@ -236,13 +225,24 @@ function! s:fileToSymbol()
 	return l:default
 endfunction
 
-function! g:GetPathSymbol(mode)
-	let l:fullPath = expand('%')
+function! Devicons#GetSystemSymbol()
+	let format = ''
+	if &fileformat ==? 'unix'
+		let format = s:getDistro()
+	elseif &fileformat ==? 'dos'
+		let format = ''
+	elseif &fileformat ==? 'mac' || has('macunix')
+		let format = ''
+	endif
+	return format
+endfunction
+
+function! Devicons#GetPathSymbol(fullPath, mode)
 	let l:symbol = ''
-	if isdirectory(l:fullPath)
+	if isdirectory(a:fullPath)
 		let l:symbol = s:dirToSymbol(a:mode)
-	elseif filereadable(l:fullPath)
-		let l:symbol = s:fileToSymbol()
+	elseif filereadable(a:fullPath)
+		let l:symbol = s:fileToSymbol(a:fullPath)
 	endif
 	return l:symbol
 endfunction

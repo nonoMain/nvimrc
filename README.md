@@ -21,6 +21,7 @@ My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/), i
 7. Efficient [scripts](./plugin)
 	- [x] History browser
 	- [x] Status line
+	- [X] Devicons
 	- [ ] Easy doc - less soon
 
 and other usefull tweaks.
@@ -81,16 +82,13 @@ nvim/
 |- autoload/                D(a) Place to put scripts that will load automatically and can be accessed from anywhere
 |  |- plug.vim              F(a) The plugin manager (vim-plug)
 |  |- plugged/              D(a) All the installed plugins are here
-|  |  |- plugin1/           |   // example
-|  |  |- plugin2/           |   // example
-|  |  |- plugin3/           |   // example
 |- colors/                  D(a) Colorschemes
 |- configs/                 D(s) All the configirations
-|  |- general-vim-config/   |
-|  |- lsp-servers-configs/  |
-|  |- plugins-configs/      |
+|  |- general-vim-config/   | // same as above
+|  |- lsp-servers-configs/  | // same as above
+|  |- plugins-configs/      | // same as above
 |- releated/                D(n) Files for editor releated things (e.g Language-server wrappers)
-|- scripts/                 D(s) External scripts used by the editor or the user
+|- plugin/                  D(a) External scripts used by the editor or the user
 ```
 
 ## Plugins
