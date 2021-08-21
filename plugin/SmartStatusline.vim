@@ -45,54 +45,58 @@ function! GetRightSide(win_id) abort
 endfunction
 
 function! GetLeftSide(win_id) abort
-	let l:symbol = ''
-	if g:Use_dev_icons
-		let l:symbol = "\ %{Devicons#GetPathSymbol(expand('%'), 'in_use')}\ "
-	else
-		let l:symbol = "%y"
-	endif
 	if winwidth(a:win_id) > s:long
-		return l:symbol .. "%p%%\ %l,%c\ 0x%04b"
+		return "%p%%\ %l,%c\ 0x%04b"
 
 	elseif winwidth(a:win_id) > s:medium
-		return l:symbol .. "%p%%\ %l,%c\ "
+		return "%p%%\ %l,%c\ "
 
 	elseif winwidth(a:win_id) > s:short
-		return l:symbol .. "%l,%c\ "
-	
-	else
 		return "%l,%c\ "
-
 	endif
-	return l:tmp
 endfunction
 
 function! GetPath(win_id) abort
-	return "\ %f%="
+	return "%f%="
+endfunction
+
+function! GetPathSymbol(win_id) abort
+	if winwidth(a:win_id) > s:short
+		if g:Use_dev_icons
+			return "%{Devicons#GetPathSymbol(expand('%'), 'in_use')}\ "
+		else
+			return "%Y"
+		endif
+	endif
+	return ""
 endfunction
 
 function! s:generateStatusline(win_id, mode)
-	let l:tmp=""
+	let l:tmp = ""
 	if a:mode == 'active'
-		let l:tmp.="%#User1#"
-		let l:tmp.= GetRightSide(a:win_id)
-		let l:tmp.="%#User2#" " seperator
-		let l:tmp.=""
-		let l:tmp.="%#statusline#"
-		let l:tmp.="\ "
-		let l:tmp.= GetPath(a:win_id)
-		let l:tmp.="%#User2#" " seperator
-		let l:tmp.=""
-		let l:tmp.="%#User1#"
-		let l:tmp.= GetLeftSide(a:win_id)
-		let l:tmp.="\ "
+		let l:tmp .= "%#User1#"
+		let l:tmp .=  GetRightSide(a:win_id)
+		let l:tmp .= "%#User2#" " seperator
+		let l:tmp .= ""
+		let l:tmp .= "%#statusline#"
+		let l:tmp .=  GetPath(a:win_id)
+		let l:tmp .= "%#User4#" " seperator
+		let l:tmp .= ""
+		let l:tmp .= "%#User3#" " seperator
+		let l:tmp .=  GetPathSymbol(a:win_id)
+		let l:tmp .= "%#User1#" " seperator
+		let l:tmp .= ""
+		let l:tmp .= "%#User1#"
+		let l:tmp .=  GetLeftSide(a:win_id)
+		let l:tmp .= "\ "
 	elseif a:mode == 'inactive'
-		let l:tmp.="%#statusline#"
-		let l:tmp.= GetRightSide(a:win_id)
-		let l:tmp.="\ "
-		let l:tmp.= GetPath(a:win_id)
-		let l:tmp.= GetLeftSide(a:win_id)
-		let l:tmp.="\ "
+		let l:tmp .= "%#statusline#"
+		let l:tmp .=  GetRightSide(a:win_id)
+		let l:tmp .= "\ "
+		let l:tmp .=  GetPath(a:win_id)
+		let l:tmp .=  GetPathSymbol(a:win_id)
+		let l:tmp .=  GetLeftSide(a:win_id)
+		let l:tmp .= "\ "
 	endif
 	return l:tmp
 endfunction

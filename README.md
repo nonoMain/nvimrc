@@ -84,9 +84,9 @@ nvim/
 |  |- plugged/              D(a) All the installed plugins are here
 |- colors/                  D(a) Colorschemes
 |- configs/                 D(s) All the configirations
-|  |- general-vim-config/   | // same as above
-|  |- lsp-servers-configs/  | // same as above
-|  |- plugins-configs/      | // same as above
+|  |- general/              | // same as above
+|  |- lsp-servers/          | // same as above
+|  |- plugins/              | // same as above
 |- releated/                D(n) Files for editor releated things (e.g Language-server wrappers)
 |- plugin/                  D(a) External scripts used by the editor or the user
 ```
@@ -130,7 +130,7 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 ## Language-servers
 --------------------------------------------------------------------------------
 
-* [ccls](https://github.com/MaskRay/ccls) - C/Cpp/Objc/Objcpp language server - [config](./configs/lsp-servers-configs/c_lsconfig.lua)
+* [clangd](https://github.com/clangd/clangd) - C/Cpp/Objc/Objcpp language server - [config](./configs/lsp-servers-configs/c_lsconfig.lua)
 > C 'family' ls
 
 * [pyright](https://github.com/microsoft/pyright) - Python language server - [config](./configs/lsp-servers-configs/python_lsconfig.lua)
@@ -147,7 +147,6 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 
 ## Colorscheme pics
 --------------------------------------------------------------------------------
-![](https://github.com/nonoMain/nvimrc/blob/master/pictures/cplex_dark_bg.png?raw=true "dark background")
-![](https://github.com/nonoMain/nvimrc/blob/master/pictures/cplex_clear_bg.png?raw=true "clear background")
+updated soon!
 
 //endOfFile

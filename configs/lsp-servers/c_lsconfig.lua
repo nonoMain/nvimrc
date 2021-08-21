@@ -4,9 +4,9 @@
 -- easiest option to get it if you don't have it:
 -- sudo apt install ccls
 
-require'lspconfig'.ccls.setup
+require'lspconfig'.clangd.setup
 {
-	cmd = { "ccls" };
+	cmd = { "clangd" };
 	filetypes = {
 		"c",
 		"cpp",

@@ -20,7 +20,7 @@ function! s:fileExists(path)
 	endif
 endfunction
 
-function! s:openFileUnderCursor()
+function! s:openFileUnderCursor() abort
 	let l:file = getline('.')
 	let l:file = strpart(l:file, 0, strlen(l:file) - s:symbol_len)
 	q
@@ -65,7 +65,7 @@ function! s:openBrowser()
 	setlocal buftype=nofile bufhidden=delete conceallevel=2 filetype=filebroswer
 endfunction
 
-function! browseFiles#ToggleHistory()
+function! BrowseFilesHistory#ToggleHistory()
 	if g:historyPulled
 		call s:closeBrowser()
 		let g:historyPulled = 0
@@ -74,6 +74,4 @@ function! browseFiles#ToggleHistory()
 		let g:historyPulled = 1
 	endif
 endfunction
-
-command! BrowseRecent silent! call g:PullHistory()
 "endOfFile

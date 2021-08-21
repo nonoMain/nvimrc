@@ -34,7 +34,13 @@ set noerrorbells
 
 " show tabs, end of lines and trailing spaces
 set list
-set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:< " ·
+
+if g:Use_dev_icons
+	set listchars=tab:\ ,eol:¬,trail:~,extends:>,precedes:< " ·
+else
+	set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:< " ·
+endif
+
 set fillchars=stl:_,stlnc:_,vert:\|,fold:-,diff:-
 
 " INDENTATION SETTINGS:

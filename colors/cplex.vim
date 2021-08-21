@@ -50,6 +50,7 @@ let s:ECP['selected']          = '#005F87'       | let s:ECP['T_selected']      
 let s:ECP['fg']                = '#E4E4E4'       | let s:ECP['T_fg']               = 254
 let s:ECP['objFg']             = '#b2b2b2'       | let s:ECP['T_objFg']            = 249
 let s:ECP['objBg']             = '#303030'       | let s:ECP['T_objBg']            = 236
+let s:ECP['non-text']          = '#585858'       | let s:ECP['T_non-text']         = 240
 let s:ECP['limitLines']        = '#444444'       | let s:ECP['T_limitLines']       = 238
 let s:ECP['cursorLines']       = '#1C1C1C'       | let s:ECP['T_cursorLines']      = 234
 let s:ECP['searchHighlight']   = '#005F87'       | let s:ECP['T_searchHighlight']  =  24
@@ -81,55 +82,59 @@ let s:HG = {}
 " User's usage highlight groups
 " User1: Statuline sides
 " User2: Statuline seperator
-let s:HG['User1']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
-let s:HG['User2']        = { "GFG":s:HG['User1']["GBG"],     "TFG":s:HG['User1']["TBG"],       "GBG":s:ECP['bg'],       "TBG": s:ECP['T_bg'] }
+" User3: Statuline reversed seperator
+" User4: Statuline start-left seperator
+let s:HG['User1']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'],    "TBG":s:ECP['T_selected'] }
+let s:HG['User2']        = { "GFG":s:HG['User1']["GBG"],     "TFG":s:HG['User1']["TBG"],       "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
+let s:HG['User3']        = { "GFG":s:HG['User1']["GBG"],     "TFG":s:HG['User1']["TBG"],       "GBG":s:HG['User1']['GFG'], "TBG":s:HG['User1']['TFG'] }
+let s:HG['User4']        = { "GFG":s:HG['User1']["GFG"],     "TFG":s:HG['User1']["TFG"],       "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
 
-let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
-let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'],      "GBG":s:ECP['objBg'],    "TBG":s:ECP['T_objBg'] }
+let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
+let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'],      "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
 
 " Text syntax highlight groups
-let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
+let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
 let s:HG['Include']      = { "GFG":s:CP['include'],          "TFG":s:CP['T_include'] }
 let s:HG['Comment']      = { "GFG":s:CP['comment'],          "TFG":s:CP['T_comment'] }
 let s:HG['Constant']     = { "GFG":s:CP['constant'],         "TFG":s:CP['T_constant'] }
-let s:HG['Delimiter']    = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
+let s:HG['Delimiter']    = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
 let s:HG['String']       = { "GFG":s:CP['string'],           "TFG":s:CP['T_string'] }
 let s:HG['Character']    = { "GFG":s:CP['string'],           "TFG":s:CP['T_string'] }
 let s:HG['Boolean']      = { "GFG":s:CP['bool'],             "TFG":s:CP['T_bool'] }
 let s:HG['Number']       = { "GFG":s:CP['number'],           "TFG":s:CP['T_number'] }
 let s:HG['Float']        = { "GFG":s:CP['number'],           "TFG":s:CP['T_number'] }
-let s:HG['Repeat']       = { "GFG":s:CP['repeat'],           "TFG":s:CP['T_repeat'],           "G":'bold',              "T":'bold' }
-let s:HG['Keyword']      = { "GFG":s:CP['keyword'],          "TFG":s:CP['T_keyword'],          "G":'bold',              "T":'bold' }
+let s:HG['Repeat']       = { "GFG":s:CP['repeat'],           "TFG":s:CP['T_repeat'],           "G":'bold',                 "T":'bold' }
+let s:HG['Keyword']      = { "GFG":s:CP['keyword'],          "TFG":s:CP['T_keyword'],          "G":'bold',                 "T":'bold' }
 let s:HG['Operator']     = { "GFG":s:CP['operator'],         "TFG":s:CP['T_operator'] }
 let s:HG['Function']     = { "GFG":s:CP['function'],         "TFG":s:CP['T_function'] }
 let s:HG['Identifier']   = { "GFG":s:CP['object'],           "TFG":s:CP['T_object'] }
 let s:HG['Type']         = { "GFG":s:CP['identifier'],       "TFG":s:CP['T_identifier'] }
 let s:HG['Directory']    = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
-let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error'],            "G": 'bold',             "T": 'bold' }
+let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error'],            "G":'bold',                 "T":'bold' }
 let s:HG['Special']      = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
 
 " Enviorment highlight groups
-let s:HG['Pmenu']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
-let s:HG['PmenuSel']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
+let s:HG['Pmenu']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
+let s:HG['PmenuSel']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'],    "TBG":s:ECP['T_selected'] }
 let s:HG['PmenuSbar']    = { "GBG":s:ECP['limitLines'],      "TBG":s:ECP['T_limitLines'] }
 let s:HG['PmenuThumb']   = { "GBG":s:ECP['selected'],        "TBG":s:ECP['T_selected'] }
-let s:HG['TabLine']      = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
+let s:HG['TabLine']      = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
 let s:HG['TabLineFill']  = { "GBG":s:ECP['objBg'],          "TBG":s:ECP['T_objBg'] }
-let s:HG['TabLineSel']   = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'], "TBG": s:ECP['T_selected'] }
-let s:HG['WildMenu']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG": s:ECP['T_objBg'] }
+let s:HG['TabLineSel']   = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'],    "TBG":s:ECP['T_selected'] }
+let s:HG['WildMenu']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
 let s:HG['LineNr']       = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'] }
 let s:HG['SignColumn']   = { "GBG":s:ECP['bg'],              "TBG":s:ECP['T_bg'] }
 let s:HG['CursorLineNr'] = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'] }
 let s:HG['CursorLine']   = { "GBG":s:ECP['cursorLines'],     "TBG":s:ECP['T_cursorLines'] }
 let s:HG['CursorColumn'] = { "GBG":s:ECP['cursorLines'],     "TBG":s:ECP['T_cursorLines'] }
-let s:HG['Cursor']       = { "G":'reverse',                  "T": 'reverse' }
+let s:HG['Cursor']       = { "G":'reverse',                  "T":'reverse' }
 let s:HG['VertSplit']    = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'] }
 let s:HG['ColorColumn']  = { "GBG":s:ECP['cursorLines'],     "TBG":s:ECP['T_cursorLines'] }
 let s:HG['IncSearch']    = { "GBG":s:ECP['searchSelected'],  "TBG":s:ECP['T_searchSelected'] }
 let s:HG['Search']       = { "GBG":s:ECP['searchHighlight'], "TBG":s:ECP['T_searchHighlight'] }
 let s:HG['Visual']       = { "GBG":s:ECP['visualSelection'], "TBG":s:ECP['T_visualSelection'] }
 let s:HG['VisualNOS']    = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'] }
-let s:HG['NonText']      = { "GFG":s:ECP['objBg'],           "TFG":s:ECP['T_objBg'] }
+let s:HG['NonText']      = { "GFG":s:ECP['non-text'],        "TFG":s:ECP['T_non-text'] }
 let s:HG['SpecialKey']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'] }
 
 " Coloring function

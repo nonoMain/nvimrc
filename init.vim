@@ -7,26 +7,26 @@
 	let g:clearBackground = 1 " for 'cplex' colorscheme
 	let g:Use_dev_icons   = 1 " needs supported font
 
-" source the general vim settings - file settings, color settings, cursor...
-	source $MYVIMRCFOLDER/configs/general-vim-config/general.vim
-	source $MYVIMRCFOLDER/configs/general-vim-config/file_settings.vim
-	source $MYVIMRCFOLDER/configs/general-vim-config/keybindings.vim
-	source $MYVIMRCFOLDER/configs/general-vim-config/netrw.vim
+" The general vim settings - file settings, color settings, cursor...
+	source $MYVIMRCFOLDER/configs/general/general.vim
+	source $MYVIMRCFOLDER/configs/general/file_settings.vim
+	source $MYVIMRCFOLDER/configs/general/keybindings.vim
+	source $MYVIMRCFOLDER/configs/general/netrw.vim
 
-" source the plugins call file
+" The plugins call file
 	source $MYVIMRCFOLDER/plugins.vim
 
-" source all the configs for the plugins
-	source $MYVIMRCFOLDER/configs/plugins-configs/nvim_lsconfig.vim
-	source $MYVIMRCFOLDER/configs/plugins-configs/vim_hexokinase.vim
-	luafile $MYVIMRCFOLDER/configs/plugins-configs/nvim_compe.lua
-	luafile $MYVIMRCFOLDER/configs/plugins-configs/tree_sitter.lua
+" All the configs for the plugins
+	source $MYVIMRCFOLDER/configs/plugins/nvim_lsconfig.vim
+	source $MYVIMRCFOLDER/configs/plugins/vim_hexokinase.vim
+	luafile $MYVIMRCFOLDER/configs/plugins/nvim_compe.lua
+	luafile $MYVIMRCFOLDER/configs/plugins/tree_sitter.lua
 
-" source all the configs for the language servers
-	luafile $MYVIMRCFOLDER/configs/lsp-servers-configs/python_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers-configs/c_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers-configs/lua_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers-configs/vim_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers-configs/java_lsconfig.lua
+" The configs for the language servers
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/python_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/c_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
 
 "endOfFile

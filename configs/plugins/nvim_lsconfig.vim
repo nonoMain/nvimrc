@@ -4,18 +4,6 @@
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
--- Borders of mini display
-local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
-
 local icons = {
   Class = "  class",
   Color = " ",
@@ -24,13 +12,13 @@ local icons = {
   Enum = "了 ",
   EnumMember = " ",
   Field = " field",
-  File = " ",
+  File = " file",
   Folder = " ",
   Function = " func",
   Interface = "ﰮ interface",
   Keyword = " ",
   Method = "ƒ meth",
-  Module = " ",
+  Module = " module",
   Property = " prop",
   Snippet = "﬌ ",
   Struct = " ",
@@ -49,21 +37,8 @@ local setSymbols = function()
   end
 end
 
-local on_attach = function(client, bufnr)
-  vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
-  vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
-end
-
 -- set the items symbols
 if vim.g.Use_dev_icons == 1 then setSymbols() end
-
--- Add all the servers you want here like:
--- require 'lspconfig'.myserver.setup { on_attach = on_attach }
-require 'lspconfig'.ccls.setup { on_attach = on_attach }
-require 'lspconfig'.pyright.setup { on_attach = on_attach }
-require 'lspconfig'.jdtls.setup { on_attach = on_attach }
-require 'lspconfig'.vimls.setup { on_attach = on_attach }
-require 'lspconfig'.sumneko_lua.setup { on_attach = on_attach }
 EOF
 
 set completeopt=menuone,noinsert,noselect
