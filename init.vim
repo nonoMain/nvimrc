@@ -5,7 +5,7 @@
 	" get the folder that the config goes to (different on each OS)
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
 	let g:clearBackground = 1 " for 'cplex' colorscheme
-	let g:Use_dev_icons   = 1 " needs supported font
+	let g:Use_dev_icons   = 1 " needs 'nerd font' supported font
 
 " The general vim settings - file settings, color settings, cursor...
 	source $MYVIMRCFOLDER/configs/general/general.vim
@@ -25,8 +25,7 @@
 " The configs for the language servers
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/python_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/c_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
-
 "endOfFile

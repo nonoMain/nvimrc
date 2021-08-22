@@ -65,7 +65,7 @@ function! s:openBrowser()
 	setlocal buftype=nofile bufhidden=delete conceallevel=2 filetype=filebroswer
 endfunction
 
-function! BrowseFilesHistory#ToggleHistory()
+function! BrowseOldfiles#ToggleHistory()
 	if g:historyPulled
 		call s:closeBrowser()
 		let g:historyPulled = 0
