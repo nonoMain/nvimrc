@@ -41,7 +41,7 @@ else
 	set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:< " ·
 endif
 
-set fillchars=stl:_,stlnc:_,vert:\|,fold:-,diff:-
+set fillchars=stl:\ ,stlnc:_,vert:\│,fold:-,diff:-
 
 " INDENTATION SETTINGS:
 	" how many spaces a tab is

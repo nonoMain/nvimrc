@@ -23,21 +23,21 @@ endif
 " Color Pallet - C.P
 let s:CP = {}
 
-let s:CP['string']             = '#D7875F'       | let s:CP['T_string']            = 173
-let s:CP['comment']            = '#5F875F'       | let s:CP['T_comment']           =  65
-let s:CP['error']              = '#D70000'       | let s:CP['T_error']             = 160
-let s:CP['number']             = '#AFD7AF'       | let s:CP['T_number']            = 151
-let s:CP['bool']               = '#AF87D7'       | let s:CP['T_bool']              = 140
-let s:CP['identifier']         = '#5FAFD7'       | let s:CP['T_identifier']        =  74
-let s:CP['keyword']            = '#87AFFF'       | let s:CP['T_keyword']           = 111
-let s:CP['repeat']             = '#D787D7'       | let s:CP['T_repeat']            = 176
-let s:CP['function']           = '#D7D7AF'       | let s:CP['T_function']          = 187
-let s:CP['constant']           = '#D7D7AF'       | let s:CP['T_constant']          = 187
-let s:CP['include']            = '#D75F87'       | let s:CP['T_include']           = 168
-let s:CP['object']             = '#E4E4E4'       | let s:CP['T_object']            = 254
-let s:CP['operator']           = '#AF5F87'       | let s:CP['T_operator']          = 132
-let s:CP['bracket']            = '#D7875F'       | let s:CP['T_bracket']           = 173
-let s:CP['special']            = '#5FAFFF'       | let s:CP['T_special']           =  75
+let s:CP['string']     = '#D7875F'  | let s:CP['T_string']     = 173
+let s:CP['comment']    = '#5F875F'  | let s:CP['T_comment']    =  65
+let s:CP['error']      = '#D70000'  | let s:CP['T_error']      = 160
+let s:CP['number']     = '#AFD7AF'  | let s:CP['T_number']     = 151
+let s:CP['bool']       = '#AF87D7'  | let s:CP['T_bool']       = 140
+let s:CP['identifier'] = '#5FAFD7'  | let s:CP['T_identifier'] =  74
+let s:CP['keyword']    = '#87AFFF'  | let s:CP['T_keyword']    = 111
+let s:CP['repeat']     = '#D787D7'  | let s:CP['T_repeat']     = 176
+let s:CP['function']   = '#D7D7AF'  | let s:CP['T_function']   = 187
+let s:CP['constant']   = '#D7D7AF'  | let s:CP['T_constant']   = 187
+let s:CP['include']    = '#D75F87'  | let s:CP['T_include']    = 168
+let s:CP['object']     = '#E4E4E4'  | let s:CP['T_object']     = 254
+let s:CP['operator']   = '#AF5F87'  | let s:CP['T_operator']   = 132
+let s:CP['bracket']    = '#D7875F'  | let s:CP['T_bracket']    = 173
+let s:CP['special']    = '#5FAFFF'  | let s:CP['T_special']    =  75
 
 " Enviorment's Color Pallet - E.C.P
 let s:ECP = {}
@@ -68,60 +68,38 @@ let s:ECP['visualSelection']   = '#005F87'       | let s:ECP['T_visualSelection'
 
 let s:HG = {}
 
-"	active        = '%#StatusLine#',
-"	inactive      = '%#StatuslineNC#',
-"	mode          = '%#Mode#',
-"	mode_alt      = '%#ModeAlt#',
-"	git           = '%#Git#',
-"	git_alt       = '%#GitAlt#',
-"	filetype      = '%#Filetype#',
-"	filetype_alt  = '%#FiletypeAlt#',
-"	line_col      = '%#LineCol#',
-"	line_col_alt  = '%#LineColAlt#'
-
-" User's usage highlight groups
-" User1: Statuline sides
-" User2: Statuline seperator
-" User3: Statuline reversed seperator
-" User4: Statuline start-left seperator
-let s:HG['User1']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'],    "TBG":s:ECP['T_selected'] }
-let s:HG['User2']        = { "GFG":s:HG['User1']["GBG"],     "TFG":s:HG['User1']["TBG"],       "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
-let s:HG['User3']        = { "GFG":s:HG['User1']["GBG"],     "TFG":s:HG['User1']["TBG"],       "GBG":s:HG['User1']['GFG'], "TBG":s:HG['User1']['TFG'] }
-let s:HG['User4']        = { "GFG":s:HG['User1']["GFG"],     "TFG":s:HG['User1']["TFG"],       "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
-
-let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
-let s:HG['StatusLineNC'] = { "GFG":s:ECP['limitLines'],      "TFG":s:ECP['T_limitLines'],      "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
-
 " Text syntax highlight groups
-let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
+let s:HG['Normal']       = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
 let s:HG['Include']      = { "GFG":s:CP['include'],          "TFG":s:CP['T_include'] }
 let s:HG['Comment']      = { "GFG":s:CP['comment'],          "TFG":s:CP['T_comment'] }
 let s:HG['Constant']     = { "GFG":s:CP['constant'],         "TFG":s:CP['T_constant'] }
-let s:HG['Delimiter']    = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],          "TBG":s:ECP['T_bg'] }
+let s:HG['Delimiter']    = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
 let s:HG['String']       = { "GFG":s:CP['string'],           "TFG":s:CP['T_string'] }
 let s:HG['Character']    = { "GFG":s:CP['string'],           "TFG":s:CP['T_string'] }
 let s:HG['Boolean']      = { "GFG":s:CP['bool'],             "TFG":s:CP['T_bool'] }
 let s:HG['Number']       = { "GFG":s:CP['number'],           "TFG":s:CP['T_number'] }
 let s:HG['Float']        = { "GFG":s:CP['number'],           "TFG":s:CP['T_number'] }
-let s:HG['Repeat']       = { "GFG":s:CP['repeat'],           "TFG":s:CP['T_repeat'],           "G":'bold',                 "T":'bold' }
-let s:HG['Keyword']      = { "GFG":s:CP['keyword'],          "TFG":s:CP['T_keyword'],          "G":'bold',                 "T":'bold' }
+let s:HG['Repeat']       = { "GFG":s:CP['repeat'],           "TFG":s:CP['T_repeat'],           "G":'bold',              "T":'bold' }
+let s:HG['Keyword']      = { "GFG":s:CP['keyword'],          "TFG":s:CP['T_keyword'],          "G":'bold',              "T":'bold' }
 let s:HG['Operator']     = { "GFG":s:CP['operator'],         "TFG":s:CP['T_operator'] }
 let s:HG['Function']     = { "GFG":s:CP['function'],         "TFG":s:CP['T_function'] }
 let s:HG['Identifier']   = { "GFG":s:CP['object'],           "TFG":s:CP['T_object'] }
 let s:HG['Type']         = { "GFG":s:CP['identifier'],       "TFG":s:CP['T_identifier'] }
 let s:HG['Directory']    = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
-let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error'],            "G":'bold',                 "T":'bold' }
+let s:HG['Error']        = { "GFG":s:CP['error'],            "TFG":s:CP['T_error'],            "G":'bold',              "T":'bold' }
 let s:HG['Special']      = { "GFG":s:CP['special'],          "TFG":s:CP['T_special'] }
 
 " Enviorment highlight groups
-let s:HG['Pmenu']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
-let s:HG['PmenuSel']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'],    "TBG":s:ECP['T_selected'] }
+let s:HG['StatusLine']   = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG":s:ECP['T_objBg'] }
+let s:HG['StatusLineNC'] = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['bg'],       "TBG":s:ECP['T_bg'] }
+let s:HG['Pmenu']        = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG":s:ECP['T_objBg'] }
+let s:HG['PmenuSel']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['selected'], "TBG":s:ECP['T_selected'] }
 let s:HG['PmenuSbar']    = { "GBG":s:ECP['limitLines'],      "TBG":s:ECP['T_limitLines'] }
 let s:HG['PmenuThumb']   = { "GBG":s:ECP['selected'],        "TBG":s:ECP['T_selected'] }
-let s:HG['TabLine']      = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
-let s:HG['TabLineFill']  = { "GBG":s:ECP['objBg'],          "TBG":s:ECP['T_objBg'] }
-let s:HG['TabLineSel']   = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'],    "TBG":s:ECP['T_selected'] }
-let s:HG['WildMenu']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],       "TBG":s:ECP['T_objBg'] }
+let s:HG['TabLine']      = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['objBg'],    "TBG":s:ECP['T_objBg'] }
+let s:HG['TabLineFill']  = { "GBG":s:ECP['objBg'],           "TBG":s:ECP['T_objBg'] }
+let s:HG['TabLineSel']   = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'],              "GBG":s:ECP['selected'], "TBG":s:ECP['T_selected'] }
+let s:HG['WildMenu']     = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'],           "GBG":s:ECP['objBg'],    "TBG":s:ECP['T_objBg'] }
 let s:HG['LineNr']       = { "GFG":s:ECP['objFg'],           "TFG":s:ECP['T_objFg'] }
 let s:HG['SignColumn']   = { "GBG":s:ECP['bg'],              "TBG":s:ECP['T_bg'] }
 let s:HG['CursorLineNr'] = { "GFG":s:ECP['fg'],              "TFG":s:ECP['T_fg'] }

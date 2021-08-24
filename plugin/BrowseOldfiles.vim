@@ -6,7 +6,7 @@ let g:historyPulled = 0
 
 let s:conceal_Hi_Lvl = 10
 let s:conceal_match_id = 99
-let s:symbol_len = 0
+let g:files_shown = []
 
 if !exists('g:historyIgnore')
 	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
@@ -21,8 +21,7 @@ function! s:fileExists(path)
 endfunction
 
 function! s:openFileUnderCursor() abort
-	let l:file = getline('.')
-	let l:file = strpart(l:file, 0, strlen(l:file) - s:symbol_len)
+	let l:file = g:files_shown[line('.') - 1]
 	q
 	execute 'e' fnameescape(l:file)
 	call s:closeBrowser()
@@ -30,33 +29,45 @@ function! s:openFileUnderCursor() abort
 endfunction
 
 function! s:closeBrowser()
-	let l:i = bufnr("$")
-	while (l:i >= 1)
-		if (getbufvar(l:i, "&filetype") == "filebroswer")
-			silent exe "bwipeout " . l:i 
+	let bufNr = bufnr("$")
+	while (bufNr >= 1)
+		if (getbufvar(bufNr, "&filetype") == "filebroswer")
+			silent exe "bwipeout " . bufNr 
 		endif
-		let l:i-=1
+		let bufNr-=1
 	endwhile
 endfunction
 
 function! s:openBrowser()
-	let l:tmp = ""
+	let g:files_shown = []
+	let l:ignore = 0
+	let l:symbol = ""
+	let l:line = ""
 	belowright new + file
 	resize
 
 	for l:file in v:oldfiles
-		if s:fileExists(l:file)
-			if g:Use_dev_icons | let l:tmp = " " .. Devicons#GetPathSymbol(l:file, 'view') | endif
-			silent put = l:file .. l:tmp
+		if !s:fileExists(l:file) | continue | endif
+		let l:ignore = 0
+		if g:Use_dev_icons
+			let l:symbol = " " .. Devicons#GetPathSymbol(l:file, 'view')
+		endif
+
+		for l:pattern in s:historyIgnore
+			if  match(l:file, pattern) != -1
+				let l:ignore = 1
+				break
+			endif
+		endfor
+
+		if !l:ignore
+			let l:line = l:file .. l:symbol
+			let g:files_shown += [l:file]
+			silent put = l:line
 			silent! call matchadd('Conceal', '^\zs.*\ze\/.*\/.*\/', s:conceal_Hi_Lvl, s:conceal_match_id, {'conceal': '…'})
 		endif
 	endfor
-
-	for pattern in s:historyIgnore
-		silent execute 'g/' . pattern . '/d_'
-	endfor
-
-	let s:symbol_len = strlen(l:tmp)
+	silent exe "g/^$/d_"
 
 	nnoremap <silent> <buffer> q :q<CR>
 	nnoremap <silent> <buffer> <CR> :call <SID>openFileUnderCursor()<CR>

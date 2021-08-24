@@ -209,7 +209,6 @@ function! s:dirToSymbol(mode)
 endfunction
 
 function! s:fileToSymbol(path)
-	let l:default = ''
 	let l:file = fnamemodify(a:path, ":t")
 	let l:fileExtention = fnamemodify(l:file, ":e")
 	for key in keys(s:fileExtentionsToSymbols)
@@ -222,7 +221,7 @@ function! s:fileToSymbol(path)
 			return s:specificFilesToSymbols[key]
 		endif
 	endfor
-	return l:default
+	return l:fileExtention
 endfunction
 
 function! Devicons#GetSystemSymbol()

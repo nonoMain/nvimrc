@@ -1,21 +1,135 @@
 "startOfFile
 " Filename: SmartStatusline.vim
 
-" Settings for line length"
-let s:long = 100
-let s:medium = 90
-let s:short = 65
-
 let g:SmartStatuslineEnabled = 0
 
-function! GetGitBranch() abort
-	if exists('g:loaded_fugitive')
-		let l:maybeBranch = g:FugitiveHead()
-		if g:Use_dev_icons
-		return ( strlen(l:maybeBranch) > 0)? "-"..l:maybeBranch : ''
-		else
-		return ( strlen(l:maybeBranch) > 0)? "ᚠ-"..l:maybeBranch : ''
+" Settings for line length"
+let s:long = 100
+let s:medium = 75
+let s:short = 50
+let g:saved_windows = {}
+
+let s:LtSep = ""
+let s:RtSep = ""
+
+" Status line color Pallet
+let s:SCP = {}
+let s:SCP['selected']   = '#005F87'  | let s:SCP['T_selected']   =  24
+let s:SCP['fg']         = '#b2b2b2'  | let s:SCP['T_fg']         = 249
+let s:SCP['selectedfg'] = '#87AFD7'  | let s:SCP['T_selectedfg'] = 110
+let s:SCP['bg']         = '#252525'  | let s:SCP['T_bg']         = 236
+let s:SCP['lightBg']    = '#444444'  | let s:SCP['T_lightBg']    = 238
+
+
+" Highlight Groups - H.G
+" Keys:
+" Gui:G
+" Guifg:GFG
+" Guibg:GBG
+" Term:T
+" Termfg:TFG
+" Termbg:TBG
+
+let s:HG = {}
+let s:HG['StatusLine']     = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
+let s:HG['StlMain']        = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['selected'],         "TBG":s:SCP['T_selected'] }
+let s:HG['StlBranch']      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
+let s:HG['StlSymbol']      = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlMain']['GFG'],    "TBG":s:HG['StlMain']['TFG'] }
+let s:HG['SepStl2Symbol']  = { "GFG":s:HG['StlMain']["GFG"],   "TFG":s:HG['StlMain']["TFG"],   "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
+let s:HG['SepMain2Branch'] = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
+let s:HG['SepMain2Stl']    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
+let s:HG['SepBranch2Stl']  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
+
+" highlighting function
+function! s:HighlightDict(key, dict)
+	if has_key(a:dict, 'T')
+		let l:term = a:dict['T']
+	else
+		let l:term = 'NONE'
+	endif
+	if has_key(a:dict, 'G')
+		let l:gui = a:dict['G']
+	else
+		let l:gui='NONE'
+	endif
+	if has_key(a:dict, 'GFG')
+		let l:guifg = a:dict['GFG']
+	else
+		let l:guifg='NONE'
+	endif
+	if has_key(a:dict, 'GBG')
+		let l:guibg = a:dict['GBG']
+	else
+		let l:guibg='NONE'
+	endif
+	if has_key(a:dict, 'T')
+		let l:cterm = a:dict['T']
+	else
+		let l:cterm='NONE'
+	endif
+	if has_key(a:dict, 'TFG')
+		let l:ctermfg = a:dict['TFG']
+	else
+		let l:ctermfg='NONE'
 		endif
+	if has_key(a:dict, 'TBG')
+		let l:ctermbg = a:dict['TBG']
+	else
+		let l:ctermbg='NONE'
+	endif
+	if has_key(a:dict, 'GSP')
+		let l:guisp = a:dict['GSP']
+	else
+		let l:guisp='NONE'
+	endif
+	execute "hi " . a:key . " term=" . l:term . " cterm=" . l:cterm . " gui=" . l:gui . " ctermfg=" . l:ctermfg . " guifg=" . l:guifg . " ctermbg=" . l:ctermbg . " guibg=" . l:guibg . " guisp=" . l:guisp
+endfunction
+
+" scan the assignment dict and execute the assignment
+for key in keys(s:HG)
+	call s:HighlightDict(key, s:HG[key])
+endfor
+
+function! GetGitBranch(win_id) abort
+	if exists('g:loaded_fugitive') && (g:saved_windows[a:win_id]['width'] > s:short)
+		let l:maybeBranch = g:FugitiveHead()
+		if strlen(l:maybeBranch)
+			if g:Use_dev_icons
+				return "-" .. l:maybeBranch
+			else
+				return "ᚠ-" .. l:maybeBranch
+			endif
+		endif
+	endif
+	return ""
+endfunction
+
+function! GetPathSymbol(win_id) abort
+	let l:tmp = ""
+	let l:path = g:saved_windows[a:win_id]['path']
+	if g:saved_windows[a:win_id]['width'] > s:short
+		if g:Use_dev_icons
+			let l:tmp .= Devicons#GetPathSymbol(l:path, 'in_use')
+		else
+			let l:tmp .= fnamemodify(l:path, ":e")
+		endif
+	endif
+	return l:tmp
+endfunction
+
+function! GetPath(win_id) abort
+	let l:path = g:saved_windows[a:win_id]['path']
+	if g:saved_windows[a:win_id]['width'] > s:long
+		return l:path " full path
+
+	elseif g:saved_windows[a:win_id]['width'] > s:medium
+		return fnamemodify(l:path, ":.") " relative path
+
+	elseif g:saved_windows[a:win_id]['width'] > s:short
+		return pathshorten(fnamemodify(l:path, ":."))
+
+	else
+		return fnamemodify(l:path, ":t")
 	endif
 endfunction
 
@@ -26,73 +140,79 @@ function! GetRightSide(win_id) abort
 	else
 		let l:symbol = "\ %{&fileformat}"
 	endif
-	if winwidth(a:win_id) > s:long
-		return l:symbol .. "%m%r%w\ b:%n\ %{GetGitBranch()}"
+	if g:saved_windows[a:win_id]['width'] > s:long
+		return l:symbol .. "%m%r%w\ b:%n\ "
 
-	elseif winwidth(a:win_id) > s:medium
-		return "%m%r%w\ b:%n\ %{GetGitBranch()}"
+	elseif g:saved_windows[a:win_id]['width'] > s:medium
+		return "%m%r%w\ b:%n\ "
 
-	elseif winwidth(a:win_id) > s:short
-		return "%M%R%W\ b:%n\ %{GetGitBranch()}"
+	elseif g:saved_windows[a:win_id]['width'] > s:short
+		return "%M%R%W\ b:%n\ "
 
 	else
 		return "%M%R%W\ b:%n"
-
 	endif
 endfunction
 
 function! GetLeftSide(win_id) abort
-	if winwidth(a:win_id) > s:long
-		return "%p%%\ %l,%c\ 0x%04b"
+	if g:saved_windows[a:win_id]['width'] > s:long
+		return "%p%%\ %l,%c\ 0x%04b\ "
 
-	elseif winwidth(a:win_id) > s:medium
+	elseif g:saved_windows[a:win_id]['width'] > s:medium
 		return "%p%%\ %l,%c\ "
 
-	elseif winwidth(a:win_id) > s:short
+	elseif g:saved_windows[a:win_id]['width'] > s:short
 		return "\ %l,%c\ "
 	else
-		return "%l,%c"
+		return "%l,%c\ "
 	endif
-endfunction
-
-function! GetPathSymbol(win_id) abort
-	let l:tmp = ""
-	if winwidth(a:win_id) > s:short
-		let l:tmp .= "%#User4#" " seperator
-		let l:tmp .= ""
-		let l:tmp .= "%#User3#" " seperator
-		if g:Use_dev_icons
-			let l:tmp .= "%{Devicons#GetPathSymbol(expand('%'), 'in_use')}\ "
-		else
-			let l:tmp .= "%Y"
-		endif
-		let l:tmp .= "%#User1#" " seperator
-		let l:tmp .= ""
-	endif
-	return l:tmp
 endfunction
 
 function! s:generateStatusline(win_id, mode)
 	let l:tmp = ""
+	let l:symbol = GetPathSymbol(a:win_id)
 	if a:mode == 'active'
-		let l:tmp .= "%#User1#"
+		let l:tmp .= "%#StlMain#"
 		let l:tmp .=  GetRightSide(a:win_id)
-		let l:tmp .= "%#User2#" " seperator
-		let l:tmp .= ""
+
+		if strlen(GetGitBranch(a:win_id)) " if you are in a git branch:
+			let l:tmp .= "%#SepMain2Branch#" .. s:LtSep " seperator
+			let l:tmp .= "%#StlBranch#"
+			let l:tmp .= GetGitBranch(a:win_id)
+			let l:tmp .= "%#SepBranch2Stl#" .. s:LtSep " seperator
+		else
+			let l:tmp .= "%#SepMain2Stl#" .. s:LtSep " seperator
+		endif
+
 		let l:tmp .= "%#statusline#"
-		let l:tmp .=  "%f%="
-		let l:tmp .=  GetPathSymbol(a:win_id)
-		let l:tmp .= "%#User1#"
+		let l:tmp .= "%<"
+		let l:tmp .= "\ " .. GetPath(a:win_id)
+		let l:tmp .= "%="
+
+		if strlen(l:symbol) " if recognized
+			let l:tmp .= "%#SepStl2Symbol#" .. s:RtSep " seperator
+			let l:tmp .= "%#StlSymbol#"
+			let l:tmp .= l:symbol .. "\ "
+			let l:tmp .= "%#StlMain#" .. s:LtSep " seperator
+		else
+			let l:tmp .= "%#SepMain2Stl#" .. s:RtSep " seperator
+		endif
+
+		let l:tmp .= "%#StlMain#"
 		let l:tmp .=  GetLeftSide(a:win_id)
-		let l:tmp .= "\ "
+
 	elseif a:mode == 'inactive'
-		let l:tmp .= "%#statusline#"
+
+		let l:tmp .= "%#statuslineNC#"
 		let l:tmp .=  GetRightSide(a:win_id)
 		let l:tmp .= "\ "
-		let l:tmp .=  "%f%="
-		let l:tmp .=  GetPathSymbol(a:win_id)
+		let l:tmp .= GetGitBranch(a:win_id)
+		let l:tmp .= "%<"
+		let l:tmp .= "\ \│\ " .. GetPath(a:win_id)
+		let l:tmp .= "%="
+		let l:tmp .= l:symbol
+		let l:tmp .= "\ \│\ "
 		let l:tmp .=  GetLeftSide(a:win_id)
-		let l:tmp .= "\ "
 	endif
 	return l:tmp
 endfunction
@@ -101,9 +221,25 @@ function! s:not_to_set(win_id)
 	return win_gettype(a:win_id) ==# 'popup' || win_gettype(a:win_id) ==# 'autocmd'
 endfunction
 
+function! s:update_saved_windows() abort
+	if exists("g:saved_windows") | let g:saved_windows = {} | endif
+	let l:last_window_nr = winnr('$')
+	for l:window_nr in range(1, l:last_window_nr)
+		if g:SmartStatuslineEnabled
+			let l:win_id = win_getid(l:window_nr)
+			let l:tmpwin = getwininfo(l:win_id)[0]
+			let l:tmpbuf = getbufinfo(bufname(l:tmpwin['bufnr']))[0]
+			let g:saved_windows[l:win_id] = l:tmpwin
+			let g:saved_windows[l:win_id]['path'] = l:tmpbuf['name']
+		endif
+	endfor
+endfunction
+
 function! SmartStatusline#Update()
 	let l:curr_window_nr = winnr()
 	let l:last_window_nr = winnr('$')
+	if s:not_to_set(l:curr_window_nr) | return | endif
+	call s:update_saved_windows()
 
 	for l:window_nr in range(1, l:last_window_nr)
 		if g:SmartStatuslineEnabled
