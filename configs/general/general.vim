@@ -4,7 +4,7 @@
 " sets the leader key
 let mapleader = ' '
 
-set termguicolors
+set notermguicolors
 
 " Smart redraw
 set lazyredraw

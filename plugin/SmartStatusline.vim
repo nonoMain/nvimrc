@@ -34,8 +34,9 @@ let s:HG = {}
 let s:HG['StatusLine']     = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
 let s:HG['StlMain']        = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['selected'],         "TBG":s:SCP['T_selected'] }
 let s:HG['StlBranch']      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
-let s:HG['StlSymbol']      = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlMain']['GFG'],    "TBG":s:HG['StlMain']['TFG'] }
-let s:HG['SepStl2Symbol']  = { "GFG":s:HG['StlMain']["GFG"],   "TFG":s:HG['StlMain']["TFG"],   "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
+let s:HG['StlSymbol']      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
+let s:HG['SepStl2Symbol']  = { "GFG":s:HG['StlSymbol']["GBG"],   "TFG":s:HG['StlSymbol']["TBG"],   "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
+let s:HG['SepSymbol2Main']  = { "GFG":s:HG['StlSymbol']["GBG"],   "TFG":s:HG['StlSymbol']["TBG"],   "GBG":s:HG['StlMain']["GBG"],               "TBG":s:HG['StlMain']["TBG"] }
 let s:HG['SepMain2Branch'] = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
 let s:HG['SepMain2Stl']    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
 let s:HG['SepBranch2Stl']  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
@@ -193,7 +194,7 @@ function! s:generateStatusline(win_id, mode)
 			let l:tmp .= "%#SepStl2Symbol#" .. s:RtSep " seperator
 			let l:tmp .= "%#StlSymbol#"
 			let l:tmp .= l:symbol .. "\ "
-			let l:tmp .= "%#StlMain#" .. s:LtSep " seperator
+			let l:tmp .= "%#SepSymbol2Main#" .. s:LtSep " seperator
 		else
 			let l:tmp .= "%#SepMain2Stl#" .. s:RtSep " seperator
 		endif
@@ -209,7 +210,7 @@ function! s:generateStatusline(win_id, mode)
 		let l:tmp .= GetGitBranch(a:win_id)
 		let l:tmp .= "%<"
 		let l:tmp .= "\ \│\ " .. GetPath(a:win_id)
-		let l:tmp .= "%="
+		let l:tmp .= "%=\ "
 		let l:tmp .= l:symbol
 		let l:tmp .= "\ \│\ "
 		let l:tmp .=  GetLeftSide(a:win_id)
@@ -222,7 +223,7 @@ function! s:not_to_set(win_id)
 endfunction
 
 function! s:update_saved_windows() abort
-	if exists("g:saved_windows") | let g:saved_windows = {} | endif
+	if exists("g:saved_windows") | unlet g:saved_windows | let g:saved_windows = {} | endif
 	let l:last_window_nr = winnr('$')
 	for l:window_nr in range(1, l:last_window_nr)
 		if g:SmartStatuslineEnabled
@@ -230,7 +231,12 @@ function! s:update_saved_windows() abort
 			let l:tmpwin = getwininfo(l:win_id)[0]
 			let l:tmpbuf = getbufinfo(bufname(l:tmpwin['bufnr']))[0]
 			let g:saved_windows[l:win_id] = l:tmpwin
-			let g:saved_windows[l:win_id]['path'] = l:tmpbuf['name']
+
+			if getbufvar(l:tmpwin['bufnr'], "&filetype") == "netrw"
+				let g:saved_windows[l:win_id]['path'] = l:tmpwin['variables']['netrw_rexdir']
+			else
+				let g:saved_windows[l:win_id]['path'] = l:tmpbuf['name']
+			endif
 		endif
 	endfor
 endfunction
@@ -259,11 +265,13 @@ function! SmartStatusline#Enable()
 		augroup statusLine
 			autocmd!
 			" TODO: fix window stops being 'active' after insert mode
+			autocmd InsertEnter  * call SmartStatusline#Update()
 			autocmd InsertLeave  * call SmartStatusline#Update()
 
 			autocmd WinNew       * call SmartStatusline#Update()
 			autocmd BufWipeout   * call SmartStatusline#Update()
 			autocmd WinEnter     * call SmartStatusline#Update()
+			autocmd WinLeave     * call SmartStatusline#Update()
 			autocmd BufWinEnter  * call SmartStatusline#Update()
 			autocmd BufWinLeave  * call SmartStatusline#Update()
 

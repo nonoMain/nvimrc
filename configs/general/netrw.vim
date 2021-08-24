@@ -11,7 +11,7 @@ function! g:ToggleNetrw()
 			let l:i = bufnr("$")
 			while (l:i >= 1)
 				if (getbufvar(l:i, "&filetype") == "netrw")
-					silent exe "bwipeout " . l:i 
+					silent! exe "bwipeout " . l:i 
 				endif
 				let l:i-=1
 			endwhile
@@ -21,7 +21,6 @@ function! g:ToggleNetrw()
 			silent Explore
 		endif
 	else
-		silent exe "bprevious"
 		let l:i = bufnr("$")
 		while (l:i >= 1)
 			if (getbufvar(l:i, "&filetype") == "netrw")

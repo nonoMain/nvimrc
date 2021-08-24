@@ -43,7 +43,7 @@ function! s:openBrowser()
 	let l:ignore = 0
 	let l:symbol = ""
 	let l:line = ""
-	belowright new + file
+	belowright new
 	resize
 
 	for l:file in v:oldfiles
