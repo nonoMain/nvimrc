@@ -55,12 +55,12 @@ so for that reason everything used here comes with links for the original pages
 * [Git](https://git-scm.com/downloads/)
 * [Node](https://nodejs.org/en/download/)
 * [Python2 & Python3](https://www.python.org/)
-* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) **with libstdc++ installed!**
+* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) **with libstdc++ installed! (windows users!)**
 * Go language - either [binaries](https://golang.org/dl/) **or** using a package manager
 
 ### Recommended:
-* [Devicons](https://github.com/devicons/devicon) font (e.g [nerd fonts](https://www.nerdfonts.com/))
-> If you want it set `let g:Use_dev_icons = ?` to 1 in [init.vim](./init.vim)
+* [Devicons](https://github.com/devicons/devicon) supported font (e.g [nerd fonts](https://www.nerdfonts.com/))
+> If you want to use it set `let g:Use_dev_icons = ?` to 1 in [init.vim](./init.vim)
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
 > More options with the parser
 
