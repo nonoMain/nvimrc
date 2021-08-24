@@ -7,39 +7,53 @@ let g:SmartStatuslineEnabled = 0
 let s:long = 100
 let s:medium = 75
 let s:short = 50
-let g:saved_windows = {}
-
 let s:LtSep = ""
 let s:RtSep = ""
 
-" Status line color Pallet
-let s:SCP = {}
-let s:SCP['selected']   = '#005F87'  | let s:SCP['T_selected']   =  24
-let s:SCP['fg']         = '#b2b2b2'  | let s:SCP['T_fg']         = 249
-let s:SCP['selectedfg'] = '#87AFD7'  | let s:SCP['T_selectedfg'] = 110
-let s:SCP['bg']         = '#252525'  | let s:SCP['T_bg']         = 236
-let s:SCP['lightBg']    = '#444444'  | let s:SCP['T_lightBg']    = 238
+let g:saved_windows = {}
 
+" Statusline color Pallet
+let s:SCP = {
+	\'selected'   : '#005F87', 'T_selected'   :  24,
+	\'fg'         : '#b2b2b2', 'T_fg'         : 249,
+	\'selectedfg' : '#87AFD7', 'T_selectedfg' : 110,
+	\'bg'         : '#252525', 'T_bg'         : 236,
+	\'lightBg'    : '#444444', 'T_lightBg'    : 238,
+\}
 
 " Highlight Groups - H.G
 " Keys:
-" Gui:G
-" Guifg:GFG
-" Guibg:GBG
-" Term:T
-" Termfg:TFG
-" Termbg:TBG
+" gui:G
+" guifg:GFG
+" guibg:GBG
+" term:T
+" termfg:TFG
+" termbg:TBG
 
+" Description:
+" highlight group - description
+"
+"  StatusLine     - general color
+"  StlMain        - main color for theme
+"  StlBranch      - git's branch
+"  StlSymbol      - file symbol (or extention)
+"  SepMain2Branch - seperator for 'Main' -> 'Branch'
+"  SepMain2Stl    - seperator for 'Main' -> 'StatusLine'
+"  SepSymbol2Main - seperator for 'Symbol' -> 'Main'
+"  SepBranch2Stl  - seperator for 'Branch' -> 'StatusLine'
+"  SepStl2Symbol  - seperator for 'statusLine' -> 'Symbol'
+
+" StatusLine highlight groups
 let s:HG = {}
-let s:HG['StatusLine']     = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
-let s:HG['StlMain']        = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['selected'],         "TBG":s:SCP['T_selected'] }
-let s:HG['StlBranch']      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
-let s:HG['StlSymbol']      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
-let s:HG['SepStl2Symbol']  = { "GFG":s:HG['StlSymbol']["GBG"],   "TFG":s:HG['StlSymbol']["TBG"],   "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
-let s:HG['SepSymbol2Main']  = { "GFG":s:HG['StlSymbol']["GBG"],   "TFG":s:HG['StlSymbol']["TBG"],   "GBG":s:HG['StlMain']["GBG"],               "TBG":s:HG['StlMain']["TBG"] }
-let s:HG['SepMain2Branch'] = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
-let s:HG['SepMain2Stl']    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
-let s:HG['SepBranch2Stl']  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
+let s:HG.StatusLine     = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
+let s:HG.StlMain        = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['selected'],         "TBG":s:SCP['T_selected'] }
+let s:HG.StlBranch      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
+let s:HG.StlSymbol      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
+let s:HG.SepStl2Symbol  = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
+let s:HG.SepSymbol2Main = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:HG['StlMain']["GBG"],    "TBG":s:HG['StlMain']["TBG"] }
+let s:HG.SepMain2Branch = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
+let s:HG.SepMain2Stl    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
+let s:HG.SepBranch2Stl  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
 
 " highlighting function
 function! s:HighlightDict(key, dict)
@@ -208,8 +222,9 @@ function! s:generateStatusline(win_id, mode)
 		let l:tmp .=  GetRightSide(a:win_id)
 		let l:tmp .= "\ "
 		let l:tmp .= GetGitBranch(a:win_id)
+		let l:tmp .= "\ \│\ "
 		let l:tmp .= "%<"
-		let l:tmp .= "\ \│\ " .. GetPath(a:win_id)
+		let l:tmp .= GetPath(a:win_id)
 		let l:tmp .= "%=\ "
 		let l:tmp .= l:symbol
 		let l:tmp .= "\ \│\ "
@@ -265,6 +280,7 @@ function! SmartStatusline#Enable()
 		augroup statusLine
 			autocmd!
 			" TODO: fix window stops being 'active' after insert mode
+			autocmd VimResized   * call SmartStatusline#Update()
 			autocmd InsertEnter  * call SmartStatusline#Update()
 			autocmd InsertLeave  * call SmartStatusline#Update()
 

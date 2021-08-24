@@ -22,10 +22,6 @@
 	nnoremap <A-a> <C-a>
 	nnoremap <A-x> <C-x>
 
-" Easy split resizing
-"nnoremap <silent> <C-s>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-"nnoremap <silent> <C-s>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
 " Faster way to open/close netrw (Explorer)
 noremap <silent> <leader>e :call g:ToggleNetrw()<CR>
 noremap <silent> <leader>h :call BrowseOldfiles#ToggleHistory()<CR>
