@@ -10,26 +10,26 @@
 ## Description
 --------------------------------------------------------------------------------
 
-My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/), including my scripts and colorscheme.
+My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/).
 
 1. Using external parser (better imo)
 2. Auto completion from many sources (e.g buffer, Language-server, Parser, paths)
 3. Language-servers integration using built in nvim-lspconfig
 4. Git commands and management from inside the editor
 5. Easy to modify [colorscheme](./colors/cplex.vim)
-6. Fast general [mappings](./configs/general-vim-config/keybindings.vim)
+6. Fast general [mappings](./configs/general/keybindings.vim)
 7. Efficient [scripts](./plugin)
-	- [x] History browser
-	- [x] Status line
-	- [X] Devicons
-	- [ ] Easy doc - less soon
+	- :heavy_check_mark: History browser
+	- :heavy_check_mark: Status line
+	- :heavy_check_mark: Devicons
+	- :x: Easy doc - less soon
 
 and other usefull tweaks.
 
 Tested on:
-- [x] Linux
-- [x] Windows
-- [ ] Mac - soon
+- :heavy_check_mark: Linux
+- :heavy_check_mark: Windows
+- :x: Mac - soon
 
 ## Notes
 --------------------------------------------------------------------------------
@@ -130,19 +130,19 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 ## Language-servers
 --------------------------------------------------------------------------------
 
-* [clangd](https://github.com/clangd/clangd) - C/Cpp/Objc/Objcpp language server - [config](./configs/lsp-servers-configs/c_lsconfig.lua)
+* [clangd](https://github.com/clangd/clangd) - C/Cpp/Objc/Objcpp language server - [config](./configs/lsp-servers/c_lsconfig.lua)
 > C 'family' ls
 
-* [pyright](https://github.com/microsoft/pyright) - Python language server - [config](./configs/lsp-servers-configs/python_lsconfig.lua)
+* [pyright](https://github.com/microsoft/pyright) - Python language server - [config](./configs/lsp-servers/python_lsconfig.lua)
 > Microsoft's python ls
 
-* [jdtls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers-configs/java_lsconfig.lua)
+* [jdtls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers/java_lsconfig.lua)
 > Eclipse's ls, many say that it is hard to configure but it's the best out there so for that you have the [jdtls.sh](./releated/jdtls.sh) wrapper
 
-* [vimls](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers-configs/vim_lsconfig.lua)
+* [vimls](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers/vim_lsconfig.lua)
 > Usefull to have if your customizing your vim
 
-* [sumneko_lua](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers-configs/lua_lsconfig.lua)
+* [sumneko_lua](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
 > Helped me edit the scripts i saw before knowing the language
 
 ## Colorscheme pics
