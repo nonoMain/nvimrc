@@ -32,8 +32,6 @@ Tested on:
 + :heavy_check_mark: Windows
 - :x: Mac - soon
 
-#TODO
-* Add colors to file icons
 ## Notes
 --------------------------------------------------------------------------------
 
