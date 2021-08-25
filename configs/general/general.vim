@@ -29,13 +29,15 @@ set hidden
 set number
 " show relative line numbers
 set relativenumber
+" always show tabline
+set showtabline=2
 
 set noerrorbells
 
 " show tabs, end of lines and trailing spaces
 set list
 
-if g:Use_dev_icons
+if g:Use_nerdfont
 	set listchars=tab:\ ,eol:¬,trail:~,extends:>,precedes:< " ·
 else
 	set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:< " ·

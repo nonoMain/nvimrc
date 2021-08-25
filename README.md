@@ -1,11 +1,11 @@
 //startOfFile
 
-# NVIMRC V1.3.4
+# NVIMRC V1.4
 
 ## Authors
 --------------------------------------------------------------------------------
 
-* [nonoMain](https://github.com/nonoMain) - Noam Daniel Elihu
+* [nonoMain](https://github.com/nonoMain) - Noam Daniel Eliyahu
 
 ## Description
 --------------------------------------------------------------------------------
@@ -18,19 +18,22 @@ My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/).
 4. Git commands and management from inside the editor
 5. Easy to modify [colorscheme](./colors/cplex.vim)
 6. Fast general [mappings](./configs/general/keybindings.vim)
-7. Efficient [scripts](./plugin)
-	- :heavy_check_mark: History browser
-	- :heavy_check_mark: Status line
-	- :heavy_check_mark: Devicons
+7. Light [scripts](./plugin)
+	+ :heavy_check_mark: History browser
+	+ :heavy_check_mark: Status line
+	+ :heavy_check_mark: Devicons (with colors for any wanted filetypes)
+	+ :heavy_check_mark: Tab line (not like we use tabs or something.. but it's good to have options)
 	- :x: Easy doc - less soon
 
 and other usefull tweaks.
 
 Tested on:
-- :heavy_check_mark: Linux
-- :heavy_check_mark: Windows
++ :heavy_check_mark: Linux
++ :heavy_check_mark: Windows
 - :x: Mac - soon
 
+#TODO
+* Add colors to file icons
 ## Notes
 --------------------------------------------------------------------------------
 
@@ -55,12 +58,12 @@ so for that reason everything used here comes with links for the original pages
 * [Git](https://git-scm.com/downloads/)
 * [Node](https://nodejs.org/en/download/)
 * [Python2 & Python3](https://www.python.org/)
-* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) **with libstdc++ installed! (windows users!)**
-* Go language - either [binaries](https://golang.org/dl/) **or** using a package manager
+* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) with libstdc++ installed! **(windows users!)**
+* [Go language](https://golang.org/dl/)
 
 ### Recommended:
 * [Devicons](https://github.com/devicons/devicon) supported font (e.g [nerd fonts](https://www.nerdfonts.com/))
-> If you want to use it set `let g:Use_dev_icons = ?` to 1 in [init.vim](./init.vim)
+> If you want to use it set `let g:Use_dev_icons = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
 > More options with the parser
 

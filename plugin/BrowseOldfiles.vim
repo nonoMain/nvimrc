@@ -49,7 +49,7 @@ function! s:openBrowser()
 	for l:file in v:oldfiles
 		if !s:fileExists(l:file) | continue | endif
 		let l:ignore = 0
-		if g:Use_dev_icons
+		if g:Use_nerdfont
 			let l:symbol = " " .. Devicons#GetPathSymbol(l:file, 'view')
 		endif
 

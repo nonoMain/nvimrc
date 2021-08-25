@@ -39,7 +39,7 @@ local setSymbols = function()
 end
 
 -- set the items symbols
-if vim.g.Use_dev_icons == 1 then setSymbols() end
+if vim.g.Use_nerdfont == 1 then setSymbols() end
 EOF
 
 set completeopt=menuone,noinsert,noselect

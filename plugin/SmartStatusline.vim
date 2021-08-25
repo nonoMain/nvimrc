@@ -1,19 +1,29 @@
 "startOfFile
 " Filename: SmartStatusline.vim
 
-let g:SmartStatuslineEnabled = 0
+if !exists("g:SmartStatuslineEnabled")
+	let g:SmartStatuslineEnabled = 1
+elseif !g:SmartStatuslineEnabled
+	finish
+endif
 
 " Settings for line length"
 let s:long = 100
 let s:medium = 75
 let s:short = 50
-let s:LtSep = ""
-let s:RtSep = ""
+
+if g:Use_nerdfont
+	let s:LtStlSep = ""
+	let s:RtStlSep = ""
+else
+	let s:LtStlSep = ""
+	let s:RtStlSep = ""
+endif
 
 let g:saved_windows = {}
 
 " Statusline color Pallet
-let s:SCP = {
+let s:CP = {
 	\'selected'   : '#005F87', 'T_selected'   :  24,
 	\'fg'         : '#b2b2b2', 'T_fg'         : 249,
 	\'selectedfg' : '#87AFD7', 'T_selectedfg' : 110,
@@ -37,23 +47,23 @@ let s:SCP = {
 "  StlMain        - main color for theme
 "  StlBranch      - git's branch
 "  StlSymbol      - file symbol (or extention)
-"  SepMain2Branch - seperator for 'Main' -> 'Branch'
-"  SepMain2Stl    - seperator for 'Main' -> 'StatusLine'
-"  SepSymbol2Main - seperator for 'Symbol' -> 'Main'
-"  SepBranch2Stl  - seperator for 'Branch' -> 'StatusLine'
-"  SepStl2Symbol  - seperator for 'statusLine' -> 'Symbol'
+"  StlSepMain2Branch - seperator for 'Main' -> 'Branch'
+"  StlSepMain2Stl    - seperator for 'Main' -> 'StatusLine'
+"  StlSepSymbol2Main - seperator for 'Symbol' -> 'Main'
+"  StlSepBranch2Stl  - seperator for 'Branch' -> 'StatusLine'
+"  StlSepStl2Symbol  - seperator for 'statusLine' -> 'Symbol'
 
 " StatusLine highlight groups
 let s:HG = {}
-let s:HG.StatusLine     = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
-let s:HG.StlMain        = { "GFG":s:SCP['fg'],              "TFG":s:SCP['T_fg'],            "GBG":s:SCP['selected'],         "TBG":s:SCP['T_selected'] }
-let s:HG.StlBranch      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
-let s:HG.StlSymbol      = { "GFG":s:SCP['selectedfg'],      "TFG":s:SCP['T_selectedfg'],    "GBG":s:SCP['lightBg'],          "TBG":s:SCP['T_lightBg'] }
-let s:HG.SepStl2Symbol  = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:SCP['bg'],               "TBG":s:SCP['T_bg'] }
-let s:HG.SepSymbol2Main = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:HG['StlMain']["GBG"],    "TBG":s:HG['StlMain']["TBG"] }
-let s:HG.SepMain2Branch = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
-let s:HG.SepMain2Stl    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
-let s:HG.SepBranch2Stl  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
+let s:HG.StatusLine        = { "GFG":s:CP['fg'],               "TFG":s:CP['T_fg'],             "GBG":s:CP['bg'],                "TBG":s:CP['T_bg'] }
+let s:HG.StlMain           = { "GFG":s:CP['fg'],               "TFG":s:CP['T_fg'],             "GBG":s:CP['selected'],          "TBG":s:CP['T_selected'] }
+let s:HG.StlBranch         = { "GFG":s:CP['selectedfg'],       "TFG":s:CP['T_selectedfg'],     "GBG":s:CP['lightBg'],           "TBG":s:CP['T_lightBg'] }
+let s:HG.StlSymbol         = { "GFG":s:CP['selectedfg'],       "TFG":s:CP['T_selectedfg'],     "GBG":s:CP['lightBg'],           "TBG":s:CP['T_lightBg'] }
+let s:HG.StlSepStl2Symbol  = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:CP['bg'],                "TBG":s:CP['T_bg'] }
+let s:HG.StlSepSymbol2Main = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:HG['StlMain']["GBG"],    "TBG":s:HG['StlMain']["TBG"] }
+let s:HG.StlSepMain2Branch = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
+let s:HG.StlSepMain2Stl    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
+let s:HG.StlSepBranch2Stl  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
 
 " highlighting function
 function! s:HighlightDict(key, dict)
@@ -105,25 +115,25 @@ for key in keys(s:HG)
 	call s:HighlightDict(key, s:HG[key])
 endfor
 
-function! GetGitBranch(win_id) abort
+function! s:getGitBranch(win_id) abort
 	if exists('g:loaded_fugitive') && (g:saved_windows[a:win_id]['width'] > s:short)
 		let l:maybeBranch = g:FugitiveHead()
 		if strlen(l:maybeBranch)
-			if g:Use_dev_icons
+			if g:Use_nerdfont
 				return "-" .. l:maybeBranch
 			else
-				return "ᚠ-" .. l:maybeBranch
+				return "|-" .. l:maybeBranch
 			endif
 		endif
 	endif
 	return ""
 endfunction
 
-function! GetPathSymbol(win_id) abort
+function! s:getPathSymbol(win_id) abort
 	let l:tmp = ""
 	let l:path = g:saved_windows[a:win_id]['path']
 	if g:saved_windows[a:win_id]['width'] > s:short
-		if g:Use_dev_icons
+		if g:Use_nerdfont
 			let l:tmp .= Devicons#GetPathSymbol(l:path, 'in_use')
 		else
 			let l:tmp .= fnamemodify(l:path, ":e")
@@ -132,7 +142,7 @@ function! GetPathSymbol(win_id) abort
 	return l:tmp
 endfunction
 
-function! GetPath(win_id) abort
+function! s:getPath(win_id) abort
 	let l:path = g:saved_windows[a:win_id]['path']
 	if g:saved_windows[a:win_id]['width'] > s:long
 		return l:path " full path
@@ -148,9 +158,9 @@ function! GetPath(win_id) abort
 	endif
 endfunction
 
-function! GetRightSide(win_id) abort
+function! s:getRightSide(win_id) abort
 	let l:symbol = ""
-	if g:Use_dev_icons
+	if g:Use_nerdfont
 		let l:symbol = "\ %{Devicons#GetSystemSymbol()}"
 	else
 		let l:symbol = "\ %{&fileformat}"
@@ -169,7 +179,7 @@ function! GetRightSide(win_id) abort
 	endif
 endfunction
 
-function! GetLeftSide(win_id) abort
+function! s:getLeftSide(win_id) abort
 	if g:saved_windows[a:win_id]['width'] > s:long
 		return "%p%%\ %l,%c\ 0x%04b\ "
 
@@ -185,50 +195,50 @@ endfunction
 
 function! s:generateStatusline(win_id, mode)
 	let l:tmp = ""
-	let l:symbol = GetPathSymbol(a:win_id)
+	let l:symbol = s:getPathSymbol(a:win_id)
 	if a:mode == 'active'
 		let l:tmp .= "%#StlMain#"
-		let l:tmp .=  GetRightSide(a:win_id)
+		let l:tmp .=  s:getRightSide(a:win_id)
 
-		if strlen(GetGitBranch(a:win_id)) " if you are in a git branch:
-			let l:tmp .= "%#SepMain2Branch#" .. s:LtSep " seperator
+		if strlen(s:getGitBranch(a:win_id)) " if you are in a git branch:
+			let l:tmp .= "%#StlSepMain2Branch#" .. s:LtStlSep " seperator
 			let l:tmp .= "%#StlBranch#"
-			let l:tmp .= GetGitBranch(a:win_id)
-			let l:tmp .= "%#SepBranch2Stl#" .. s:LtSep " seperator
+			let l:tmp .= s:getGitBranch(a:win_id)
+			let l:tmp .= "%#StlSepBranch2Stl#" .. s:LtStlSep " seperator
 		else
-			let l:tmp .= "%#SepMain2Stl#" .. s:LtSep " seperator
+			let l:tmp .= "%#StlSepMain2Stl#" .. s:LtStlSep " seperator
 		endif
 
 		let l:tmp .= "%#statusline#"
 		let l:tmp .= "%<"
-		let l:tmp .= "\ " .. GetPath(a:win_id)
+		let l:tmp .= "\ " .. s:getPath(a:win_id)
 		let l:tmp .= "%="
 
 		if strlen(l:symbol) " if recognized
-			let l:tmp .= "%#SepStl2Symbol#" .. s:RtSep " seperator
+			let l:tmp .= "%#StlSepStl2Symbol#" .. s:RtStlSep " seperator
 			let l:tmp .= "%#StlSymbol#"
 			let l:tmp .= l:symbol .. "\ "
-			let l:tmp .= "%#SepSymbol2Main#" .. s:LtSep " seperator
+			let l:tmp .= "%#StlSepSymbol2Main#" .. s:LtStlSep " seperator
 		else
-			let l:tmp .= "%#SepMain2Stl#" .. s:RtSep " seperator
+			let l:tmp .= "%#StlSepMain2Stl#" .. s:RtStlSep " seperator
 		endif
 
 		let l:tmp .= "%#StlMain#"
-		let l:tmp .=  GetLeftSide(a:win_id)
+		let l:tmp .=  s:getLeftSide(a:win_id)
 
 	elseif a:mode == 'inactive'
 
 		let l:tmp .= "%#statuslineNC#"
-		let l:tmp .=  GetRightSide(a:win_id)
+		let l:tmp .=  s:getRightSide(a:win_id)
 		let l:tmp .= "\ "
-		let l:tmp .= GetGitBranch(a:win_id)
+		let l:tmp .= s:getGitBranch(a:win_id)
 		let l:tmp .= "\ \│\ "
 		let l:tmp .= "%<"
-		let l:tmp .= GetPath(a:win_id)
+		let l:tmp .= s:getPath(a:win_id)
 		let l:tmp .= "%=\ "
 		let l:tmp .= l:symbol
 		let l:tmp .= "\ \│\ "
-		let l:tmp .=  GetLeftSide(a:win_id)
+		let l:tmp .=  s:getLeftSide(a:win_id)
 	endif
 	return l:tmp
 endfunction
@@ -276,30 +286,30 @@ endfunction
 function! SmartStatusline#Enable()
 	if !g:SmartStatuslineEnabled
 		let g:SmartStatuslineEnabled = 1
-		" Create Update Events:
-		augroup statusLine
-			autocmd!
-			" TODO: fix window stops being 'active' after insert mode
-			autocmd VimResized   * call SmartStatusline#Update()
-			autocmd InsertEnter  * call SmartStatusline#Update()
-			autocmd InsertLeave  * call SmartStatusline#Update()
-
-			autocmd WinNew       * call SmartStatusline#Update()
-			autocmd BufWipeout   * call SmartStatusline#Update()
-			autocmd WinEnter     * call SmartStatusline#Update()
-			autocmd WinLeave     * call SmartStatusline#Update()
-			autocmd BufWinEnter  * call SmartStatusline#Update()
-			autocmd BufWinLeave  * call SmartStatusline#Update()
-
-			autocmd BufNew       * call SmartStatusline#Update()
-			autocmd BufCreate    * call SmartStatusline#Update()
-			autocmd BufEnter     * call SmartStatusline#Update()
-			autocmd BufDelete    * call SmartStatusline#Update()
-		augroup END
-
-		" Do First Update:
-		call SmartStatusline#Update()
 	endif
+	" Create Update Events:
+	augroup statusLine
+		autocmd!
+		" TODO: fix window stops being 'active' after insert mode
+		autocmd VimResized   * call SmartStatusline#Update()
+		autocmd InsertEnter  * call SmartStatusline#Update()
+		autocmd InsertLeave  * call SmartStatusline#Update()
+
+		autocmd WinNew       * call SmartStatusline#Update()
+		autocmd BufWipeout   * call SmartStatusline#Update()
+		autocmd WinEnter     * call SmartStatusline#Update()
+		autocmd WinLeave     * call SmartStatusline#Update()
+		autocmd BufWinEnter  * call SmartStatusline#Update()
+		autocmd BufWinLeave  * call SmartStatusline#Update()
+
+		autocmd BufNew       * call SmartStatusline#Update()
+		autocmd BufCreate    * call SmartStatusline#Update()
+		autocmd BufEnter     * call SmartStatusline#Update()
+		autocmd BufDelete    * call SmartStatusline#Update()
+	augroup END
+
+	" Do First Update:
+	call SmartStatusline#Update()
 endfunction
 
 function! SmartStatusline#Disable()
@@ -313,5 +323,7 @@ function! SmartStatusline#Disable()
 endfunction
 
 " Start plugin
-call SmartStatusline#Enable()
+if g:SmartStatuslineEnabled
+	call SmartStatusline#Enable()
+endif
 "endOfFile

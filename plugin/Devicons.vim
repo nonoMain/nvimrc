@@ -1,5 +1,45 @@
 "startOfFile
-" Filename: devicons.vim
+" Filename: Devicons.vim
+
+if !exists("g:Use_devicons_colors")
+	let g:Use_devicons_colors = 0
+endif
+
+let s:gui_idx = 0 | let s:term_idx = 1
+
+let g:devicons_colorpallet = {
+	\'brown'       : ['#875f5f',  95],
+	\'aqua'        : ['#5fffd7',  86],
+	\'blue'        : ['#5fafaf',  73],
+	\'darkBlue'    : ['#5f8787',  66],
+	\'purple'      : ['#875f87',  96],
+	\'red'         : ['#af5f5f', 131],
+	\'yellow'      : ['#ffaf5f', 215],
+	\'orange'      : ['#d7875f', 173],
+	\'darkOrange'  : ['#ff5f00', 202],
+	\'pink'        : ['#ff5f87', 204],
+	\'salmon'      : ['#d75f5f', 167],
+	\'green'       : ['#87af5f', 107],
+	\'lightGreen'  : ['#5faf5f',  71],
+	\'white'       : ['#ffffff', 231],
+\}
+
+let g:devicons_color_icons_dict = {
+\'brown':[''],
+\'aqua':[''],
+\'blue':['', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+\'darkBlue':['', '', '', '', ''],
+\'purple':['', '', '', '', '', '', '', ''],
+\'red':['', '', '', ''],
+\'yellow':['', '', 'λ', '', '', '', '', ''],
+\'orange':['', '', ''],
+\'darkOrange':['', '', '', '', ''],
+\'pink':['', ''],
+\'salmon':['', ''],
+\'green':['', '', '', '', '', '', ''],
+\'lightGreen':['﵂'],
+\'white':['', '', '', '', '', '', ''],
+\}
 
 function s:getDistro()
 	if exists('s:distroSymbol')
@@ -142,7 +182,7 @@ let s:fileExtentionsToSymbols = {
 	\'tsx'         : '',
 	\'twig'        : '',
 	\'txt'         : '',
-	\'vim'         : '',
+	\'vim'         : '',
 	\'vue'         : '﵂',
 	\'webmanifest' : '',
 	\'webp'        : '',
@@ -154,6 +194,7 @@ let s:fileExtentionsToSymbols = {
 \}
 
 let s:specificFilesToSymbols = {
+	\'bash'              : '',
 	\'.bashprofile'      : '',
 	\'.bashrc'           : '',
 	\'cmakelists.txt'    : '',
@@ -175,11 +216,9 @@ let s:specificFilesToSymbols = {
 	\'.gvimrc'           : '',
 	\'_gvimrc'           : '',
 	\'license'           : '',
-	\'License'           : '',
-	\'LICENSE'           : '',
+	\'license.md'        : '',
+	\'license.markdown'  : '',
 	\'makefile'          : '',
-	\'Makefile'          : '',
-	\'MAKEFILE'          : '',
 	\'mix.lock'          : '',
 	\'node_modules'      : '',
 	\'procfile'          : '',
@@ -198,6 +237,17 @@ let s:dirTypeSymbols = {
 	\'linked' : '',
 \}
 
+function! DeviconsColors(config)
+	let colors = keys(a:config)
+	augroup devicons_colors
+		autocmd!
+		for color in colors
+			exec 'autocmd FileType filebroswer highlight devicons_'.color.' guifg='.g:devicons_colorpallet[color][s:gui_idx].' ctermfg='.g:devicons_colorpallet[color][s:term_idx]
+			exec 'autocmd FileType filebroswer syntax match devicons_'.color.' /\v'.join(a:config[color], '|').'/ containedin=ALL'
+		endfor
+	augroup END
+endfunction
+
 function! s:dirToSymbol(mode)
 	if (a:mode == 'in_use')
 		return s:dirTypeSymbols['open']
@@ -211,14 +261,14 @@ endfunction
 function! s:fileToSymbol(path)
 	let l:file = fnamemodify(a:path, ":t")
 	let l:fileExtention = fnamemodify(l:file, ":e")
+	for key in keys(s:specificFilesToSymbols)
+		if tolower(key) == tolower(l:file)
+			return s:specificFilesToSymbols[key]
+		endif
+	endfor
 	for key in keys(s:fileExtentionsToSymbols)
 		if key == l:fileExtention
 			return s:fileExtentionsToSymbols[key]
-		endif
-	endfor
-	for key in keys(s:specificFilesToSymbols)
-		if key == l:file
-			return s:specificFilesToSymbols[key]
 		endif
 	endfor
 	return l:fileExtention
@@ -240,10 +290,14 @@ function! Devicons#GetPathSymbol(fullPath, mode)
 	let l:symbol = ''
 	if isdirectory(a:fullPath)
 		let l:symbol = s:dirToSymbol(a:mode)
-	elseif filereadable(a:fullPath)
+	else
 		let l:symbol = s:fileToSymbol(a:fullPath)
 	endif
 	return l:symbol
 endfunction
+
+if g:Use_devicons_colors
+	call DeviconsColors(g:devicons_color_icons_dict)
+endif
 
 "endOfFile
