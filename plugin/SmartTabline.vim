@@ -22,7 +22,7 @@ let s:CP = {
 	\'selected'   : '#005F87', 'T_selected':  24,
 	\'symbolFg'   : '#87AFD7', 'T_symbolFg': 110,
 	\'fg'         : '#b2b2b2', 'T_fg'      : 249,
-	\'bg'         : '#252525', 'T_bg'      : 236,
+	\'bg'         : '#3A3A3A', 'T_bg'      : 237,
 	\'darkBg'     : '#1C1C1C', 'T_darkBg'  : 234,
 	\'special'    : '#AF5F87', 'T_special' : 132,
 \}
@@ -163,7 +163,7 @@ function! s:generateTablable(tabNr, mode)
 		let l:tmp .= "\ "
 		let l:tmp .= l:symbol
 		let l:tmp .= "\ "
-		let l:tmp .= pathshorten(l:path)
+		let l:tmp .= pathshorten(fnamemodify(l:path, ":."))
 		let l:tmp .= "\ "
 		let l:tmp .= s:getTabStatus(a:tabNr)
 		let l:tmp .= "%#TabSepSel2Fill#" .. s:LtSep
@@ -177,7 +177,7 @@ function! s:generateTablable(tabNr, mode)
 		let l:tmp .= l:symbol
 		let l:tmp .= "%#TabLine#"
 		let l:tmp .= "\ "
-		let l:tmp .= pathshorten(l:path)
+		let l:tmp .= pathshorten(fnamemodify(l:path, ":."))
 "		add for number of open windows in each tab
 "		let l:tmp .= "(" .. tabpagewinnr(a:tabNr, '$') .. ")"
 		let l:tmp .= "%#TabSpecial#"

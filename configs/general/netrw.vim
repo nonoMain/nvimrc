@@ -8,12 +8,13 @@ let g:netrw_liststyle = 1
 function! g:ToggleNetrw()
 	if &filetype != "netrw"
 		if g:NetrwIsOpen
-			let l:i = bufnr("$")
-			while (l:i >= 1)
-				if (getbufvar(l:i, "&filetype") == "netrw")
-					silent! exe "bwipeout " . l:i 
+			let bufNr = bufnr("$")
+			while (bufNr >= 1)
+				if (getbufvar(bufNr, "&filetype") == "netrw")
+					silent exe "bprevious"
+					silent! exe "bwipeout " . bufNr 
 				endif
-				let l:i-=1
+				let bufNr-=1
 			endwhile
 			silent Explore
 		else
@@ -21,12 +22,13 @@ function! g:ToggleNetrw()
 			silent Explore
 		endif
 	else
-		let l:i = bufnr("$")
-		while (l:i >= 1)
-			if (getbufvar(l:i, "&filetype") == "netrw")
-				silent exe "bwipeout " . l:i 
+		let bufNr = bufnr("$")
+		while (bufNr >= 1)
+			if (getbufvar(bufNr, "&filetype") == "netrw")
+				silent exe "bprevious"
+				silent exe "bwipeout " . bufNr 
 			endif
-			let l:i-=1
+			let bufNr-=1
 		endwhile
 	endif
 endfunction

@@ -6,41 +6,6 @@ if !exists("g:Use_devicons_colors")
 endif
 
 let s:gui_idx = 0 | let s:term_idx = 1
-
-let g:devicons_colorpallet = {
-	\'brown'       : ['#875f5f',  95],
-	\'aqua'        : ['#5fffd7',  86],
-	\'blue'        : ['#5fafaf',  73],
-	\'darkBlue'    : ['#5f8787',  66],
-	\'purple'      : ['#875f87',  96],
-	\'red'         : ['#af5f5f', 131],
-	\'yellow'      : ['#ffaf5f', 215],
-	\'orange'      : ['#d7875f', 173],
-	\'darkOrange'  : ['#ff5f00', 202],
-	\'pink'        : ['#ff5f87', 204],
-	\'salmon'      : ['#d75f5f', 167],
-	\'green'       : ['#87af5f', 107],
-	\'lightGreen'  : ['#5faf5f',  71],
-	\'white'       : ['#ffffff', 231],
-\}
-
-let g:devicons_color_icons_dict = {
-\'brown':[''],
-\'aqua':[''],
-\'blue':['', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-\'darkBlue':['', '', '', '', ''],
-\'purple':['', '', '', '', '', '', '', ''],
-\'red':['', '', '', ''],
-\'yellow':['', '', 'λ', '', '', '', '', ''],
-\'orange':['', '', ''],
-\'darkOrange':['', '', '', '', ''],
-\'pink':['', ''],
-\'salmon':['', ''],
-\'green':['', '', '', '', '', '', ''],
-\'lightGreen':['﵂'],
-\'white':['', '', '', '', '', '', ''],
-\}
-
 function s:getDistro()
 	if exists('s:distroSymbol')
 	return s:distroSymbol
@@ -297,6 +262,40 @@ function! Devicons#GetPathSymbol(fullPath, mode)
 endfunction
 
 if g:Use_devicons_colors
+	let g:devicons_colorpallet = {
+		\'brown'       : ['#875F5F',  95],
+		\'aqua'        : ['#5FFFD7',  86],
+		\'blue'        : ['#005f87',  24],
+		\'darkBlue'    : ['#005fd7',  26],
+		\'purple'      : ['#875F87',  96],
+		\'red'         : ['#af0000', 124],
+		\'yellow'      : ['#FFD700', 220],
+		\'orange'      : ['#FFAF5F', 215],
+		\'pink'        : ['#FF5F87', 204],
+		\'salmon'      : ['#D75F5F', 167],
+		\'green'       : ['#87AF5F', 107],
+		\'lightGreen'  : ['#5FAF5F',  71],
+		\'grey'        : ['#b2b2b2', 249],
+		\'white'       : ['#FFFFFF', 231],
+	\}
+
+	let g:devicons_color_icons_dict = {
+	\'brown':[''],
+	\'aqua':[''],
+	\'blue':['', '', '', '', '', '', '', '', '', '', '', ''],
+	\'darkBlue':['', '', '', '', ''],
+	\'purple':['', '', '', '', '', '', ''],
+	\'red':['', '', '', ''],
+	\'yellow':['', '', ''],
+	\'orange':['', '', '', '', '', '', '', '', '', 'λ', '', '', '', ''],
+	\'pink':['', ''],
+	\'salmon':['', ''],
+	\'green':['', '', '', '', '', '', '', ''],
+	\'lightGreen':['﵂'],
+	\'grey':['', ''],
+	\'white':['', '', '', ''],
+	\}
+
 	call DeviconsColors(g:devicons_color_icons_dict)
 endif
 

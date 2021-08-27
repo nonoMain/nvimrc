@@ -15,6 +15,8 @@ let s:short = 50
 if g:Use_nerdfont
 	let s:LtStlSep = ""
 	let s:RtStlSep = ""
+"	let s:LtSep = ""
+"	let s:RtSep = ""
 else
 	let s:LtStlSep = ""
 	let s:RtStlSep = ""
@@ -28,7 +30,7 @@ let s:CP = {
 	\'fg'         : '#b2b2b2', 'T_fg'         : 249,
 	\'selectedfg' : '#87AFD7', 'T_selectedfg' : 110,
 	\'bg'         : '#252525', 'T_bg'         : 236,
-	\'lightBg'    : '#444444', 'T_lightBg'    : 238,
+	\'lightBg'    : '#3A3A3A', 'T_lightBg'    : 237,
 \}
 
 " Highlight Groups - H.G

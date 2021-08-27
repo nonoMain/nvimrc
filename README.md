@@ -17,7 +17,6 @@ My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/).
 3. Language-servers integration using built in nvim-lspconfig
 4. Git commands and management from inside the editor
 5. Easy to modify [colorscheme](./colors/cplex.vim)
-6. Fast general [mappings](./configs/general/keybindings.vim)
 7. Light [scripts](./plugin)
 	+ :heavy_check_mark: History browser
 	+ :heavy_check_mark: Status line

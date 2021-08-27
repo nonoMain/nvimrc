@@ -17,7 +17,7 @@ call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 	Plug 'hrsh7th/nvim-compe'
 
 " Nvim's built in lsp
-	Plug 'neovim/nvim-lspconfig'
+ 	Plug 'neovim/nvim-lspconfig'
 
 " Better syntax - tree-sitter parser
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
