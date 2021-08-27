@@ -1,7 +1,13 @@
 "startOfFile
 " Filename: Devicons.vim
 
-if !exists("g:Use_devicons_colors")
+if !exists("g:Use_nerdfont")
+	let g:Use_nerdfont = 0
+elseif !g:Use_nerdfont
+	finish
+endif
+
+if !(exists("g:Use_devicons_colors"))
 	let g:Use_devicons_colors = 0
 endif
 
@@ -286,13 +292,13 @@ if g:Use_devicons_colors
 	\'darkBlue':['', '', '', '', ''],
 	\'purple':['', '', '', '', '', '', ''],
 	\'red':['', '', '', ''],
-	\'yellow':['', '', ''],
+	\'yellow':[''],
 	\'orange':['', '', '', '', '', '', '', '', '', 'λ', '', '', '', ''],
 	\'pink':['', ''],
 	\'salmon':['', ''],
 	\'green':['', '', '', '', '', '', '', ''],
 	\'lightGreen':['﵂'],
-	\'grey':['', ''],
+	\'grey':['', '', '', ''],
 	\'white':['', '', '', ''],
 	\}
 

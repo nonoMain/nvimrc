@@ -2,8 +2,14 @@
 " Filename: browseFiles.vim
 " Description: broswer for recent and existing files
 
-let g:historyPulled = 0
 
+if !exists("g:BrowseOldfilesEnabled")
+	let g:BrowseOldfilesEnabled = 0
+elseif !g:BrowseOldfilesEnabled
+	finish
+endif
+
+let g:historyPulled = 0
 let s:conceal_Hi_Lvl = 10
 let s:conceal_match_id = 99
 let g:files_shown = []
