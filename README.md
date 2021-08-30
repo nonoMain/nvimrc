@@ -149,18 +149,18 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 --------------------------------------------------------------------------------
 
 ### [Tabline](./plugin/SmartTabline.vim)
-![tabline](https://github.com/nonoMain/nvimrc/master/pictures/tabline.png?raw=true)
+![tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tabline.png?raw=true)
 types: | selected | normal | modified | warning | error |
-![show types in tabline](https://github.com/nonoMain/nvimrc/master/pictures/tablinetypes.png?raw=true)
+![show types in tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tablinetypes.png?raw=true)
 
 ### [Statusline](./plugin/SmartStatusline.vim)
-![statusline](https://github.com/nonoMain/nvimrc/master/pictures/statusline.png/?raw=true)
+![statusline](https://github.com/nonoMain/nvimrc/blob/master/pictures/statusline.png/?raw=true)
 
 ### [history browser](./plugin/BrowseOldfiles.vim)
-![file history browser](https://github.com/nonoMain/nvimrc/master/pictures/history_file_browser.png?raw=true)
+![file history browser](https://github.com/nonoMain/nvimrc/blob/master/pictures/history_file_browser.png?raw=true)
 
 ### [colorscheme](./colors/cplex.vim)
-![colorscheme without background](https://github.com/nonoMain/nvimrc/master/pictures/clearcolorscheme.png?raw=true)
-![colorscheme with background](https://github.com/nonoMain/nvimrc/master/pictures/darkcolorscheme.png?raw=true)
+![colorscheme without background](https://github.com/nonoMain/nvimrc/blob/master/pictures/clearcolorscheme.png?raw=true)
+![colorscheme with background](https://github.com/nonoMain/nvimrc/blob/master/pictures/darkcolorscheme.png?raw=true)
 
 //endOfFile
