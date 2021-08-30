@@ -18,18 +18,18 @@ My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/).
 4. Git commands and management from inside the editor
 5. Easy to modify [colorscheme](./colors/cplex.vim)
 7. Light [scripts](./plugin)
-	+ :heavy_check_mark: History browser
-	+ :heavy_check_mark: Status line
-	+ :heavy_check_mark: Devicons (with colors for any wanted filetypes)
-	+ :heavy_check_mark: Tab line (not like we use tabs or something.. but it's good to have options)
-	- :x: Easy doc - less soon
+	+ [x] History browser
+	+ [x] Status line
+	+ [x] Devicons (with colors for any wanted filetypes)
+	+ [x] Tab line (not like we use tabs or something.. but it's good to have options)
+	- [ ] Easy doc - less soon
 
 and other usefull tweaks.
 
 Tested on:
-+ :heavy_check_mark: Linux
-+ :heavy_check_mark: Windows
-- :x: Mac - soon
++ [x] Linux
++ [x] Windows
+- [ ] Mac - soon
 
 ## Notes
 --------------------------------------------------------------------------------
@@ -145,8 +145,22 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 * [sumneko_lua](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
 > Helped me edit the scripts i saw before knowing the language
 
-## Colorscheme pics
+## Pics
 --------------------------------------------------------------------------------
-updated soon!
+
+### [Tabline](./plugin/SmartTabline.vim)
+![tabline](https://github.com/nonoMain/nvimrc/master/pictures/tabline.png?raw=true)
+types: | selected | normal | modified | warning | error |
+![show types in tabline](https://github.com/nonoMain/nvimrc/master/pictures/tablinetypes.png?raw=true)
+
+### [Statusline](./plugin/SmartStatusline.vim)
+![statusline](https://github.com/nonoMain/nvimrc/master/pictures/statusline.png/?raw=true)
+
+### [history browser](./plugin/BrowseOldfiles.vim)
+![file history browser](https://github.com/nonoMain/nvimrc/master/pictures/history_file_browser.png?raw=true)
+
+### [colorscheme](./colors/cplex.vim)
+![colorscheme without background](https://github.com/nonoMain/nvimrc/master/pictures/clearcolorscheme.png?raw=true)
+![colorscheme with background](https://github.com/nonoMain/nvimrc/master/pictures/darkcolorscheme.png?raw=true)
 
 //endOfFile

@@ -198,7 +198,7 @@ hi! link TSPunctBracket       PunctBracket
 hi! link TSPunctSpecial       PunctSpecial
 hi! link TSConstant           Constant
 hi! link TSConstBuiltin       Constant
-hi! link TSConstMacro         Constant
+hi! link TSConstMacro         Type
 hi! link TSStringRegex        String
 hi! link TSStringEscape       Operator
 hi! link TSCharacter          String
