@@ -45,14 +45,14 @@ let s:CP = {
 " Description:
 " highlight group - description
 "
-"  StatusLine     - general color
-"  StlMain        - main color for theme
-"  StlBranch      - git's branch
-"  StlSymbol      - file symbol (or extention)
-"  StlSepMain2Branch - seperator for 'Main' -> 'Branch'
-"  StlSepMain2Stl    - seperator for 'Main' -> 'StatusLine'
-"  StlSepSymbol2Main - seperator for 'Symbol' -> 'Main'
-"  StlSepBranch2Stl  - seperator for 'Branch' -> 'StatusLine'
+"  StatusLine        - general color
+"  StlMain           - main color for theme
+"  StlBranch         - git's branch
+"  StlSymbol         - file symbol (or extention)
+"  StlSepMain2Branch - seperator for 'Main'       -> 'Branch'
+"  StlSepMain2Stl    - seperator for 'Main'       -> 'StatusLine'
+"  StlSepSymbol2Main - seperator for 'Symbol'     -> 'Main'
+"  StlSepBranch2Stl  - seperator for 'Branch'     -> 'StatusLine'
 "  StlSepStl2Symbol  - seperator for 'statusLine' -> 'Symbol'
 
 " StatusLine highlight groups

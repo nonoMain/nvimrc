@@ -56,19 +56,27 @@ let s:CP = {
 
 " Description:
 " highlight group - description
-
+"  TabLineSel     - selected tab
+"  TabLine        - regular unselcted tab
+"  TabSymbolReg   - tab symbols normaly
+"  TabSymbolWar   - tab symbols when there are warnings
+"  TabSymbolErr   - tab symbols when there are errors
+"  TabSpecial     - important ('special') parameters on the tab
+"  TabLineFill    - background of the tabline
+"  TabSepSel2Fill - seperator for 'TabLineSel' -> 'TabLineFill'
+"  TabSepReg2Fill - seperator for 'TabLine'    -> 'TabLineFill'
 
 " StatusLine highlight groups
 let s:HG = {}
-let s:HG.TabLineSel     = { "GFG":s:CP.fg,          "TFG":s:CP.T_fg,        "GBG":s:CP.selected,"TBG":s:CP.T_selected }
-let s:HG.TabLine        = { "GFG":s:CP.fg,          "TFG":s:CP.T_fg,        "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
-let s:HG.TabSymbolReg   = { "GFG":s:CP.symbolRegFg, "TFG":s:CP.T_symbolRegFg,  "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
-let s:HG.TabSymbolWar   = { "GFG":s:CP.symbolWarFg, "TFG":s:CP.T_symbolWarFg,  "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
-let s:HG.TabSymbolErr   = { "GFG":s:CP.symbolErrFg, "TFG":s:CP.T_symbolErrFg,  "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
-let s:HG.TabSpecial     = { "GFG":s:CP.special,     "TFG":s:CP.T_special,   "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
+let s:HG.TabLineSel     = { "GFG":s:CP.fg,          "TFG":s:CP.T_fg,          "GBG":s:CP.selected,"TBG":s:CP.T_selected }
+let s:HG.TabLine        = { "GFG":s:CP.fg,          "TFG":s:CP.T_fg,          "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
+let s:HG.TabSymbolReg   = { "GFG":s:CP.symbolRegFg, "TFG":s:CP.T_symbolRegFg, "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
+let s:HG.TabSymbolWar   = { "GFG":s:CP.symbolWarFg, "TFG":s:CP.T_symbolWarFg, "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
+let s:HG.TabSymbolErr   = { "GFG":s:CP.symbolErrFg, "TFG":s:CP.T_symbolErrFg, "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
+let s:HG.TabSpecial     = { "GFG":s:CP.special,     "TFG":s:CP.T_special,     "GBG":s:CP.bg,      "TBG":s:CP.T_bg }
 let s:HG.TabLineFill    = { "GBG":s:CP.darkBg,      "TBG":s:CP.T_darkBg }
-let s:HG.TabSepSel2Fill = { "GFG":s:CP.selected,    "TFG":s:CP.T_selected,  "GBG":s:CP.darkBg,  "TBG":s:CP.T_darkBg }
-let s:HG.TabSepReg2Fill = { "GFG":s:CP.bg,          "TFG":s:CP.T_bg,        "GBG":s:CP.darkBg,  "TBG":s:CP.T_darkBg }
+let s:HG.TabSepSel2Fill = { "GFG":s:CP.selected,    "TFG":s:CP.T_selected,    "GBG":s:CP.darkBg,  "TBG":s:CP.T_darkBg }
+let s:HG.TabSepReg2Fill = { "GFG":s:CP.bg,          "TFG":s:CP.T_bg,          "GBG":s:CP.darkBg,  "TBG":s:CP.T_darkBg }
 
 " highlighting function
 function! s:HighlightDict(key, dict)

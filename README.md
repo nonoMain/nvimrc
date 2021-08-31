@@ -150,7 +150,10 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 
 ### [Tabline](./plugin/SmartTabline.vim)
 ![tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tabline.png?raw=true)
-types: | selected | normal | modified | warning | error |
+
+types:
+| selected | normal | modified | warning | error |
+
 ![show types in tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tablinetypes.png?raw=true)
 
 ### [Statusline](./plugin/SmartStatusline.vim)

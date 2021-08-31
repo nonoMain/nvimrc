@@ -78,14 +78,14 @@ let s:HG.Character  = { "GFG":s:CP.string,     "TFG":s:CP.T_string }
 let s:HG.Boolean    = { "GFG":s:CP.bool,       "TFG":s:CP.T_bool }
 let s:HG.Number     = { "GFG":s:CP.number,     "TFG":s:CP.T_number }
 let s:HG.Float      = { "GFG":s:CP.number,     "TFG":s:CP.T_number }
-let s:HG.Repeat     = { "GFG":s:CP.repeat,     "TFG":s:CP.T_repeat,      "G":'bold',        "T":'bold' }
-let s:HG.Keyword    = { "GFG":s:CP.keyword,    "TFG":s:CP.T_keyword,     "G":'bold',        "T":'bold' }
+let s:HG.Repeat     = { "GFG":s:CP.repeat,     "TFG":s:CP.T_repeat,      "G":'bold',     "T":'bold' }
+let s:HG.Keyword    = { "GFG":s:CP.keyword,    "TFG":s:CP.T_keyword,     "G":'bold',     "T":'bold' }
 let s:HG.Operator   = { "GFG":s:CP.operator,   "TFG":s:CP.T_operator }
 let s:HG.Function   = { "GFG":s:CP.function,   "TFG":s:CP.T_function }
 let s:HG.Identifier = { "GFG":s:CP.object,     "TFG":s:CP.T_object }
 let s:HG.Type       = { "GFG":s:CP.identifier, "TFG":s:CP.T_identifier }
 let s:HG.Directory  = { "GFG":s:CP.special,    "TFG":s:CP.T_special }
-let s:HG.Error      = { "GFG":s:CP.error,      "TFG":s:CP.T_error,       "G":'bold',        "T":'bold' }
+let s:HG.Error      = { "GFG":s:CP.error,      "TFG":s:CP.T_error,       "G":'bold',     "T":'bold' }
 let s:HG.Special    = { "GFG":s:CP.special,    "TFG":s:CP.T_special }
 
 " Enviorment highlight groups

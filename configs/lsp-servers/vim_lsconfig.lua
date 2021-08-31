@@ -5,7 +5,7 @@
 HOME = vim.fn.expand('$HOME')
 
 local language_server_path = "/.ls-servers/vim-language-server"
-local full_path
+local full_path = ""
 
 full_path = HOME .. language_server_path
 
