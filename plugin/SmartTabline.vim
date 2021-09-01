@@ -26,8 +26,6 @@ let s:WarningSigns   = [
 if g:Use_nerdfont
 	let s:LtSep = ""
 	let s:RtSep = ""
-"	let s:LtSep = ""
-"	let s:RtSep = ""
 else
 	let s:LtSep = "|"
 	let s:RtSep = "|"
@@ -130,17 +128,13 @@ endfor
 
 function! GenerateTabline()
 	let l:tmp = ""
-	if tabpagenr('$') == 1
-		let l:tmp .= s:generateTablable(1, 'active')
-	else
-		for tabNr in range(tabpagenr('$'))
-			if tabNr + 1 == tabpagenr()
-				let l:tmp .= s:generateTablable(tabNr + 1, 'active')
-			else
-				let l:tmp .= s:generateTablable(tabNr + 1, 'inactive')
-			endif
-		endfor
-	endif
+	for tabNr in range(tabpagenr('$'))
+		if tabNr + 1 == tabpagenr()
+			let l:tmp .= s:generateTablable(tabNr + 1, 'active')
+		else
+			let l:tmp .= s:generateTablable(tabNr + 1, 'inactive')
+		endif
+	endfor
 	let l:tmp .= '%#TabLineFill#%T'
 	if tabpagenr('$') > 1
 		let l:tmp .= (g:Use_nerdfont)? "%=%#TabLine#\ \ " : "%=%#TabLine#\ X\ "
@@ -155,12 +149,17 @@ function! s:getFullPath(tabNr)
 endfunction
 
 function! s:getBufDiagnostics(buf)
+	let l:found_error = 0
+	let l:found_warning = 0
 	let signs = sign_getplaced(bufname(a:buf), {"group":'*'})[0]['signs']
 	for sign in signs
-		if     match(s:ErrorSigns, sign['name'])   != -1 | return s:TabWithError
-		elseif match(s:WarningSigns, sign['name']) != -1 | return s:TabWithWarning
+		if     !(l:found_error) && (match(s:ErrorSigns, sign['name'])     != -1) | let l:found_error = 1
+		elseif !(l:found_warning) && (match(s:WarningSigns, sign['name']) != -1) | let l:found_warning = 1
 		endif
 	endfor
+	if     l:found_error   | return s:TabWithError
+	elseif l:found_warning | return s:TabWithWarning
+	endif
 endfunction
 
 function! s:getTabInfo(tabNr)

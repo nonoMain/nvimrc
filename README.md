@@ -59,10 +59,10 @@ so for that reason everything used here comes with links for the original pages
 * [Go language](https://golang.org/dl/)
 
 ### Recommended:
-* [Devicons](https://github.com/devicons/devicon) supported font (e.g [nerd fonts](https://www.nerdfonts.com/))
-> If you want to use it set `let g:Use_dev_icons = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
+* [nerd fonts](https://www.nerdfonts.com/)
+> If you want to use it set `let g:Use_nerdfonts = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
-> More options with the parser
+> More options with the tree-sitter parser
 
 ## Configiration layout
 --------------------------------------------------------------------------------
