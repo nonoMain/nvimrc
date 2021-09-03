@@ -39,4 +39,5 @@ call plug#end()
 
 "autocmd VimEnter * PlugInstall
 "autocmd VimEnter * PlugInstall | source $MYVIMRC
+
 "endOfFile
