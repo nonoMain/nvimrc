@@ -1,15 +1,14 @@
-#!/usr/bin/env bash
-#startOfFile
-# Filename: jdtls.sh
+::startOfFile
+:: Filename: jdtls.sh
 
-# NOTES:
-# ----------------------------------------------------------------------------
-# '$HOME/.ls-servers/eclipse.jdt.ls' is the path to the server (update it accordingly in 'JAR' and in '-configuration')
-# ----------------------------------------------------------------------------
-# Options for '-configuration':
-#	config_win
-#	config_mac
-#	config_linux
+:: NOTES:
+:: ----------------------------------------------------------------------------
+:: '$HOME/.ls-servers/eclipse.jdt.ls' is the path to the server (update it accordingly in 'JAR' and in '-configuration')
+:: ----------------------------------------------------------------------------
+:: Options for '-configuration':
+::	config_win
+::	config_mac
+::	config_linux
 
 JAR="$HOME/.ls-servers/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_*.jar"
 GRADLE_HOME=$HOME/gradle /usr/lib/jvm/default-java/bin/java \
@@ -25,4 +24,4 @@ GRADLE_HOME=$HOME/gradle /usr/lib/jvm/default-java/bin/java \
   --add-modules=ALL-SYSTEM \
   --add-opens java.base/java.util=ALL-UNNAMED \
   --add-opens java.base/java.lang=ALL-UNNAMED
-#endOfFile
+::endOfFile

@@ -4,9 +4,11 @@
 -- easiest option to get it if you don't have it:
 -- sudo apt install ccls
 
+SERVER_PATH = vim.g.c_ls_path
+
 require'lspconfig'.clangd.setup
 {
-	cmd = { "clangd" };
+	cmd = { SERVER_PATH };
 	filetypes = {
 		"c",
 		"cpp",

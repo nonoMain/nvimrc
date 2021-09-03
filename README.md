@@ -46,6 +46,9 @@ run well.
 so for that reason everything used here comes with links for the original pages
 (didn't included them because they'd bloat the repo and won't be up to date)
 
+* All the paths for thins such as servers and files outside of the config are in the [globals](./globals.vim)
+so set them for your paths
+
 ## Requirements
 --------------------------------------------------------------------------------
 
@@ -59,7 +62,7 @@ so for that reason everything used here comes with links for the original pages
 * [Go language](https://golang.org/dl/)
 
 ### Recommended:
-* [nerd fonts](https://www.nerdfonts.com/)
+* [nerd fonts](https://www.nerdfonts.com/) (I use 'Cousine Nerd Font')
 > If you want to use it set `let g:Use_nerdfonts = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
 > More options with the tree-sitter parser

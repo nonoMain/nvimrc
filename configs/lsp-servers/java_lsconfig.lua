@@ -1,13 +1,10 @@
 --startOfFile
 -- Filename: java_lsconfig.lua
-
-HOME = vim.fn.expand('$MYVIMRCFOLDER')
-
-local java_language_server_wrapper = "/releated/jdtls.sh"
+PATH = vim.g.java_ls_path
 
 require'lspconfig'.jdtls.setup
 {
-	cmd = {HOME .. java_language_server_wrapper};
+	cmd = {PATH};
 	filetypes = {
 		"java",
 	}

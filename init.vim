@@ -12,6 +12,9 @@
 	let g:SmartStatuslineEnabled = 1
 	let g:Use_devicons_colors    = 1
 
+" global variables needed for the config (outside of these above)
+	source $MYVIMRCFOLDER/globals.vim
+
 " The general vim settings - file settings, color settings, cursor...
 	source $MYVIMRCFOLDER/configs/general/general.vim
 	source $MYVIMRCFOLDER/configs/general/file_settings.vim

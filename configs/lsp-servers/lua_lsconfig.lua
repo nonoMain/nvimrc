@@ -2,13 +2,14 @@
 -- Filename: lua_lsconfig.lua
 
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-HOME = vim.fn.expand('$HOME')
-local lua_language_server_path = "/.ls-servers/lua-language-server"
+
+SERVER_PATH = vim.g.lua_ls_path
+
 local sumneko_root_path = ""
 local sumneko_binary = ""
 
-sumneko_root_path = HOME .. lua_language_server_path
-sumneko_binary = HOME .. lua_language_server_path .. "/bin/Linux/lua-language-server"
+sumneko_root_path = SERVER_PATH
+sumneko_binary = SERVER_PATH .. "/bin/Linux/lua-language-server"
 
 require'lspconfig'.sumneko_lua.setup {
 	cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
