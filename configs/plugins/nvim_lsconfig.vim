@@ -49,6 +49,7 @@ set completeopt=menuone,noinsert,noselect
 	nnoremap <silent> gD        :lua vim.lsp.buf.declaration()<CR>
 	nnoremap <silent> gr        :lua vim.lsp.buf.references()<CR>
 	nnoremap <silent> gi        :lua vim.lsp.buf.implementation()<CR>
+	nnoremap <silent> ga        :lua vim.lsp.buf.code_action()<CR>
 	nnoremap <silent> <leader>r :lua vim.lsp.buf.rename()<CR>
 	nnoremap <silent> <C-k>     :lua vim.lsp.buf.hover()<CR>
 	nnoremap <silent> <C-p>     :lua vim.lsp.diagnostic.goto_prev()<CR>
