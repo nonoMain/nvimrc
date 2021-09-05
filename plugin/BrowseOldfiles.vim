@@ -5,14 +5,14 @@
 
 if !exists("g:BrowseOldfilesEnabled")
 	let g:BrowseOldfilesEnabled = 0
-elseif !g:BrowseOldfilesEnabled
+endif
+if !g:BrowseOldfilesEnabled
 	finish
 endif
 
 let g:historyPulled = 0
 let s:conceal_Hi_Lvl = 10
 let s:conceal_match_id = 99
-let g:files_shown = []
 
 if !exists('g:historyIgnore')
 	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
@@ -42,6 +42,7 @@ function! s:closeBrowser()
 		endif
 		let bufNr-=1
 	endwhile
+	unlet g:files_shown
 endfunction
 
 function! s:openBrowser()

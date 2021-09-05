@@ -3,7 +3,8 @@
 
 if !exists("g:SmartStatuslineEnabled")
 	let g:SmartStatuslineEnabled = 1
-elseif !g:SmartStatuslineEnabled
+endif
+if !g:SmartStatuslineEnabled
 	finish
 endif
 

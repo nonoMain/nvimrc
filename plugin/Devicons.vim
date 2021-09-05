@@ -3,7 +3,8 @@
 
 if !exists("g:Use_nerdfont")
 	let g:Use_nerdfont = 0
-elseif !g:Use_nerdfont
+endif
+if !g:Use_nerdfont
 	finish
 endif
 

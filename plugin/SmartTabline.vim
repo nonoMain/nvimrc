@@ -3,7 +3,8 @@
 
 if !exists("g:SmartTablineEnabled")
 	let g:SmartTablineEnabled = 1
-elseif !g:SmartTablineEnabled
+endif
+if !g:SmartTablineEnabled
 	finish
 endif
 
