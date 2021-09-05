@@ -45,7 +45,7 @@ let s:fileExtentionsToSymbols = {
 	\'ai'          : '',
 	\'awk'         : '',
 	\'bash'        : '',
-	\'bat'         : '',
+	\'bat'         : '',
 	\'bmp'         : '',
 	\'c'           : '',
 	\'c++'         : '',
@@ -162,6 +162,8 @@ let s:fileExtentionsToSymbols = {
 	\'yaml'        : '',
 	\'yml'         : '',
 	\'zsh'         : '',
+	\'exe'         : '省',
+	\'bin'         : '省',
 \}
 
 let s:specificFilesToSymbols = {

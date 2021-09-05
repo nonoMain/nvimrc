@@ -54,15 +54,17 @@ so set them for your paths
 
 ### The requirements for the configiration
 
-* Neovim [nightly](https://github.com/neovim/neovim/releases/nightly/)
+* [Neovim v0.5+](https://github.com/neovim/neovim/releases/)
 * [Git](https://git-scm.com/downloads/)
 * [Node](https://nodejs.org/en/download/)
 * [Python2 & Python3](https://www.python.org/)
 * C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) with libstdc++ installed! **(windows users!)**
+> for windows I'd recommend [MinGW](https://www.mingw-w64.org/)
+* [Make](https://www.gnu.org/software/make/)
 * [Go language](https://golang.org/dl/)
 
 ### Recommended:
-* [nerd fonts](https://www.nerdfonts.com/) (I use 'Cousine Nerd Font')
+* [nerd font] supported terminal (https://www.nerdfonts.com/) (I use 'Cousine Nerd Font')
 > If you want to use it set `let g:Use_nerdfonts = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
 > More options with the tree-sitter parser
