@@ -215,7 +215,7 @@ function! s:generateTablable(tabNr, mode)
 		let l:tmp .= "\ "
 		let l:tmp .= l:symbol
 		let l:tmp .= "\ "
-		let l:tmp .= pathshorten(fnamemodify(l:path, ":."))
+		let l:tmp .= pathshorten(fnamemodify(l:path, ":~:."))
 		let l:tmp .= "\ "
 		let l:tmp .= l:tabInfo[s:StatusKey]
 		let l:tmp .= "%#TabSepSel2Fill#" .. s:LtSep

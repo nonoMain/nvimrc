@@ -27,7 +27,7 @@ let s:CP = {
 	\'error'      : '#D70000', 'T_error'      : 160,
 	\'number'     : '#AFD7AF', 'T_number'     : 151,
 	\'bool'       : '#AF87D7', 'T_bool'       : 140,
-	\'identifier' : '#5FAFAF', 'T_identifier' :  74,
+	\'type'       : '#5FAFAF', 'T_type'       :  74,
 	\'keyword'    : '#87AFFF', 'T_keyword'    : 111,
 	\'repeat'     : '#D787D7', 'T_repeat'     : 176,
 	\'function'   : '#D7D7AF', 'T_function'   : 187,
@@ -68,25 +68,26 @@ endif
 
 " Text syntax highlight groups
 let s:HG = {}
-let s:HG.Normal     = { "GFG":s:ECP.fg,        "TFG":s:ECP.T_fg,         "GBG":s:ECP.bg, "TBG":s:ECP.T_bg }
+let s:HG.Normal     = { "GFG":s:ECP.fg,        "TFG":s:ECP.T_fg,         "GBG":s:ECP.bg,       "TBG":s:ECP.T_bg }
 let s:HG.Include    = { "GFG":s:CP.include,    "TFG":s:CP.T_include }
 let s:HG.Comment    = { "GFG":s:CP.comment,    "TFG":s:CP.T_comment }
 let s:HG.Constant   = { "GFG":s:CP.constant,   "TFG":s:CP.T_constant }
-let s:HG.Delimiter  = { "GFG":s:ECP.fg,        "TFG":s:ECP.T_fg,         "GBG":s:ECP.bg, "TBG":s:ECP.T_bg }
+let s:HG.Delimiter  = { "GFG":s:ECP.fg,        "TFG":s:ECP.T_fg,         "GBG":s:ECP.bg,       "TBG":s:ECP.T_bg }
 let s:HG.String     = { "GFG":s:CP.string,     "TFG":s:CP.T_string }
 let s:HG.Character  = { "GFG":s:CP.string,     "TFG":s:CP.T_string }
 let s:HG.Boolean    = { "GFG":s:CP.bool,       "TFG":s:CP.T_bool }
 let s:HG.Number     = { "GFG":s:CP.number,     "TFG":s:CP.T_number }
 let s:HG.Float      = { "GFG":s:CP.number,     "TFG":s:CP.T_number }
-let s:HG.Repeat     = { "GFG":s:CP.repeat,     "TFG":s:CP.T_repeat,      "G":'bold',     "T":'bold' }
-let s:HG.Keyword    = { "GFG":s:CP.keyword,    "TFG":s:CP.T_keyword,     "G":'bold',     "T":'bold' }
+let s:HG.Repeat     = { "GFG":s:CP.repeat,     "TFG":s:CP.T_repeat,      "G":'bold',           "T":'bold' }
+let s:HG.Keyword    = { "GFG":s:CP.keyword,    "TFG":s:CP.T_keyword,     "G":'bold',           "T":'bold' }
 let s:HG.Operator   = { "GFG":s:CP.operator,   "TFG":s:CP.T_operator }
 let s:HG.Function   = { "GFG":s:CP.function,   "TFG":s:CP.T_function }
 let s:HG.Identifier = { "GFG":s:CP.object,     "TFG":s:CP.T_object }
-let s:HG.Type       = { "GFG":s:CP.identifier, "TFG":s:CP.T_identifier }
+let s:HG.Type       = { "GFG":s:CP.type,       "TFG":s:CP.T_type }
 let s:HG.Directory  = { "GFG":s:CP.special,    "TFG":s:CP.T_special }
-let s:HG.Error      = { "GFG":s:CP.error,      "TFG":s:CP.T_error,       "G":'bold',     "T":'bold' }
+let s:HG.Error      = { "GFG":s:CP.error,      "TFG":s:CP.T_error,       "G":'bold',           "T":'bold' }
 let s:HG.Special    = { "GFG":s:CP.special,    "TFG":s:CP.T_special }
+let s:HG.Folded     = { "GFG":s:CP.special,    "TFG":s:CP.T_special,     "GBG":s:ECP.non_text, "TBG":s:ECP.T_non_text}
 
 " Enviorment highlight groups
 let s:HG.StatusLine   = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg,            "GBG":s:ECP.objBg,    "TBG":s:ECP.T_objBg }
@@ -210,7 +211,7 @@ hi! link TSAttribute          Attribute
 hi! link TSNamespace          Namespace
 hi! link TSParameter          Identifier
 hi! link TSParameterReference Identifier
-hi! link TSMethod             Method
+hi! link TSMethod             Function
 hi! link TSField              Field
 hi! link TSProperty           Property
 hi! link TSConstructor        Constructor
@@ -223,7 +224,7 @@ hi! link TSKeywordOperator    Keyword
 hi! link TSException          Exception
 hi! link TSType               Type
 hi! link TSTypeBuiltin        Type
-hi! link TSStructure          Structure
+hi! link TSStructure          Type
 hi! link TSInclude            Include
 hi! link TSVariable           Identifier
 hi! link TSVariableBuiltin    Identifier
