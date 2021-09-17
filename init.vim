@@ -4,24 +4,26 @@
 " global/environment variables:
 	" get the folder that the config goes to (different on each OS)
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
-	" Plugins and settings for things in the editor
-	let g:clearBackground        = 1
-	let g:Use_nerdfont           = 1
+
+	" Enable Plugin/ plugins
 	let g:BrowseOldfilesEnabled  = 1
+	let g:NetrwPluginEnabled     = 1
 	let g:SmartTablineEnabled    = 1
 	let g:SmartStatuslineEnabled = 1
+
+	" Preferences
+	let g:clearBackground        = 1
+	let g:Use_nerdfont           = 1
 	let g:Use_devicons_colors    = 1
 
 " global variables needed for the config (outside of these above)
 	source $MYVIMRCFOLDER/globals.vim
 
-" The general vim settings - file settings, color settings, cursor...
-	source $MYVIMRCFOLDER/configs/general/general.vim
-	source $MYVIMRCFOLDER/configs/general/file_settings.vim
-	source $MYVIMRCFOLDER/configs/general/keybindings.vim
-	source $MYVIMRCFOLDER/configs/general/netrw.vim
+" The vim settings - file settings, color settings, cursor... And mappings
+	source $MYVIMRCFOLDER/configs/settings.vim
+	source $MYVIMRCFOLDER/configs/mappings.vim
 
-" The plugins call file
+" The plugins call file (vim-plug plugin manager)
 	source $MYVIMRCFOLDER/plugins.vim
 
 " All the configs for the plugins

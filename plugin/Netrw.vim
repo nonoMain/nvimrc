@@ -1,11 +1,18 @@
 "startOfFile
 " Filename: netrw.vim
 
+if !exists("g:NetrwPluginEnabled")
+	let g:NetrwPluginEnabled = 0
+endif
+if !g:NetrwPluginEnabled
+	finish
+endif
+
 let g:NetrwIsOpen=0
 let g:netrw_banner = 0
 let g:netrw_liststyle = 1
 
-function! g:ToggleNetrw()
+function! Netrw#ToggleNetrw()
 	if &filetype != "netrw"
 		if g:NetrwIsOpen
 			let bufNr = bufnr("$")

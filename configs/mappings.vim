@@ -8,13 +8,15 @@
 	nnoremap n nzz
 	nnoremap N Nzz
 
-" Better moving of a visual block:
+" Better visual block:
 	" sub/add tabs using '<' and '>'
 	vnoremap < <gv
 	vnoremap > >gv
 	" move up or down a line by 'K' or 'J'
 	vnoremap J :m '>+1<CR>gv
 	vnoremap K :m '<-2<CR>gv
+	" paste without overwriting the paste register
+	vnoremap P "_dP
 
 " Allow increament and decreament with Alt
 " Ctrl-a/Ctrl-x are sometimes used for actions in the shell itself
@@ -23,7 +25,7 @@
 	nnoremap <A-x> <C-x>
 
 " Faster way to open/close netrw (Explorer)
-noremap <silent> <leader>e :call g:ToggleNetrw()<CR>
+noremap <silent> <leader>e :call Netrw#ToggleNetrw()<CR>
 noremap <silent> <leader>h :call BrowseOldfiles#ToggleHistory()<CR>
 
 " Get current highlight-group under cursor

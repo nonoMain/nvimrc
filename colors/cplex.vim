@@ -55,7 +55,7 @@ let s:ECP = {
 if g:clearBackground
 	let s:ECP.bg = 'NONE'    | let s:ECP.T_bg = 'NONE'
 else
-	let s:ECP.bg = '#000000' | let s:ECP.T_bg = 0
+	let s:ECP.bg = '#151618' | let s:ECP.T_bg = 0
 endif
 " Highlight Groups - H.G
 " Keys:
@@ -105,7 +105,7 @@ let s:HG.SignColumn   = { "GBG":s:ECP.bg,              "TBG":s:ECP.T_bg }
 let s:HG.CursorLineNr = { "GFG":s:ECP.fg,              "TFG":s:ECP.T_fg }
 let s:HG.CursorLine   = { "GBG":s:ECP.cursorLines,     "TBG":s:ECP.T_cursorLines }
 let s:HG.CursorColumn = { "GBG":s:ECP.cursorLines,     "TBG":s:ECP.T_cursorLines }
-let s:HG.Cursor       = { "G":'reverse',                  "T":'reverse' }
+let s:HG.Cursor       = { "G":'reverse',               "T":'reverse' }
 let s:HG.VertSplit    = { "GFG":s:ECP.limitLines,      "TFG":s:ECP.T_limitLines }
 let s:HG.ColorColumn  = { "GBG":s:ECP.cursorLines,     "TBG":s:ECP.T_cursorLines }
 let s:HG.IncSearch    = { "GBG":s:ECP.searchSelected,  "TBG":s:ECP.T_searchSelected }
@@ -171,7 +171,7 @@ hi! link Todo           Repeat
 hi! link Conditional    Repeat
 hi! link Statement      Repeat
 hi! link PreProc        Repeat
-hi! link SpecialComment Speical
+hi! link SpecialComment Special 
 
 " diff.vim
 hi! link diffAdded   DiffAdd
@@ -179,9 +179,12 @@ hi! link diffChanged DiffChange
 hi! link diffRemoved DiffDelete
 
 " vim highlight groups
-hi! link vimCommand   Keyword
-hi! link vimIsCommand Keyword
-hi! link vimNotFunc   Keyword
+hi! link vimCommand      Keyword
+hi! link vimUsrCmd       Keyword
+hi! link vimIsCommand    Keyword
+hi! link vimNotFunc      Keyword
+hi! link vimUserFunc     Function
+hi! link vimCommentTitle Special 
 
 " json highlight groups
 hi! link jsonKeyword Keyword

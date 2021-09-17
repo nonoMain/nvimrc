@@ -42,7 +42,7 @@ end
 if vim.g.Use_nerdfont == 1 then setSymbols() end
 EOF
 
-set completeopt=menuone,noinsert,noselect
+"set completeopt=menuone,noinsert,noselect
 
 " LSP binding (the mappings used in the default file don't work well for me)
 	nnoremap <silent> gd        :lua vim.lsp.buf.definition()<CR>

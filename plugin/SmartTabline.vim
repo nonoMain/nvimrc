@@ -230,8 +230,8 @@ function! s:generateTablable(tabNr, mode)
 		let l:tmp .= "%#TabLine#"
 		let l:tmp .= "\ "
 		let l:tmp .= pathshorten(fnamemodify(l:path, ":."))
-"		add for number of open windows in each tab
-"		let l:tmp .= "(" .. tabpagewinnr(a:tabNr, '$') .. ")"
+		"add for number of open windows in each tab
+		"let l:tmp .= "(" .. tabpagewinnr(a:tabNr, '$') .. ")"
 		let l:tmp .= "%#TabSpecial#"
 		let l:tmp .= l:tabInfo[s:StatusKey]
 		let l:tmp .= "\ "
