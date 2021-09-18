@@ -27,11 +27,11 @@ let mapleader = ' ' " sets the leader key
 	endif
 
 " Indentation settings:
-	set noexpandtab
 	set tabstop=4 " how many spaces a tab is
 	set shiftwidth=4 " how many spaces for every level of indentation
 	set autoindent " preserve indentation
 	set smartindent " smart indentation for languages
+	set noexpandtab " keep tabs as tabs
 
 " Search settings:
 	set hlsearch " highlight all search patterns
@@ -61,6 +61,7 @@ let mapleader = ' ' " sets the leader key
 	augroup END
 
 " Other
+	set backspace=indent,eol,start
 	set lazyredraw " Smart redraw
 	set colorcolumn=80 " length of limit length line
 	set showtabline=2 " always show tabline
