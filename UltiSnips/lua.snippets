@@ -1,0 +1,68 @@
+priority -50
+
+snippet #! "#!/usr/bin/env lua" b
+#!/usr/bin/env lua
+$0
+endsnippet
+
+snippet !fun(ction)?! "New function" br
+function ${1:new_function}(${2:args})
+	$0
+end
+endsnippet
+
+snippet for "numeric for loop" b
+for ${1:i}=${2:first},${3:last}${4/^..*/(?0:,:)/}${4:step} do
+	$0
+end
+endsnippet
+
+snippet do "do block"
+do
+	$0
+end
+endsnippet
+
+snippet repeat "repeat loop" b
+repeat
+	$1
+until $0
+endsnippet
+
+snippet while "while loop" b
+while $1 do
+	$0
+end
+endsnippet
+
+snippet if "if statement" b
+if $1 then
+	$0
+end
+endsnippet
+
+snippet ifelse "if/else statement" b
+if $1 then
+	$2
+else
+	$0
+end
+endsnippet
+
+snippet ifelif "if/elseif statement" b
+if $1 then
+	$2
+elseif $3 then
+	$0
+end
+endsnippet
+
+snippet ifelifelse "if/elseif/else statement" b
+if $1 then
+	$2
+elseif $3 then
+	$4
+else
+	$0
+end
+endsnippet

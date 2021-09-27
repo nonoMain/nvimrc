@@ -31,4 +31,9 @@ noremap <silent> <leader>h :call BrowseOldfiles#ToggleHistory()<CR>
 " Get current highlight-group under cursor
 nnoremap <f10> :TSHighlightCapturesUnderCursor<CR>
 
+let g:UltiSnipsJumpForwardTrigger="<c-x>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" More mappings are at:
+" 1. nvim/configs/plugins/nvim_lsconfig.vim
 "endOfFile

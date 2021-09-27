@@ -1,0 +1,93 @@
+priority -50
+
+snippet cl "class" b
+public class ${1:`!v expand("%:t:r")`}
+{
+	$0
+}
+endsnippet
+
+snippet main "method (main)" b
+public static void main(String[] args)
+{
+	$0
+}
+endsnippet
+
+snippet try "try/catch" b
+try
+{
+	$1${VISUAL}
+} catch(${2:Exception} ${3:e})
+{
+	${4:e.printStackTrace();}
+}
+endsnippet
+
+## Print
+snippet print "print" b
+System.out.print($1);$0
+endsnippet
+
+snippet println "println"  b
+System.out.println($1);$0
+endsnippet
+
+snippet sleep "try sleep catch" b
+try
+{
+	Thread.sleep(${1:1000});
+} catch (InterruptedException e)
+{
+	e.printStackTrace();
+}
+endsnippet
+
+snippet ca "catch" b
+catch (${1:Exception} ${2:e})
+{
+	$0
+}
+endsnippet
+
+
+## Logic
+snippet switch "switch" b
+switch ($1)
+{
+	case $2: $0
+}
+endsnippet
+
+snippet case "[switch] case" b
+case $1: $0
+	$2
+endsnippet
+
+snippet if "if" b
+if ($1)
+{
+	$0${VISUAL}
+}
+endsnippet
+
+snippet elif "else if"
+else if ($1)
+{
+	$0${VISUAL}
+}
+endsnippet
+
+snippet el "else" w
+else
+{
+	$0${VISUAL}
+}
+endsnippet
+
+snippet for "for" b
+for ($1; $2; $3)
+{
+	$0
+}
+endsnippet

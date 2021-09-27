@@ -2,7 +2,6 @@
 -- Filename: nvim_compe.lua
 
 vim.o.completeopt = "menuone,noselect"
-
 compe = require('compe')
 
 compe.setup
@@ -24,12 +23,11 @@ compe.setup
 		path = true;
 		buffer = true;
 		calc = true;
-		vsnip = true;
 		nvim_lsp = true;
 		nvim_lua = true;
 		spell = true;
 		tags = true;
-		snippets_nvim = true;
+		ultisnips = true;
 		treesitter = true;
 	};
 }

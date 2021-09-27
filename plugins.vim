@@ -19,6 +19,9 @@ call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 " Nvim's built in lsp
  	Plug 'neovim/nvim-lspconfig'
 
+" Fast snippets
+	Plug 'SirVer/ultisnips'
+
 " Better syntax - tree-sitter parser
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 	Plug 'nvim-treesitter/playground'

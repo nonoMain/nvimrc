@@ -13,7 +13,7 @@ let mapleader = ' ' " sets the leader key
 	set cursorline
 
 " Undo
-	set undodir=~/.vim/undodir
+	set undodir=~/.nvim/undodir
 	set undofile
 	set undolevels=1000
 	set undoreload=10000
@@ -44,8 +44,7 @@ let mapleader = ' ' " sets the leader key
 
 " Buffer
 	set hidden " navigate to another buffer without saving current buffer
-	set nowrap " don't wrap lines
-	autocmd FileType text, markdown setlocal spell
+	set wrap " wrap lines around
 
 " File
 	filetype on

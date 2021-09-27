@@ -1,0 +1,115 @@
+# Snippets 
+priority -50
+
+snippet #ifndef "#ifndef ... #define ... #endif"
+#ifndef ${1/([A-Za-z0-9_]+).*/$1/}
+#define ${1:SYMBOL} ${2:value}
+#endif /* ifndef $1 */
+endsnippet
+
+snippet #if "#if #endif" b
+#if ${1:0}
+${VISUAL}$0
+#endif
+endsnippet
+
+snippet main "main() (main)"
+int main(int argc, char *argv[])
+{
+	${VISUAL}$0
+	return 0;
+}
+endsnippet
+
+snippet for "for loop (for)"
+for (${2:i} = 0; $2 < ${1:count}; ${3:++$2})
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet if "if"
+if ($1)
+{
+	$2
+}
+endsnippet
+
+snippet else "else"
+else
+{
+	$1
+}
+endsnippet
+
+snippet elif "else if .. (eli)"
+else if (${1:/* condition */})
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet ifelif "if .. elif" b
+if ($1)
+{
+	$2
+}
+else if ($3)
+{
+	$4
+}
+endsnippet
+
+snippet ifelifelse "if .. elif" b
+if ($1)
+{
+	$2
+}
+else if ($3)
+{
+	$4
+}
+else
+{
+	$5
+}
+endsnippet
+
+snippet switch "switch"
+switch ($1)
+{
+	case $2:
+		$3
+}
+endsnippet
+
+snippet case "case"
+case $1:
+	$2
+endsnippet
+
+snippet st "struct"
+struct ${1:`!v expand("%:t:r") .. "_t"`}
+{
+	${0:/* data */}
+};
+endsnippet
+
+snippet func "function" b
+${1:void} ${2:function_name}($3)
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet fund "function declaration" b
+${1:void} ${2:function_name}($3);
+endsnippet
+
+snippet print "fprintf"
+printf("$1");
+endsnippet
+
+snippet println "fprintf"
+printf("$1\n");
+endsnippet

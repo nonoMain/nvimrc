@@ -56,12 +56,11 @@ so set them for your paths
 
 * [Neovim v0.5+](https://github.com/neovim/neovim/releases/)
 * [Git](https://git-scm.com/downloads/)
-* [Node](https://nodejs.org/en/download/)
-* [Python2 & Python3](https://www.python.org/)
+* [Make](https://www.gnu.org/software/make/)
+* [Python3](https://www.python.org/)
 * C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) with libstdc++ installed! **(windows users!)**
 > for windows I recommend getting [MinGW](https://www.mingw-w64.org/)
-* [Make](https://www.gnu.org/software/make/)
-* [Go language](https://golang.org/dl/)
+* [Go language](https://golang.org/dl/) - for showing the color of formats in the terminal (if your not gonna work with colors you'd be better just remove 'vim-hexokinase' plugin and get rid of go)
 
 ### Recommended:
 * [nerd font](https://www.nerdfonts.com/) supported terminal (I use 'Cousine Nerd Font')
@@ -81,7 +80,6 @@ nvim/
 |- init.vim                 F(a) File that initializes the editor's settings
 |- plugins.vim              F(s) Specifies the plugins that need to be installed or loaded (for the plugin manager)
 |- README.md                F(n) You'r here, the general data about the configiration
-|- FILEGUIDE.md             F(n) Specifies complicated file arrangements (i.e duplicates for different OS etc)
 |- after/                   D(a) Overrule or add to the system-wide configiration
 |  |- ftplugin/             D(a) File type specific configiration
 |- autoload/                D(a) Place to put scripts that will load automatically and can be accessed from anywhere
@@ -110,25 +108,28 @@ Neovim built in language server protocol manager
 > For running code actions, code diagonstics and smart auto completion
 > + it's built in so it's the most trusted on terms of support or maintenance
 
-3. [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/)
+3. [ultisnips](https://github.com/SirVer/ultisnips.git)
+Snippets
+
+4. [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/)
 Better (and faster) text parser
 > faster, well equipped and good for creating scripts (refactoring, definition tamplates, etc..) for complex code
-4. [treesitter-playground](https://github.com/nvim-treesitter/playground/)
+5. [treesitter-playground](https://github.com/nvim-treesitter/playground/)
 > Allowes you to view the 'behind the scenes' of tree-sitter directly in neovim
 
-5. [vim-fugitive](https://github.com/tpope/vim-fugitive/)
+6. [vim-fugitive](https://github.com/tpope/vim-fugitive/)
 Makes Git a seamless part of the vim workflow
 > "Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's 'so awesome, it should be illegal'. That's why it's called Fugitive." - From it's README.markdown
 
-6. [vim-surround](https://github.com/tpope/vim-surround/)
+7. [vim-surround](https://github.com/tpope/vim-surround/)
 The best way imo to manage surrounded text, which is essential for code editing
 > Well integrated into vim's text actions and saves a lot of time
 
-7. [vim-repeat](https://github.com/tpope/vim-repeat/)
+8. [vim-repeat](https://github.com/tpope/vim-repeat/)
 Enables using the `.` for repeating a plugin map
 > "Repeat.vim remaps `.` in a way that plugins can tap into it." - From it's README.markdown
 
-8. [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
+9. [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
 Preview colors by coloring their value in their color (e.g #ffffff will be displyed in white)
 > A true life saver when working on front-end color tables or any other place where coloring by rgb/hex/hsl values
 
@@ -141,13 +142,13 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 * [pyright](https://github.com/microsoft/pyright) - Python language server - [config](./configs/lsp-servers/python_lsconfig.lua)
 > Microsoft's python ls
 
-* [jdtls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers/java_lsconfig.lua)
-> Eclipse's ls, many say that it is hard to configure but it's the best out there so for that you have the [jdtls.sh](./releated/jdtls.sh) wrapper
+* [eclipse-jdt-ls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers/java_lsconfig.lua)
+> Eclipse's ls, many say that it is hard to configure but it's the best out there so for that you have the [jdtls.sh](./releated/jdtls.sh) wrapper (if you are on windows you'll need a .bat wrapper)
 
-* [vimls](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers/vim_lsconfig.lua)
+* [vim-language-server](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers/vim_lsconfig.lua)
 > Usefull to have if your customizing your vim
 
-* [sumneko_lua](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
+* [sumneko-lua_ls](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
 > Helped me edit the scripts i saw before knowing the language
 
 ## Pics

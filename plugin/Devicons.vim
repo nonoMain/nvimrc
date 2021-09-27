@@ -170,6 +170,7 @@ let s:fileExtentionsToSymbols = {
 let s:specificFilesToSymbols = {
 	\'bash'              : '',
 	\'.bashprofile'      : '',
+	\'.profile'          : '',
 	\'.bashrc'           : '',
 	\'cmakelists.txt'    : '',
 	\'docker-compose.yml': '',
