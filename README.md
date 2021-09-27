@@ -63,7 +63,7 @@ so set them for your paths
 * [Go language](https://golang.org/dl/) - for showing the color of formats in the terminal (if your not gonna work with colors you'd be better just remove 'vim-hexokinase' plugin and get rid of go)
 
 ### Recommended:
-* [nerd font](https://www.nerdfonts.com/) supported terminal (I use 'Cousine Nerd Font')
+* [nerd font](https://www.nerdfonts.com/) supported terminal (I use 'Hack Nerd Font')
 > If you want to use it set `let g:Use_nerdfonts = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
 > More options with the tree-sitter parser
@@ -110,6 +110,7 @@ Neovim built in language server protocol manager
 
 3. [ultisnips](https://github.com/SirVer/ultisnips.git)
 Snippets
+> If you want a lot of snippets take a look at [vim-snippets](https://github.com/honza/vim-snippets.git)
 
 4. [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/)
 Better (and faster) text parser
