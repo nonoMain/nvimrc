@@ -49,6 +49,17 @@ else if (${1:/* condition */})
 }
 endsnippet
 
+snippet ifelse "if .. else" b
+if (${1:/* condition */})
+{
+	$2
+}
+else
+{
+	$0
+}
+endsnippet
+
 snippet ifelif "if .. elif" b
 if (${1:/* condition */})
 {
