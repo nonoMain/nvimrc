@@ -55,13 +55,16 @@ endsnippet
 snippet switch "switch" b
 switch ($1)
 {
-	case $2: $0
+	case $2:
+		$0
+		break;
 }
 endsnippet
 
 snippet case "[switch] case" b
-case $1: $0
-	$2
+case $1:
+	$0
+	break;
 endsnippet
 
 snippet if "if"
