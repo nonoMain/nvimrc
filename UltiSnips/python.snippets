@@ -7,29 +7,29 @@ endsnippet
 
 snippet ifmain "ifmain" b
 if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
-	${1:${VISUAL:main()}}
+	${1:main()}
 endsnippet
 
 snippet for "for loop" b
 for ${1:item} in ${2:iterable}:
-	${3:${VISUAL:pass}}
+	${3:pass}
 endsnippet
 
 snippet if "If" b
 if ${1:condition}:
-	${2:${VISUAL:pass}}
+	${2:pass}
 endsnippet
 
 snippet ifelse "If / Else" b
 if ${1:condition}:
-	${2:${VISUAL:pass}}
+	${2:pass}
 else:
 	${3:pass}
 endsnippet
 
 snippet ifelifelse "If / Elif / Else" b
 if ${1:condition}:
-	${2:${VISUAL:pass}}
+	${2:pass}
 elif ${3:condition}:
 	${4:pass}
 else:
@@ -38,14 +38,14 @@ endsnippet
 
 snippet try "Try / Except" b
 try:
-	${1:${VISUAL:pass}}
+	${1:pass}
 except ${2:Exception} as ${3:e}:
 	${4:raise $3}
 endsnippet
 
 snippet tryelse "Try / Except / Else" b
 try:
-	${1:${VISUAL:pass}}
+	${1:pass}
 except ${2:Exception} as ${3:e}:
 	${4:raise $3}
 else:
