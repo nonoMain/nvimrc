@@ -206,7 +206,7 @@ function! s:generateStatusline(win_id, mode)
 		if strlen(s:getGitBranch(a:win_id)) " if you are in a git branch:
 			let l:tmp .= "%#StlSepMain2Branch#" .. s:LtStlSep " seperator
 			let l:tmp .= "%#StlBranch#"
-			let l:tmp .= s:getGitBranch(a:win_id)
+			let l:tmp .= "\ " .. s:getGitBranch(a:win_id)
 			let l:tmp .= "%#StlSepBranch2Stl#" .. s:LtStlSep " seperator
 		else
 			let l:tmp .= "%#StlSepMain2Stl#" .. s:LtStlSep " seperator
@@ -220,7 +220,7 @@ function! s:generateStatusline(win_id, mode)
 		if strlen(l:symbol) " if recognized
 			let l:tmp .= "%#StlSepStl2Symbol#" .. s:RtStlSep " seperator
 			let l:tmp .= "%#StlSymbol#"
-			let l:tmp .= l:symbol .. "\ "
+			let l:tmp .= l:symbol
 			let l:tmp .= "%#StlSepSymbol2Main#" .. s:LtStlSep " seperator
 		else
 			let l:tmp .= "%#StlSepMain2Stl#" .. s:RtStlSep " seperator
