@@ -29,7 +29,7 @@ and other usefull tweaks.
 Tested on:
 + [x] Linux
 + [x] Windows
-- [ ] Mac - soon
+- [ ] Mac - not soon
 
 ## Notes
 --------------------------------------------------------------------------------
