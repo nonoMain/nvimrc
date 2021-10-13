@@ -179,6 +179,7 @@ hi! link diffChanged DiffChange
 hi! link diffRemoved DiffDelete
 
 " vim highlight groups
+hi! link vimEnvvar       Constant
 hi! link vimCommand      Keyword
 hi! link vimUsrCmd       Keyword
 hi! link vimIsCommand    Keyword
