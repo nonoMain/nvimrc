@@ -1,7 +1,7 @@
 --startOfFile
 -- Filename: nvim_compe.lua
 
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menuone,noselect,noinsert"
 compe = require('compe')
 
 compe.setup
@@ -31,24 +31,6 @@ compe.setup
 		treesitter = true;
 	};
 }
-
-local t = function(str)
-	return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-_G.s_tab_complete = function()
-	if vim.fn.pumvisible() == 1 then
-		return t "<C-p>"
-	elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-		return t "<Plug>(vsnip-jump-prev)"
-	else
-		return t "<S-Tab>"
-	end
-end
-
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 -- toggle function
 local M = {}
