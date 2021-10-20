@@ -28,8 +28,8 @@ if g:Use_nerdfont
 	let s:LtSep = ""
 	let s:RtSep = ""
 else
-	let s:LtSep = "|"
-	let s:RtSep = "|"
+	let s:LtSep = ""
+	let s:RtSep = ""
 endif
 
 " Tabline color Pallet

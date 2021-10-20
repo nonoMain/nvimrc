@@ -68,18 +68,19 @@ so set them for your paths
 * [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
 > More options with the tree-sitter parser
 
-## Configiration layout
+## Repo layout
 --------------------------------------------------------------------------------
 ```
 Flags:
-a - automatically runs (Doesn't need to get sourced to init)
-s - does need to be sourced to init
-n - doesnt releated to the editor directly or at all
+(a) - automatically runs (Doesn't need to get sourced to init)
+(s) - does need to be sourced to init
+(n) - doesnt releated to the editor directly or at all
+(.) - same as the one above it
 
 nvim/
-|- init.vim                 F(a) File that initializes the editor's settings
+|- init.vim                 F(a) File that initializes the editor's behavior
 |- plugins.vim              F(s) Specifies the plugins that need to be installed or loaded (for the plugin manager)
-|- README.md                F(n) You'r here, the general data about the configiration
+|- README.md                F(n) You'r here, inforamtion about this repo
 |- after/                   D(a) Overrule or add to the system-wide configiration
 |  |- ftplugin/             D(a) File type specific configiration
 |- autoload/                D(a) Place to put scripts that will load automatically and can be accessed from anywhere
@@ -87,9 +88,10 @@ nvim/
 |  |- plugged/              D(a) All the installed plugins are here
 |- colors/                  D(a) Colorschemes
 |- configs/                 D(s) All the configirations
-|  |- general/              | // same as above
-|  |- lsp-servers/          | // same as above
-|  |- plugins/              | // same as above
+|  |- lsp-servers/          F(.) Lsp-servers configiration
+|  |- plugins/              F(.) Plugins configirations
+|  |- settings.vim          F(.) General settings
+|  |- mappings.vim          F(.) General mappings
 |- releated/                D(n) Files for editor releated things (e.g Language-server wrappers)
 |- plugin/                  D(a) External scripts used by the editor or the user
 ```

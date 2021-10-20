@@ -16,8 +16,6 @@ let s:short = 50
 if g:Use_nerdfont
 	let s:LtStlSep = ""
 	let s:RtStlSep = ""
-"	let s:LtSep = ""
-"	let s:RtSep = ""
 else
 	let s:LtStlSep = ""
 	let s:RtStlSep = ""
@@ -55,7 +53,11 @@ let s:CP = {
 "  StlSepSymbol2Main - seperator for 'Symbol'     -> 'Main'
 "  StlSepBranch2Stl  - seperator for 'Branch'     -> 'StatusLine'
 "  StlSepStl2Symbol  - seperator for 'statusLine' -> 'Symbol'
-
+"
+"
+"
+"
+"
 " StatusLine highlight groups
 let s:HG = {}
 let s:HG.StatusLine        = { "GFG":s:CP['fg'],               "TFG":s:CP['T_fg'],             "GBG":s:CP['bg'],                "TBG":s:CP['T_bg'] }
