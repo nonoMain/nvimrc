@@ -95,10 +95,10 @@ case $1:
 endsnippet
 
 snippet struct "struct"
-struct ${1:`!v expand("%:t:r") .. "_t"`}
+typedef struct ${1:`!v expand("%:t:r") .. "_t"`}
 {
 	${0:/* data */}
-} typedef struct $1 $1;
+} $1;
 endsnippet
 
 snippet func "function" b
