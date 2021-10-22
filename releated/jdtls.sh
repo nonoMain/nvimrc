@@ -12,7 +12,7 @@
 #	config_linux
 
 JAR="$HOME/.ls-servers/eclipse-jdt-ls/plugins/org.eclipse.equinox.launcher_*.jar"
-GRADLE_HOME=$HOME/gradle /usr/lib/jvm/default-java/bin/java \
+GRADLE_HOME=$HOME/gradle /usr/bin/java \
   -Declipse.application=org.eclipse.jdt.ls.core.id1 \
   -Dosgi.bundles.defaultStartLevel=4 \
   -Declipse.product=org.eclipse.jdt.ls.core.product \

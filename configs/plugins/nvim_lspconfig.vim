@@ -2,44 +2,50 @@
 " Filename: nvim_lsconfig.vim
 
 lua << EOF
-local nvim_lsp = require('lspconfig')
+require('lspkind').init({
+    -- enables text annotations
+    --
+    -- default: true
+    with_text = true,
 
-local icons = {
-	Class = "  class",
-	Color = " ",
-	Constant = " ",
-	Constructor = " ",
-	Enum = "了 ",
-	EnumMember = " ",
-	Field = " field",
-	File = " file",
-	Folder = " ",
-	Function = " func",
-	Interface = "ﰮ ",
-	Operator = "襁 act",
-	Keyword = " ",
-	Method = "ƒ method",
-	Module = " module",
-	Property = " prop",
-	Snippet = "﬌ ",
-	Struct = " ",
-	Text = " ",
-	Unit = " ",
-	Value = " val",
-	Variable = " var",
-	Reference = "壟 ref",
-}
+    -- default symbol map
+    -- can be either 'default' (requires nerd-fonts font) or
+    -- 'codicons' for codicon preset (requires vscode-codicons font)
+    --
+    -- default: 'default'
+    preset = 'codicons',
 
--- LSP settings
-local setSymbols = function()
-  local kinds = vim.lsp.protocol.CompletionItemKind
-  for i, kind in ipairs(kinds) do
-    kinds[i] = icons[kind] or kind
-  end
-end
-
--- set the items symbols
-if vim.g.Use_nerdfont == 1 then setSymbols() end
+    -- override preset symbols
+    --
+    -- default: {}
+    symbol_map = {
+      Text = "",
+      Method = "",
+      Function = "",
+      Constructor = "",
+      Field = "ﰠ",
+      Variable = "",
+      Class = "ﴯ",
+      Interface = "",
+      Module = "",
+      Property = "ﰠ",
+      Unit = "塞",
+      Value = "",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "",
+      Struct = "פּ",
+      Event = "",
+      Operator = "",
+      TypeParameter = ""
+    },
+})
 EOF
 
 "set completeopt=menuone,noinsert,noselect

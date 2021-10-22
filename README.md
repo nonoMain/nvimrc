@@ -1,6 +1,6 @@
 //startOfFile
 
-# NVIMRC V1.5
+# NVIMRC V1.6
 
 ## Authors
 --------------------------------------------------------------------------------
@@ -101,14 +101,21 @@ nvim/
 
 Plugin manager is [vim-plug](https://github.com/junegunn/vim-plug)
 
-1. [nvim-compe](https://github.com/hrsh7th/nvim-compe/)
+1. [nvim-cmp](https://github.com/hrsh7th/nvim-cmp/)
+Lua plugin for auto completions 
+> if your moving from nvim-compe to nvim-cmp beware that now everything is in its own plugin now so...
+	* [cmp-buffer](https://github.com/hrsh7th/cmp-buffer/)         - nvim-cmp buffer completions
+	* [cmp-path](https://github.com/hrsh7th/cmp-path/)           - cmp-path path completions
+	* [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp/)       - nvim-lsp lsp completions
+	* [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua/)       - nvim-lua lua's api completions
+	* [cmp-nvim-ultisnips](https://github.com/hrsh7th/cmp-nvim-ultisnips/) - nvim-ultisnips snippets completions
 Auto completion for neovim
 > Works well and doesn't come with more features then necessary
 
 2. [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/)
 Neovim built in language server protocol manager
 > For running code actions, code diagonstics and smart auto completion
-> + it's built in so it's the most trusted on terms of support or maintenance
+> it's built in so it's the most trusted on terms of support or maintenance
 
 3. [ultisnips](https://github.com/SirVer/ultisnips.git)
 Snippets

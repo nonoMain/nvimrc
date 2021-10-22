@@ -36,14 +36,13 @@ endsnippet
 snippet sleep "try sleep catch" b
 try
 {
-	Thread.sleep(${1:1000});
-} catch (InterruptedException e)
+	Thread.sleep(${1:1000}); } catch (InterruptedException e)
 {
 	e.printStackTrace();
 }
 endsnippet
 
-snippet ca "catch" b
+snippet catch "catch" b
 catch (${1:Exception} ${2:e})
 {
 	$0
@@ -125,9 +124,23 @@ else
 }
 endsnippet
 
-snippet for "for" b
-for ($1; $2; $3)
+snippet for "for loop" b
+for (${1:int i = 0}; ${2:flag}; ${3:i++})
 {
 	$0
 }
+endsnippet
+
+snippet while "while loop" b
+while (${1:/* condition */})
+{
+	$0
+}
+endsnippet
+
+snippet dowhile "do .. while loop" b
+do
+{
+	$0
+} while (${1:/* condition */});
 endsnippet

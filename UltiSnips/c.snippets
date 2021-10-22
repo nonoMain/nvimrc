@@ -21,13 +21,6 @@ int main(int argc, char *argv[])
 }
 endsnippet
 
-snippet for "for loop (for)"
-for (${2:i} = 0; $2 < ${1:count}; ${3:++$2})
-{
-	$0
-}
-endsnippet
-
 snippet if "if"
 if (${1:/* condition */})
 {
@@ -101,11 +94,11 @@ case $1:
 	break;
 endsnippet
 
-snippet st "struct"
+snippet struct "struct"
 struct ${1:`!v expand("%:t:r") .. "_t"`}
 {
 	${0:/* data */}
-};
+} typedef struct $1 $1;
 endsnippet
 
 snippet func "function" b
@@ -125,4 +118,25 @@ endsnippet
 
 snippet println "fprintf"
 printf("$1\n"$0);
+endsnippet
+
+snippet for "for loop (for)"
+for (${1:i = 0}; $2 < ${2:flag}; ${3:$2++})
+{
+	$0
+}
+endsnippet
+
+snippet while "while loop" b
+while (${1:/* condition */})
+{
+	$0
+}
+endsnippet
+
+snippet dowhile "do .. while loop" b
+do
+{
+	$0
+} while (${1:/* condition */});
 endsnippet

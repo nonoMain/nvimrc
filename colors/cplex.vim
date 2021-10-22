@@ -191,6 +191,12 @@ hi! link vimCommentTitle Special
 hi! link jsonKeyword Keyword
 hi! link jsonBoolean Boolean
 
+" nvim-cmp
+hi! link CmpItemKind           Type
+hi! link CmpItemMenu           NonText
+hi! link CmpItemAbbr           Identifier
+hi! link CmpItemAbbrDeprecated Error
+
 " tree-sitter highlight groups
 hi! link TSString             String
 hi! link TSOperator           Operator

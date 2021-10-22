@@ -14,10 +14,16 @@
 call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 
 " Autocompletion (for lsp and snippets)
-	Plug 'hrsh7th/nvim-compe'
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-buffer'
+	Plug 'hrsh7th/cmp-path'
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'hrsh7th/cmp-nvim-lua'
+	Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 " Nvim's built in lsp
  	Plug 'neovim/nvim-lspconfig'
+	Plug 'hrsh7th/lspkind-nvim'
 
 " Fast snippets
 	Plug 'SirVer/ultisnips'

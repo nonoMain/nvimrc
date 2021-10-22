@@ -29,8 +29,8 @@
 
 " All the configs for the plugins
 	source  $MYVIMRCFOLDER/configs/plugins/nvim_lspconfig.vim
+	source  $MYVIMRCFOLDER/configs/plugins/nvim_cmp.lua
 	source  $MYVIMRCFOLDER/configs/plugins/vim_hexokinase.vim
-	luafile $MYVIMRCFOLDER/configs/plugins/nvim_compe.lua
 	luafile $MYVIMRCFOLDER/configs/plugins/tree_sitter.lua
 
 " The configs for the language servers
