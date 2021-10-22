@@ -57,10 +57,10 @@ so set them for your paths
 * [Neovim v0.5+](https://github.com/neovim/neovim/releases/)
 * [Git](https://git-scm.com/downloads/)
 * [Python3](https://www.python.org/)
-> for windows I recommend getting [MinGW](https://www.mingw-w64.org/) because it comes with make and gcc whice are the next 2 requirements
+> for windows users I recommend getting [MinGW](https://www.mingw-w64.org/) because it comes with make and gcc
 * [Make](https://www.gnu.org/software/make/)
 * C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) with libstdc++ installed! **(windows users!)**
-* [Go language](https://golang.org/dl/) - for showing the color of formats in the terminal (if your not gonna work with colors you'd be better just remove 'vim-hexokinase' plugin and get rid of go)
+* [Go language](https://golang.org/dl/) - for the color formats coloring plugin (if your not gonna work with color formats you'd be better just remove 'vim-hexokinase' plugin and forget about this one)
 
 ### Recommended:
 * [nerd font](https://www.nerdfonts.com/) supported terminal (I use 'Hack Nerd Font')
