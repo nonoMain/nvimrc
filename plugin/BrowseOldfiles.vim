@@ -10,9 +10,9 @@ if !g:BrowseOldfilesEnabled
 	finish
 endif
 
-let g:historyPulled = 0
 let s:conceal_Hi_Lvl = 10
 let s:conceal_match_id = 99
+let s:historybrowserIsOpen = 0
 
 if !exists('g:historyIgnore')
 	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
@@ -28,32 +28,40 @@ endfunction
 
 function! s:openFileUnderCursor() abort
 	let l:file = s:files_shown[line('.') - 1]
-	call s:closeBrowser()
-	execute s:win_nr . "wincmd w"
 	execute 'e' fnameescape(l:file)
-	let g:historyPulled = 0
-	unlet s:win_nr
+	call s:closeBrowser()
 endfunction
 
 function! s:closeBrowser()
-	let bufNr = bufnr("$")
-	while (bufNr >= 1)
-		if (getbufvar(bufNr, "&filetype") == "filebroswer")
-			silent exe "bwipeout " . bufNr 
+	let s:historybrowserIsOpen = 0
+	let l:amountOfbuffers = len(tabpagebuflist())
+	let s:historybrowserIsOpen = 0
+	silent! call matchdelete(s:conceal_match_id)
+	if &filetype == "filebroswer" " quit while browsing
+		let l:bufNr = bufnr()
+		if (l:amountOfbuffers > 1)
+			silent exe "bprevious"
 		endif
-		let bufNr-=1
-	endwhile
+		silent exe "bwipeout " . bufNr
+	else " close after opening a file
+		let l:bufNr = bufnr("$")
+		while (bufNr >= 1)
+			if (getbufvar(bufNr, "&filetype") == "filebroswer")
+				silent exe "bwipeout " . bufNr 
+			endif
+			let bufNr-=1
+		endwhile
+	endif
 	unlet s:files_shown
 endfunction
 
 function! s:openBrowser()
-	let s:win_nr = winnr()
+	let s:historybrowserIsOpen = 1
 	let s:files_shown = []
 	let l:ignore = 0
 	let l:symbol = ""
 	let l:line = ""
-	belowright new
-	resize
+	enew
 
 	for l:file in v:oldfiles
 		if !s:fileExists(l:file) | continue | endif
@@ -78,7 +86,6 @@ function! s:openBrowser()
 	endfor
 	silent exe "g/^$/d_"
 
-	nnoremap <silent> <buffer> q :q<CR>
 	nnoremap <silent> <buffer> <CR> :call <SID>openFileUnderCursor()<CR>
 
 	setlocal nomodifiable noswapfile nospell nowrap
@@ -86,12 +93,10 @@ function! s:openBrowser()
 endfunction
 
 function! BrowseOldfiles#ToggleHistory()
-	if g:historyPulled
+	if s:historybrowserIsOpen
 		call s:closeBrowser()
-		let g:historyPulled = 0
 	else
 		call s:openBrowser()
-		let g:historyPulled = 1
 	endif
 endfunction
 "endOfFile
