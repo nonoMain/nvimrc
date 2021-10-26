@@ -1,6 +1,6 @@
 "startOfFile
 " Filename: browseFiles.vim
-" Description: broswer for recent and existing files
+" Description: broswer for recent existing files
 
 
 if !exists("g:BrowseOldfilesEnabled")
@@ -27,11 +27,12 @@ function! s:fileExists(path)
 endfunction
 
 function! s:openFileUnderCursor() abort
-	let l:file = g:files_shown[line('.') - 1]
-	q
-	execute 'e' fnameescape(l:file)
+	let l:file = s:files_shown[line('.') - 1]
 	call s:closeBrowser()
+	execute s:win_nr . "wincmd w"
+	execute 'e' fnameescape(l:file)
 	let g:historyPulled = 0
+	unlet s:win_nr
 endfunction
 
 function! s:closeBrowser()
@@ -42,11 +43,12 @@ function! s:closeBrowser()
 		endif
 		let bufNr-=1
 	endwhile
-	unlet g:files_shown
+	unlet s:files_shown
 endfunction
 
 function! s:openBrowser()
-	let g:files_shown = []
+	let s:win_nr = winnr()
+	let s:files_shown = []
 	let l:ignore = 0
 	let l:symbol = ""
 	let l:line = ""
@@ -69,7 +71,7 @@ function! s:openBrowser()
 
 		if !l:ignore
 			let l:line = l:file .. l:symbol
-			let g:files_shown += [l:file]
+			let s:files_shown += [l:file]
 			silent put = l:line
 			silent! call matchadd('Conceal', '^\zs.*\ze\/.*\/.*\/', s:conceal_Hi_Lvl, s:conceal_match_id, {'conceal': '…'})
 		endif
