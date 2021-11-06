@@ -1,7 +1,7 @@
 --startOfFile
 -- Filename: nvim_cmp.lua
 
-vim.o.completeopt = "menuone,noselect,noinsert"
+vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require'cmp'
 local lspkind = require "lspkind"
 
@@ -17,7 +17,7 @@ cmp.setup {
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<CR>'] = cmp.mapping.confirm({ select = false }),
 	},
 
 	-- Source options:

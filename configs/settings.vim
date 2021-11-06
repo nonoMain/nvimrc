@@ -44,7 +44,7 @@ let mapleader = ' ' " sets the leader key
 
 " Buffer
 	set hidden " navigate to another buffer without saving current buffer
-	set wrap " wrap lines around
+	set nowrap " don't wrap lines around
 
 " File
 	filetype on
