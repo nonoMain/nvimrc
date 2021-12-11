@@ -22,147 +22,113 @@ endif
 
 " Color Pallet - C.P
 let s:CP = {
-	\'string'     : '#D7875F', 'T_string'     : 173,
-	\'comment'    : '#5F875F', 'T_comment'    :  65,
-	\'error'      : '#D70000', 'T_error'      : 160,
-	\'number'     : '#AFD7AF', 'T_number'     : 151,
-	\'bool'       : '#AF87D7', 'T_bool'       : 140,
-	\'type'       : '#5FAFAF', 'T_type'       :  74,
-	\'keyword'    : '#87AFFF', 'T_keyword'    : 111,
-	\'repeat'     : '#D787D7', 'T_repeat'     : 176,
-	\'function'   : '#D7D7AF', 'T_function'   : 187,
-	\'constant'   : '#D7D7AF', 'T_constant'   : 187,
-	\'include'    : '#D75F87', 'T_include'    : 168,
-	\'object'     : '#E4E4E4', 'T_object'     : 254,
-	\'operator'   : '#AF5F87', 'T_operator'   : 132,
-	\'bracket'    : '#D7875F', 'T_bracket'    : 173,
-	\'special'    : '#5FAFFF', 'T_special'    :  75,
+	\'string'     : '#d7875f',
+	\'comment'    : '#5f875f',
+	\'error'      : '#d70000',
+	\'number'     : '#afd7af',
+	\'bool'       : '#af87d7',
+	\'type'       : '#5fafaf',
+	\'keyword'    : '#87afff',
+	\'repeat'     : '#d787d7',
+	\'function'   : '#d7d7af',
+	\'constant'   : '#d7d7af',
+	\'include'    : '#d75f87',
+	\'object'     : '#e4e4e4',
+	\'operator'   : '#af5f87',
+	\'bracket'    : '#d7875f',
+	\'special'    : '#5fafff',
 \}
 
 " Enviorment's Color Pallet - E.C.P
-let s:ECP = {
-	\'selected'        : '#005F87', 'T_selected'        :  24,
-	\'fg'              : '#E4E4E4', 'T_fg'              : 254,
-	\'objFg'           : '#b2b2b2', 'T_objFg'           : 249,
-	\'objBg'           : '#303030', 'T_objBg'           : 236,
-	\'non_text'        : '#585858', 'T_non_text'        : 240,
-	\'limitLines'      : '#444444', 'T_limitLines'      : 238,
-	\'cursorLines'     : '#1C1C1C', 'T_cursorLines'     : 234,
-	\'searchHighlight' : '#005F87', 'T_searchHighlight' :  24,
-	\'searchSelected'  : '#5F5F00', 'T_searchSelected'  :  58,
-	\'visualSelection' : '#005F87', 'T_visualSelection' :  24,
+let g:ECP = {
+	\'selected'          : '#005f87',
+	\'fg'                : '#e4e4e4',
+	\'objFg'             : '#b2b2b2',
+	\'objBg'             : '#202020',
+	\'non_text'          : '#585858',
+	\'limitLines'        : '#444444',
+	\'cursorLines'       : '#19191d',
+	\'searchHighlight'   : '#005f87',
+	\'searchSelected'    : '#5f5f00',
+	\'visualSelection'   : '#005f87',
+	\'diffAdd'           : '#b2d2b2',
+	\'diffChange'        : '#e2e2b2',
+	\'diffDelete'        : '#e2b2b2',
+	\'infoFg'            : '#585858',
+	\'infoBg'            : '#2a2a2a',
+	\'branchFg'          : '#87afd7',
+	\'symbolWarFg'       : '#b7af5f',
+	\'symbolErrFg'       : '#a70000',
+	\'symbolDiagnostics' : '#a03d65',
+	\'symbolBufData'     : '#3da065',
 \}
+
 if g:clearBackground
-	let s:ECP.bg = 'NONE'    | let s:ECP.T_bg = 'NONE'
+	let g:ECP.bg = 'NONE'    | let g:ECP.T_bg = 'NONE'
 else
-	let s:ECP.bg = '#151618' | let s:ECP.T_bg = 0
+	let g:ECP.bg = '#141414' | let g:ECP.T_bg = 234
 endif
 " Highlight Groups - H.G
 " Keys:
-" Gui:G
-" Guifg:GFG
-" Guibg:GBG
-" Term:T
-" Termfg:TFG
-" Termbg:TBG
-
+" S: Special things like 'bold' 'italic'
+" FG: frontground color
+" BG: background color
+"
 " Text syntax highlight groups
 let s:HG = {}
-let s:HG.Normal     = { "GFG":s:ECP.fg,        "TFG":s:ECP.T_fg,         "GBG":s:ECP.bg,       "TBG":s:ECP.T_bg }
-let s:HG.Include    = { "GFG":s:CP.include,    "TFG":s:CP.T_include }
-let s:HG.Comment    = { "GFG":s:CP.comment,    "TFG":s:CP.T_comment }
-let s:HG.Constant   = { "GFG":s:CP.constant,   "TFG":s:CP.T_constant }
-let s:HG.Delimiter  = { "GFG":s:ECP.fg,        "TFG":s:ECP.T_fg,         "GBG":s:ECP.bg,       "TBG":s:ECP.T_bg }
-let s:HG.String     = { "GFG":s:CP.string,     "TFG":s:CP.T_string }
-let s:HG.Character  = { "GFG":s:CP.string,     "TFG":s:CP.T_string }
-let s:HG.Boolean    = { "GFG":s:CP.bool,       "TFG":s:CP.T_bool }
-let s:HG.Number     = { "GFG":s:CP.number,     "TFG":s:CP.T_number }
-let s:HG.Float      = { "GFG":s:CP.number,     "TFG":s:CP.T_number }
-let s:HG.Repeat     = { "GFG":s:CP.repeat,     "TFG":s:CP.T_repeat,      "G":'bold',           "T":'bold' }
-let s:HG.Keyword    = { "GFG":s:CP.keyword,    "TFG":s:CP.T_keyword,     "G":'bold',           "T":'bold' }
-let s:HG.Operator   = { "GFG":s:CP.operator,   "TFG":s:CP.T_operator }
-let s:HG.Function   = { "GFG":s:CP.function,   "TFG":s:CP.T_function }
-let s:HG.Identifier = { "GFG":s:CP.object,     "TFG":s:CP.T_object }
-let s:HG.Type       = { "GFG":s:CP.type,       "TFG":s:CP.T_type }
-let s:HG.Directory  = { "GFG":s:CP.special,    "TFG":s:CP.T_special }
-let s:HG.Error      = { "GFG":s:CP.error,      "TFG":s:CP.T_error,       "G":'bold',           "T":'bold' }
-let s:HG.Special    = { "GFG":s:CP.special,    "TFG":s:CP.T_special }
-let s:HG.Folded     = { "GFG":s:CP.special,    "TFG":s:CP.T_special,     "GBG":s:ECP.non_text, "TBG":s:ECP.T_non_text}
+let s:HG.Normal       = { "FG":g:ECP.fg,               "BG":g:ECP.bg }
+let s:HG.Include      = { "FG":s:CP.include, }
+let s:HG.Comment      = { "FG":s:CP.comment, }
+let s:HG.Constant     = { "FG":s:CP.constant, }
+let s:HG.Delimiter    = { "FG":g:ECP.fg,               "BG":g:ECP.bg }
+let s:HG.String       = { "FG":s:CP.string, }
+let s:HG.Character    = { "FG":s:CP.string, }
+let s:HG.Boolean      = { "FG":s:CP.bool, }
+let s:HG.Number       = { "FG":s:CP.number, }
+let s:HG.Float        = { "FG":s:CP.number, }
+let s:HG.Repeat       = { "FG":s:CP.repeat,            "S":'bold', }
+let s:HG.Keyword      = { "FG":s:CP.keyword,           "S":'bold', }
+let s:HG.Operator     = { "FG":s:CP.operator, }
+let s:HG.Function     = { "FG":s:CP.function, }
+let s:HG.Identifier   = { "FG":s:CP.object, }
+let s:HG.Type         = { "FG":s:CP.type, }
+let s:HG.Directory    = { "FG":s:CP.special, }
+let s:HG.Error        = { "FG":s:CP.error,             "S":'bold', }
+let s:HG.Special      = { "FG":s:CP.special, }
+let s:HG.Folded       = { "FG":s:CP.special,           "BG":g:ECP.non_text, }
 
 " Enviorment highlight groups
-let s:HG.StatusLine   = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg,            "GBG":s:ECP.objBg,    "TBG":s:ECP.T_objBg }
-let s:HG.StatusLineNC = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg,            "GBG":s:ECP.bg,       "TBG":s:ECP.T_bg }
-let s:HG.Pmenu        = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg,            "GBG":s:ECP.objBg,    "TBG":s:ECP.T_objBg }
-let s:HG.PmenuSel     = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg,            "GBG":s:ECP.selected, "TBG":s:ECP.T_selected }
-let s:HG.PmenuSbar    = { "GBG":s:ECP.limitLines,      "TBG":s:ECP.T_limitLines }
-let s:HG.PmenuThumb   = { "GBG":s:ECP.selected,        "TBG":s:ECP.T_selected }
-let s:HG.TabLineSel   = { "GFG":s:ECP.fg,              "TFG":s:ECP.T_fg,               "GBG":s:ECP.selected, "TBG":s:ECP.T_selected }
-let s:HG.TabLine      = { "GFG":s:ECP.fg,              "TFG":s:ECP.T_fg,               "GBG":s:ECP.objBg,    "TBG":s:ECP.T_objBg }
-let s:HG.TabLineFill  = { "GBG":s:ECP.objBg,           "TBG":s:ECP.T_objBg }
-let s:HG.WildMenu     = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg,            "GBG":s:ECP.objBg,    "TBG":s:ECP.T_objBg }
-let s:HG.LineNr       = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg }
-let s:HG.SignColumn   = { "GBG":s:ECP.bg,              "TBG":s:ECP.T_bg }
-let s:HG.CursorLineNr = { "GFG":s:ECP.fg,              "TFG":s:ECP.T_fg }
-let s:HG.CursorLine   = { "GBG":s:ECP.cursorLines,     "TBG":s:ECP.T_cursorLines }
-let s:HG.CursorColumn = { "GBG":s:ECP.cursorLines,     "TBG":s:ECP.T_cursorLines }
-let s:HG.Cursor       = { "G":'reverse',               "T":'reverse' }
-let s:HG.VertSplit    = { "GFG":s:ECP.limitLines,      "TFG":s:ECP.T_limitLines }
-let s:HG.ColorColumn  = { "GBG":s:ECP.cursorLines,     "TBG":s:ECP.T_cursorLines }
-let s:HG.IncSearch    = { "GBG":s:ECP.searchSelected,  "TBG":s:ECP.T_searchSelected }
-let s:HG.Search       = { "GBG":s:ECP.searchHighlight, "TBG":s:ECP.T_searchHighlight }
-let s:HG.Visual       = { "GBG":s:ECP.visualSelection, "TBG":s:ECP.T_visualSelection }
-let s:HG.VisualNOS    = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg }
-let s:HG.NonText      = { "GFG":s:ECP.non_text,        "TFG":s:ECP.T_non_text }
-let s:HG.SpecialKey   = { "GFG":s:ECP.objFg,           "TFG":s:ECP.T_objFg }
-
-" Coloring function
-function! s:HighlightDict(key, dict)
-	if has_key(a:dict, 'T')
-		let l:term = a:dict.T
-	else
-		let l:term = 'NONE'
-	endif
-	if has_key(a:dict, 'G')
-		let l:gui = a:dict.G
-	else
-		let l:gui='NONE'
-	endif
-	if has_key(a:dict, 'GFG')
-		let l:guifg = a:dict.GFG
-	else
-		let l:guifg='NONE'
-	endif
-	if has_key(a:dict, 'GBG')
-		let l:guibg = a:dict.GBG
-	else
-		let l:guibg='NONE'
-	endif
-	if has_key(a:dict, 'T')
-		let l:cterm = a:dict.T
-	else
-		let l:cterm='NONE'
-	endif
-	if has_key(a:dict, 'TFG')
-		let l:ctermfg = a:dict.TFG
-	else
-		let l:ctermfg='NONE'
-		endif
-	if has_key(a:dict, 'TBG')
-		let l:ctermbg = a:dict.TBG
-	else
-		let l:ctermbg='NONE'
-	endif
-	if has_key(a:dict, 'GSP')
-		let l:guisp = a:dict.GSP
-	else
-		let l:guisp='NONE'
-	endif
-	execute "hi " . a:key . " term=" . l:term . " cterm=" . l:cterm . " gui=" . l:gui . " ctermfg=" . l:ctermfg . " guifg=" . l:guifg . " ctermbg=" . l:ctermbg . " guibg=" . l:guibg . " guisp=" . l:guisp
-endfunction
+let s:HG.StatusLine   = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
+let s:HG.StatusLineNC = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
+let s:HG.Pmenu        = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
+let s:HG.PmenuSel     = { "FG":g:ECP.objFg,            "BG":g:ECP.selected, }
+let s:HG.PmenuSbar    = { "BG":g:ECP.limitLines, }
+let s:HG.PmenuThumb   = { "BG":g:ECP.selected, }
+let s:HG.TabLineSel   = { "FG":g:ECP.fg,               "BG":g:ECP.selected, }
+let s:HG.TabLine      = { "FG":g:ECP.fg,               "BG":g:ECP.objBg, }
+let s:HG.TabLineFill  = { "BG":g:ECP.objBg, }
+let s:HG.WildMenu     = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
+let s:HG.LineNr       = { "FG":g:ECP.objFg, }
+let s:HG.SignColumn   = { "BG":g:ECP.bg, }
+let s:HG.CursorLineNr = { "FG":g:ECP.fg, }
+let s:HG.CursorLine   = { "BG":g:ECP.cursorLines, }
+let s:HG.CursorColumn = { "BG":g:ECP.cursorLines, }
+let s:HG.Cursor       = { "S":'reverse', }
+let s:HG.VertSplit    = { "FG":g:ECP.limitLines, }
+let s:HG.ColorColumn  = { "BG":g:ECP.cursorLines, }
+let s:HG.IncSearch    = { "BG":g:ECP.searchSelected, }
+let s:HG.Search       = { "BG":g:ECP.searchHighlight, }
+let s:HG.Visual       = { "BG":g:ECP.visualSelection, }
+let s:HG.VisualNOS    = { "FG":g:ECP.objFg, }
+let s:HG.NonText      = { "FG":g:ECP.non_text, }
+let s:HG.SpecialKey   = { "FG":g:ECP.objFg, }
+let s:HG.DiffAdd      = { "FG":g:ECP.diffAdd, }
+let s:HG.DiffChange   = { "FG":g:ECP.diffChange, }
+let s:HG.DiffDelete   = { "FG":g:ECP.diffDelete, }
 
 " scan the assignment dict and execute the assignment
 for key in keys(s:HG)
-	call s:HighlightDict(key, s:HG[key])
+	call myUtils#BigBrother#HighlightDict(key, s:HG[key])
 endfor
 
 " generic highlight groups
@@ -172,11 +138,6 @@ hi! link Conditional    Repeat
 hi! link Statement      Repeat
 hi! link PreProc        Repeat
 hi! link SpecialComment Special 
-
-" diff.vim
-hi! link diffAdded   DiffAdd
-hi! link diffChanged DiffChange
-hi! link diffRemoved DiffDelete
 
 " vim highlight groups
 hi! link vimEnvvar       Constant
@@ -249,6 +210,5 @@ hi! link TSTag                Tag
 hi! link TSTagDelimiter       TagDelimiter
 
 unlet s:CP
-unlet s:ECP
 unlet s:HG
 "endOfFile

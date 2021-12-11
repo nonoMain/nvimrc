@@ -43,6 +43,7 @@ let mapleader = ' ' " sets the leader key
 	set relativenumber " show relative line numbers
 
 " Buffer
+	set updatetime=500
 	set hidden " navigate to another buffer without saving current buffer
 	set nowrap " don't wrap lines around
 
@@ -65,6 +66,6 @@ let mapleader = ' ' " sets the leader key
 	set colorcolumn=80 " length of limit length line
 	set showtabline=2 " always show tabline
 	set noerrorbells " silent errors
-	set fillchars=stl:\ ,stlnc:_,vert:\│,fold:-,diff:-
+	set fillchars=stlnc:\ ,stl:\|,vert:\│,fold:-,diff:-
 
 "endOfFile

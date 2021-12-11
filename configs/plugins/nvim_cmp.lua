@@ -25,7 +25,7 @@ cmp.setup {
 	-- priority
 	-- max_item_count
 	sources = cmp.config.sources {
-		{ name = 'nvim_lsp',   priority = 90, max_item_count = 10},
+		{ name = 'nvim_lsp',   priority = 90, max_item_count = 20},
 		{ name = 'path',       priority = 80, max_item_count = 10},
 		{ name = 'ultisnips',  priority = 70, max_item_count = 10},
 		{ name = 'treesitter', priority = 60, max_item_count = 10},

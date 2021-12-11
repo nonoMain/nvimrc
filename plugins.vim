@@ -32,8 +32,10 @@ call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 	Plug 'nvim-treesitter/playground'
 
-" Git's 'premier vim plugin'
-	Plug 'tpope/vim-fugitive'
+" Gits premier vim plugins
+	Plug 'tpope/vim-fugitive' " git manager
+	Plug 'airblade/vim-gitgutter' " git diff displayer
+	let g:gitgutter_map_keys = 0 " disable gitgutter mappings
 
 " Surround text in a smart manner..
 	Plug 'tpope/vim-surround'

@@ -1,10 +1,8 @@
 //startOfFile
 
-# NVIMRC V1.6
+# NVIMRC V1.7
 
-## Authors
---------------------------------------------------------------------------------
-
+## Author
 * [nonoMain](https://github.com/nonoMain) - Noam Daniel Eliyahu
 
 ## Description
@@ -92,7 +90,7 @@ nvim/
 |  |- plugins/              F(.) Plugins configirations
 |  |- settings.vim          F(.) General settings
 |  |- mappings.vim          F(.) General mappings
-|- releated/                D(n) Files for editor releated things (e.g Language-server wrappers)
+|- releated/                D(n) Files for editor releated things (e.g Language-servers's setup script)
 |- plugin/                  D(a) External scripts used by the editor or the user
 ```
 
@@ -131,20 +129,26 @@ Better (and faster) text parser
 Makes Git a seamless part of the vim workflow
 > "Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim? Either way, it's 'so awesome, it should be illegal'. That's why it's called Fugitive." - From it's README.markdown
 
-7. [vim-surround](https://github.com/tpope/vim-surround/)
+7. [vim-gitgutter](https://github.com/airblade/vim-gitgutter/)
+Git's diff displayer
+> Gotta see what changed while changing some more
+
+8. [vim-surround](https://github.com/tpope/vim-surround/)
 The best way imo to manage surrounded text, which is essential for code editing
 > Well integrated into vim's text actions and saves a lot of time
 
-8. [vim-repeat](https://github.com/tpope/vim-repeat/)
+9. [vim-repeat](https://github.com/tpope/vim-repeat/)
 Enables using the `.` for repeating a plugin map
 > "Repeat.vim remaps `.` in a way that plugins can tap into it." - From it's README.markdown
 
-9. [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
+10. [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
 Preview colors by coloring their value in their color (e.g #ffffff will be displyed in white)
 > A true life saver when working on front-end color tables or any other place where coloring by rgb/hex/hsl values
 
 ## Language-servers
 --------------------------------------------------------------------------------
+
+All the language-servers installing is inside [setup_lang_servers](./releated/setup_lang_servers.sh) script
 
 * [clangd](https://github.com/clangd/clangd) - C/Cpp/Objc/Objcpp language server - [config](./configs/lsp-servers/c_lsconfig.lua)
 > C 'family' ls
@@ -153,13 +157,13 @@ Preview colors by coloring their value in their color (e.g #ffffff will be displ
 > Microsoft's python ls
 
 * [eclipse-jdt-ls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers/java_lsconfig.lua)
-> Eclipse's ls, many say that it is hard to configure but it's the best out there so for that you have the [jdtls.sh](./releated/jdtls.sh) wrapper (if you are on windows you'll need a .bat wrapper)
+> Eclipse's ls, many say that it is hard to configure but it's the best out there
 
 * [vim-language-server](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers/vim_lsconfig.lua)
-> Usefull to have if your customizing your vim
+> Usefull to have if your customizing your Vim
 
 * [sumneko-lua_ls](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
-> Helped me edit the scripts i saw before knowing the language
+> Usefull to have if your customizing your Neovim
 
 ## Pics
 --------------------------------------------------------------------------------

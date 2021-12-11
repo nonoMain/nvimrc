@@ -1,16 +1,9 @@
 "startOfFile
 " Filename: Devicons.vim
 
-if !exists("g:Use_nerdfont")
-	let g:Use_nerdfont = 0
-endif
-if !g:Use_nerdfont
-	finish
-endif
-
-if !(exists("g:Use_devicons_colors"))
-	let g:Use_devicons_colors = 0
-endif
+"if exists("g:Use_nerdfont") && !g:Use_nerdfont
+"	finish
+"endif
 
 let s:gui_idx = 0 | let s:term_idx = 1
 function s:getDistro()
@@ -212,24 +205,11 @@ let s:dirTypeSymbols = {
 	\'linked' : '',
 \}
 
-function! DeviconsColors(config)
-	let colors = keys(a:config)
-	augroup devicons_colors
-		autocmd!
-		for color in colors
-			exec 'autocmd FileType filebroswer highlight devicons_'.color.' guifg='.g:devicons_colorpallet[color][s:gui_idx].' ctermfg='.g:devicons_colorpallet[color][s:term_idx]
-			exec 'autocmd FileType filebroswer syntax match devicons_'.color.' /\v'.join(a:config[color], '|').'/ containedin=ALL'
-		endfor
-	augroup END
-endfunction
-
-function! s:dirToSymbol(mode)
-	if (a:mode == 'in_use')
+function! s:dirToSymbol(inUse)
+	if (a:inUse == 1)
 		return s:dirTypeSymbols['open']
-	elseif (a:mode == 'view')
-		return s:dirTypeSymbols['closed']
 	else
-		return dirTypeSymbols['linked']
+		return s:dirTypeSymbols['closed']
 	endif
 endfunction
 
@@ -249,7 +229,41 @@ function! s:fileToSymbol(path)
 	return l:fileExtention
 endfunction
 
-function! Devicons#GetSystemSymbol()
+let g:devicons_colorpallet = {
+	\'brown'       : ['#875F5F',  95],
+	\'aqua'        : ['#5FFFD7',  86],
+	\'blue'        : ['#005f87',  24],
+	\'darkBlue'    : ['#005fd7',  26],
+	\'purple'      : ['#875F87',  96],
+	\'red'         : ['#af0000', 124],
+	\'yellow'      : ['#FFD700', 220],
+	\'orange'      : ['#FFAF5F', 215],
+	\'pink'        : ['#FF5F87', 204],
+	\'salmon'      : ['#D75F5F', 167],
+	\'green'       : ['#87AF5F', 107],
+	\'lightGreen'  : ['#5FAF5F',  71],
+	\'grey'        : ['#b2b2b2', 249],
+	\'white'       : ['#FFFFFF', 231],
+\}
+
+let g:devicons_color_icons_dict = {
+\'brown':[''],
+\'aqua':[''],
+\'blue':['', '', '', '', '', '', '', '', '', '', '', ''],
+\'darkBlue':['', '', '', '', ''],
+\'purple':['', '', '', '', '', '', ''],
+\'red':['', '', '', ''],
+\'yellow':[''],
+\'orange':['', '', '', '', '', '', '', '', '', 'λ', '', '', '', ''],
+\'pink':['', ''],
+\'salmon':['', ''],
+\'green':['', '', '', '', '', '', '', ''],
+\'lightGreen':['﵂'],
+\'grey':['', '', '', ''],
+\'white':['', '', '', ''],
+\}
+
+function! myUtils#Devicons#GetSystemSymbol()
 	let format = ''
 	if &fileformat ==? 'unix'
 		let format = s:getDistro()
@@ -261,52 +275,27 @@ function! Devicons#GetSystemSymbol()
 	return format
 endfunction
 
-function! Devicons#GetPathSymbol(fullPath, mode)
+function! myUtils#Devicons#GetPathSymbol(fullPath, inUse)
 	let l:symbol = ''
 	if isdirectory(a:fullPath)
-		let l:symbol = s:dirToSymbol(a:mode)
+		let l:symbol = s:dirToSymbol(a:inUse)
 	else
 		let l:symbol = s:fileToSymbol(a:fullPath)
 	endif
 	return l:symbol
 endfunction
 
-if g:Use_devicons_colors
-	let g:devicons_colorpallet = {
-		\'brown'       : ['#875F5F',  95],
-		\'aqua'        : ['#5FFFD7',  86],
-		\'blue'        : ['#005f87',  24],
-		\'darkBlue'    : ['#005fd7',  26],
-		\'purple'      : ['#875F87',  96],
-		\'red'         : ['#af0000', 124],
-		\'yellow'      : ['#FFD700', 220],
-		\'orange'      : ['#FFAF5F', 215],
-		\'pink'        : ['#FF5F87', 204],
-		\'salmon'      : ['#D75F5F', 167],
-		\'green'       : ['#87AF5F', 107],
-		\'lightGreen'  : ['#5FAF5F',  71],
-		\'grey'        : ['#b2b2b2', 249],
-		\'white'       : ['#FFFFFF', 231],
-	\}
 
-	let g:devicons_color_icons_dict = {
-	\'brown':[''],
-	\'aqua':[''],
-	\'blue':['', '', '', '', '', '', '', '', '', '', '', ''],
-	\'darkBlue':['', '', '', '', ''],
-	\'purple':['', '', '', '', '', '', ''],
-	\'red':['', '', '', ''],
-	\'yellow':[''],
-	\'orange':['', '', '', '', '', '', '', '', '', 'λ', '', '', '', ''],
-	\'pink':['', ''],
-	\'salmon':['', ''],
-	\'green':['', '', '', '', '', '', '', ''],
-	\'lightGreen':['﵂'],
-	\'grey':['', '', '', ''],
-	\'white':['', '', '', ''],
-	\}
+function! myUtils#Devicons#ColorFileType(givenFileType)
+	let colors = keys(g:devicons_color_icons_dict)
+	augroup devicons_colors
+		autocmd!
+		for color in colors
+			exec 'autocmd FileType ' . a:givenFileType . ' highlight devicons_'.color.' guifg='.g:devicons_colorpallet[color][s:gui_idx].' ctermfg='.g:devicons_colorpallet[color][s:term_idx]
+			exec 'autocmd FileType ' . a:givenFileType . ' syntax match devicons_'.color.' /\v'.join(g:devicons_color_icons_dict[color], '|').'/ containedin=ALL'
+		endfor
+	augroup END
+endfunction
 
-	call DeviconsColors(g:devicons_color_icons_dict)
-endif
 
 "endOfFile

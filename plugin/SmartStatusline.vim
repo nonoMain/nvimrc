@@ -1,38 +1,45 @@
 "startOfFile
 " Filename: SmartStatusline.vim
 
-if !exists("g:SmartStatuslineEnabled")
-	let g:SmartStatuslineEnabled = 1
-endif
-if !g:SmartStatuslineEnabled
-	finish
-endif
-
 " Settings for line length"
 let s:long = 100
 let s:medium = 75
-let s:short = 50
+let s:short = 58
 
 if g:Use_nerdfont
-	let s:LtStlSep = ""
-	let s:RtStlSep = ""
+	let s:LtStlSep = ""
+	let s:RtStlSep = ""
+	let s:BlockSymbol = ""
+	let s:BranchSymbol = ""
+	let s:DiagnosticsSymbol = ""
+	let s:ErrorSymbol = ""
+	let s:WarningSymbol = ""
 else
 	let s:LtStlSep = ""
 	let s:RtStlSep = ""
+	let s:BlockSymbol = ""
+	let s:BranchSymbol = "|-"
+	let s:DiagnosticsSymbol = "LSP"
+	let s:ErrorSymbol = "E"
+	let s:WarningSymbol = "W"
 endif
 
 let g:saved_windows = {}
 
-" Statusline color Pallet
-let s:CP = {
-	\'selected'   : '#005F87', 'T_selected'   :  24,
-	\'fg'         : '#b2b2b2', 'T_fg'         : 249,
-	\'selectedfg' : '#87AFD7', 'T_selectedfg' : 110,
-	\'bg'         : '#252525', 'T_bg'         : 236,
-	\'lightBg'    : '#3A3A3A', 'T_lightBg'    : 237,
-\}
+" Statusline color Pallet is g:ECP
+" Keys:
+" gui:G
+" guifg:GFG
+" guibg:GBG
+" term:T
+" termfg:TFG
+" termbg:TBG
+"
+" ** using branchFg for both branch and file symbol, if you wish to change one
+" of them without affecting the other add another highlight group and update
+" the specifications in the variables **
 
-" Highlight Groups - H.G
+" Highlight Groups - s:HG
 " Keys:
 " gui:G
 " guifg:GFG
@@ -44,102 +51,63 @@ let s:CP = {
 " Description:
 " highlight group - description
 "
-"  StatusLine        - general color
-"  StlMain           - main color for theme
-"  StlBranch         - git's branch
-"  StlSymbol         - file symbol (or extention)
-"  StlSepMain2Branch - seperator for 'Main'       -> 'Branch'
-"  StlSepMain2Stl    - seperator for 'Main'       -> 'StatusLine'
-"  StlSepSymbol2Main - seperator for 'Symbol'     -> 'Main'
-"  StlSepBranch2Stl  - seperator for 'Branch'     -> 'StatusLine'
-"  StlSepStl2Symbol  - seperator for 'statusLine' -> 'Symbol'
+"  StlReg               - general color
+"  StlRegBg             - general color same but fg and bg are the same (for not showing certin text like ^^^^^^^ in filchars)
+"  StlBright            - main color for theme
+"  StlBranch            - git's branch
 "
+"  StlDiagnosticSep     - color for seperator before diagnostics
+"  StlDiagnosticSymbol  - symbol of diagnostics
+"  StlDiagnosticDetail  - Details of diagnostics
 "
+"  StlBufDataSep        - color for seperator before BufData
+"  StlBufDataSymbol     - symbol of BufData
+"  StlBufDataDetail     - Details of BufData
 "
+"  StlSepBright2Reg     - seperator Bright -> Reg
+"  StlSepBright2UBInfo  - seperator Bright -> UBInfo
 "
+"  StlSepReg2Bright     - seperator Reg -> Bright
+"  StlSepReg2UBInfo     - seperator Reg -> UBInfo
+"
+"  StlSepUBInfo2Bright  - seperator UBInfo -> Bright
+"  StlSepUBInfo2Reg     - seperator UBInfo -> Reg
 "
 " StatusLine highlight groups
 let s:HG = {}
-let s:HG.StatusLine        = { "GFG":s:CP['fg'],               "TFG":s:CP['T_fg'],             "GBG":s:CP['bg'],                "TBG":s:CP['T_bg'] }
-let s:HG.StlMain           = { "GFG":s:CP['fg'],               "TFG":s:CP['T_fg'],             "GBG":s:CP['selected'],          "TBG":s:CP['T_selected'] }
-let s:HG.StlBranch         = { "GFG":s:CP['selectedfg'],       "TFG":s:CP['T_selectedfg'],     "GBG":s:CP['lightBg'],           "TBG":s:CP['T_lightBg'] }
-let s:HG.StlSymbol         = { "GFG":s:CP['selectedfg'],       "TFG":s:CP['T_selectedfg'],     "GBG":s:CP['lightBg'],           "TBG":s:CP['T_lightBg'] }
-let s:HG.StlSepStl2Symbol  = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:CP['bg'],                "TBG":s:CP['T_bg'] }
-let s:HG.StlSepSymbol2Main = { "GFG":s:HG['StlSymbol']["GBG"], "TFG":s:HG['StlSymbol']["TBG"], "GBG":s:HG['StlMain']["GBG"],    "TBG":s:HG['StlMain']["TBG"] }
-let s:HG.StlSepMain2Branch = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StlBranch']["GBG"],  "TBG":s:HG['StlBranch']["TBG"] }
-let s:HG.StlSepMain2Stl    = { "GFG":s:HG['StlMain']["GBG"],   "TFG":s:HG['StlMain']["TBG"],   "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
-let s:HG.StlSepBranch2Stl  = { "GFG":s:HG['StlBranch']["GBG"], "TFG":s:HG['StlBranch']["TBG"], "GBG":s:HG['StatusLine']["GBG"], "TBG":s:HG['StatusLine']["TBG"] }
 
-" highlighting function
-function! s:HighlightDict(key, dict)
-	if has_key(a:dict, 'T')
-		let l:term = a:dict['T']
-	else
-		let l:term = 'NONE'
-	endif
-	if has_key(a:dict, 'G')
-		let l:gui = a:dict['G']
-	else
-		let l:gui='NONE'
-	endif
-	if has_key(a:dict, 'GFG')
-		let l:guifg = a:dict['GFG']
-	else
-		let l:guifg='NONE'
-	endif
-	if has_key(a:dict, 'GBG')
-		let l:guibg = a:dict['GBG']
-	else
-		let l:guibg='NONE'
-	endif
-	if has_key(a:dict, 'T')
-		let l:cterm = a:dict['T']
-	else
-		let l:cterm='NONE'
-	endif
-	if has_key(a:dict, 'TFG')
-		let l:ctermfg = a:dict['TFG']
-	else
-		let l:ctermfg='NONE'
-		endif
-	if has_key(a:dict, 'TBG')
-		let l:ctermbg = a:dict['TBG']
-	else
-		let l:ctermbg='NONE'
-	endif
-	if has_key(a:dict, 'GSP')
-		let l:guisp = a:dict['GSP']
-	else
-		let l:guisp='NONE'
-	endif
-	execute "hi " . a:key . " term=" . l:term . " cterm=" . l:cterm . " gui=" . l:gui . " ctermfg=" . l:ctermfg . " guifg=" . l:guifg . " ctermbg=" . l:ctermbg . " guibg=" . l:guibg . " guisp=" . l:guisp
-endfunction
+let s:HG.StlReg               = { "FG":g:ECP['objFg'],             "BG":g:ECP['objBg'] }
+let s:HG.StlRegBg             = { "FG":g:ECP['objBg'],             "BG":g:ECP['objBg'] }
+let s:HG.StlBright            = { "FG":g:ECP['objFg'],             "BG":g:ECP['selected'] }
+let s:HG.StlBranch            = { "FG":g:ECP['branchFg'],          "BG":g:ECP['infoBg'] }
+let s:HG.StlUBInfo            = { "FG":g:ECP['infoFg'],            "BG":g:ECP['objBg'] }
+
+let s:HG.StlDiagnosticSep     = { "FG":g:ECP['symbolDiagnostics'], "BG":g:ECP['objBg'] }
+let s:HG.StlDiagnosticSymbol  = { "FG":g:ECP['objBg'],            "BG":g:ECP['symbolDiagnostics'] }
+let s:HG.StlDiagnosticDetail  = { "FG":g:ECP['symbolDiagnostics'], "BG":g:ECP['objBg'] }
+
+let s:HG.StlBufDataSep        = { "FG":g:ECP['symbolBufData'], "BG":g:ECP['objBg'] }
+let s:HG.StlBufDataSymbol     = { "FG":g:ECP['objBg'],            "BG":g:ECP['symbolBufData'] }
+let s:HG.StlBufDataDetail     = { "FG":g:ECP['symbolBufData'], "BG":g:ECP['objBg'] }
+
+let s:HG.StlSepBright2Reg     = { "FG":s:HG['StlBright']["BG"],    "BG":s:HG['StlReg']["BG"] }
+let s:HG.StlSepBright2UBInfo  = { "FG":s:HG['StlBright']["BG"],    "BG":g:ECP['infoBg'] }
+let s:HG.StlSepReg2Bright     = { "FG":s:HG['StlReg']["BG"],       "BG":s:HG['StlBright']["BG"] }
+let s:HG.StlSepReg2UBInfo     = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlReg']["BG"] }
+let s:HG.StlSepUBInfo2Bright  = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlBright']["BG"] }
+let s:HG.StlSepUBInfo2Reg     = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlReg']["BG"] }
 
 " scan the assignment dict and execute the assignment
 for key in keys(s:HG)
-	call s:HighlightDict(key, s:HG[key])
+	call myUtils#BigBrother#HighlightDict(key, s:HG[key])
 endfor
-
-function! s:getGitBranch(win_id) abort
-	if exists('g:loaded_fugitive') && (g:saved_windows[a:win_id]['width'] > s:short)
-		let l:maybeBranch = g:FugitiveHead()
-		if strlen(l:maybeBranch)
-			if g:Use_nerdfont
-				return "-" .. l:maybeBranch
-			else
-				return "|-" .. l:maybeBranch
-			endif
-		endif
-	endif
-	return ""
-endfunction
 
 function! s:getPathSymbol(win_id) abort
 	let l:tmp = ""
 	let l:path = g:saved_windows[a:win_id]['path']
 	if g:saved_windows[a:win_id]['width'] > s:short
 		if g:Use_nerdfont
-			let l:tmp .= Devicons#GetPathSymbol(l:path, 'in_use')
+			let l:tmp .= myUtils#Devicons#GetPathSymbol(l:path, 1)
 		else
 			let l:tmp .= fnamemodify(l:path, ":e")
 		endif
@@ -163,87 +131,123 @@ function! s:getPath(win_id) abort
 	endif
 endfunction
 
-function! s:getRightSide(win_id) abort
-	let l:symbol = ""
-	if g:Use_nerdfont
-		let l:symbol = "\ %{Devicons#GetSystemSymbol()}"
+function! s:getBranch(win_id) abort
+	let l:maybeBranch = myUtils#BigBrother#GetWinGitBranch()
+	if !strlen(l:maybeBranch) | return "" | endif " no branch
+	if g:saved_windows[a:win_id]['width'] > s:short
+		return s:BranchSymbol .. "\ " .. l:maybeBranch
 	else
-		let l:symbol = "\ %{&fileformat}"
-	endif
-	if g:saved_windows[a:win_id]['width'] > s:long
-		return l:symbol .. "%m%r%w\ b:%n\ "
-
-	elseif g:saved_windows[a:win_id]['width'] > s:medium
-		return "%m%r%w\ b:%n\ "
-
-	elseif g:saved_windows[a:win_id]['width'] > s:short
-		return "%M%R%W\ b:%n\ "
-
-	else
-		return "%M%R%W\ b:%n"
+		return ""
 	endif
 endfunction
 
 function! s:getLeftSide(win_id) abort
+	let l:symbol = ""
+	if g:Use_nerdfont
+		let l:symbol = "\ %{myUtils#Devicons#GetSystemSymbol()}"
+	else
+		let l:symbol = "\ %{&fileformat}"
+	endif
 	if g:saved_windows[a:win_id]['width'] > s:long
-		return "%p%%\ %l,%c\ 0x%04b\ "
+		return l:symbol .. "\ %m%r%w\ b:%n\ "
 
 	elseif g:saved_windows[a:win_id]['width'] > s:medium
-		return "%p%%\ %l,%c\ "
+		return "\ %M%R%W\ b:%n\ "
 
 	elseif g:saved_windows[a:win_id]['width'] > s:short
-		return "\ %l,%c\ "
+		return "\ %M%R%W\ b:%n\ "
+
 	else
-		return "%l,%c\ "
+		return "\ %M%R%W\ "
 	endif
 endfunction
 
 function! s:generateStatusline(win_id, mode)
+	let l:bufNr = getwininfo(a:win_id)['variables']['bufnr']
+	let l:maybeBranch = s:getBranch(a:win_id)
+	let l:fileSymbol = s:getPathSymbol(a:win_id)
 	let l:tmp = ""
-	let l:symbol = s:getPathSymbol(a:win_id)
+
 	if a:mode == 'active'
-		let l:tmp .= "%#StlMain#"
-		let l:tmp .=  s:getRightSide(a:win_id)
-
-		if strlen(s:getGitBranch(a:win_id)) " if you are in a git branch:
-			let l:tmp .= "%#StlSepMain2Branch#" .. s:LtStlSep " seperator
-			let l:tmp .= "%#StlBranch#"
-			let l:tmp .= "\ " .. s:getGitBranch(a:win_id)
-			let l:tmp .= "%#StlSepBranch2Stl#" .. s:LtStlSep " seperator
-		else
-			let l:tmp .= "%#StlSepMain2Stl#" .. s:LtStlSep " seperator
-		endif
-
-		let l:tmp .= "%#statusline#"
-		let l:tmp .= "%<"
-		let l:tmp .= "\ " .. s:getPath(a:win_id)
-		let l:tmp .= "%="
-
-		if strlen(l:symbol) " if recognized
-			let l:tmp .= "%#StlSepStl2Symbol#" .. s:RtStlSep " seperator
-			let l:tmp .= "%#StlSymbol#"
-			let l:tmp .= l:symbol
-			let l:tmp .= "%#StlSepSymbol2Main#" .. s:LtStlSep " seperator
-		else
-			let l:tmp .= "%#StlSepMain2Stl#" .. s:RtStlSep " seperator
-		endif
-
-		let l:tmp .= "%#StlMain#"
+		" the active window updates all the windows all the time
+		let l:tmp .= "%{SmartStatusline#Update()}"
+		let l:tmp .= "%#StlBright#"
 		let l:tmp .=  s:getLeftSide(a:win_id)
+
+		if strlen(l:maybeBranch) " if you are in a git branch:
+			let l:tmp .= "%#StlSepBright2UBInfo#" .. s:LtStlSep .. "\ " " seperator
+			let l:tmp .= "%#StlBranch#"
+			let l:tmp .= l:maybeBranch
+			let l:tmp .= "%#StlSepUBInfo2Reg#" .. s:LtStlSep .. "\ " " seperator
+		else
+			let l:tmp .= "%#StlSepBright2Reg#" .. s:LtStlSep .. "\ " " seperator
+		endif
+
+		let l:tmp .= "%#StlReg#"
+		let l:tmp .= "%<" .. s:getPath(a:win_id)
+		let l:tmp .= "%#StlRegBg#"
+		let l:tmp .= "%="
+		let l:tmp .= "%#StlReg#"
+
+		if v:lua.vim.lsp.buf.server_ready() == v:true " if lsp is connected
+			let l:tmp .= "%#StlDiagnosticSep#"
+			let l:tmp .= s:BlockSymbol
+			let l:tmp .= "%#StlDiagnosticSymbol#"
+			let l:tmp .= s:DiagnosticsSymbol .. "\ "
+			let l:tmp .= "%#StlDiagnosticDetail#" .. "\ "
+			if g:saved_windows[a:win_id]['width'] > s:short
+				let l:tmp .= s:ErrorSymbol .. "\ "
+				let l:tmp .= "%#StlUBInfo#"
+				let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").ErrorCount}"
+				let l:tmp .= "%#StlDiagnosticDetail#"
+				let l:tmp .= "\ " .. s:WarningSymbol .. "\ "
+				let l:tmp .= "%#StlUBInfo#"
+				let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").WarningCount}"
+				let l:tmp .= "\ "
+			endif
+		endif
+
+		" BufData
+		let l:tmp .= "%#StlBufDataSep#"
+		let l:tmp .= s:BlockSymbol
+		let l:tmp .= "%#StlBufDataSymbol#"
+		let l:tmp .= l:fileSymbol .. "\ "
+		if g:saved_windows[a:win_id]['width'] > s:medium
+			let l:tmp .= "%#StlUBInfo#" .. "\ "
+			let l:tmp .= "%p"
+			let l:tmp .= "%#StlBufDataDetail#"
+			let l:tmp .= "%%"
+		endif
+		let l:tmp .= "%#StlUBInfo#"
+		let l:tmp .= "\ %l"
+		let l:tmp .= "%#StlBufDataDetail#"
+		let l:tmp .= ","
+		let l:tmp .= "%#StlUBInfo#"
+		let l:tmp .= "%c"
+		if g:saved_windows[a:win_id]['width'] > s:long
+			let l:tmp .= "\ 0"
+			let l:tmp .= "%#StlBufDataDetail#"
+			let l:tmp .= "x"
+			let l:tmp .= "%#StlUBInfo#"
+			let l:tmp .= "\%04b"
+		endif
 
 	elseif a:mode == 'inactive'
 
 		let l:tmp .= "%#statuslineNC#"
-		let l:tmp .=  s:getRightSide(a:win_id)
 		let l:tmp .= "\ "
-		let l:tmp .= s:getGitBranch(a:win_id)
-		let l:tmp .= "\ \│\ "
-		let l:tmp .= "%<"
-		let l:tmp .= s:getPath(a:win_id)
-		let l:tmp .= "%=\ "
-		let l:tmp .= l:symbol
-		let l:tmp .= "\ \│\ "
 		let l:tmp .=  s:getLeftSide(a:win_id)
+		let l:tmp .= "\ "
+		let l:tmp .= l:maybeBranch
+		let l:tmp .= "\ \│\ "
+		let l:tmp .= "%<" .. s:getPath(a:win_id) .. "%="
+		let l:tmp .= "\│\ "
+		if g:saved_windows[a:win_id]['width'] > s:medium
+			let l:tmp .= "%p%%\ "
+		endif
+		if g:saved_windows[a:win_id]['width'] > s:short
+			let l:tmp .= "%l,%c\ "
+		endif
 	endif
 	return l:tmp
 endfunction
@@ -256,17 +260,15 @@ function! s:update_saved_windows() abort
 	if exists("g:saved_windows") | unlet g:saved_windows | let g:saved_windows = {} | endif
 	let l:last_window_nr = winnr('$')
 	for l:window_nr in range(1, l:last_window_nr)
-		if g:SmartStatuslineEnabled
-			let l:win_id = win_getid(l:window_nr)
-			let l:tmpwin = getwininfo(l:win_id)[0]
-			let l:tmpbuf = getbufinfo(bufname(l:tmpwin['bufnr']))[0]
-			let g:saved_windows[l:win_id] = l:tmpwin
+		let l:win_id = win_getid(l:window_nr)
+		let l:tmpwin = getwininfo(l:win_id)[0]
+		let l:tmpbuf = getbufinfo(bufname(l:tmpwin['bufnr']))[0]
+		let g:saved_windows[l:win_id] = l:tmpwin
 
-			if getbufvar(l:tmpwin['bufnr'], "&filetype") == "netrw"
-				let g:saved_windows[l:win_id]['path'] = l:tmpwin['variables']['netrw_rexdir']
-			else
-				let g:saved_windows[l:win_id]['path'] = l:tmpbuf['name']
-			endif
+		if getbufvar(l:tmpwin['bufnr'], "&filetype") == "netrw"
+			let g:saved_windows[l:win_id]['path'] = l:tmpwin['variables']['netrw_rexdir']
+		else
+			let g:saved_windows[l:win_id]['path'] = l:tmpbuf['name']
 		endif
 	endfor
 endfunction
@@ -278,39 +280,31 @@ function! SmartStatusline#Update()
 	call s:update_saved_windows()
 
 	for l:window_nr in range(1, l:last_window_nr)
-		if g:SmartStatuslineEnabled
-			let l:state = (l:window_nr == l:curr_window_nr)? 'active' : 'inactive'
-			let l:tmp = s:generateStatusline(win_getid(l:window_nr), l:state)
-			call setwinvar(l:window_nr, '&statusline', l:tmp)
+		if (l:window_nr == l:curr_window_nr)
+			if s:not_to_set(l:curr_window_nr)
+				continue " skip certin windows
+			else
+				let l:state = 'active'
+			endif
 		else
-			call setwinvar(l:window_nr, '&statusline', '')
+			let l:state = 'inactive'
 		endif
+
+		let l:tmp = s:generateStatusline(win_getid(l:window_nr), l:state)
+		call setwinvar(l:window_nr, '&statusline', l:tmp)
 	endfor
+	return ""
 endfunction
 
 function! SmartStatusline#Enable()
-	if !g:SmartStatuslineEnabled
-		let g:SmartStatuslineEnabled = 1
-	endif
 	" Create Update Events:
 	augroup statusLine
 		autocmd!
 		" TODO: fix window stops being 'active' after insert mode
-		autocmd VimResized   * call SmartStatusline#Update()
-		autocmd InsertEnter  * call SmartStatusline#Update()
-		autocmd InsertLeave  * call SmartStatusline#Update()
-
-		autocmd WinNew       * call SmartStatusline#Update()
-		autocmd BufWipeout   * call SmartStatusline#Update()
+		autocmd BufLeave     * call SmartStatusline#Update()
+		autocmd BufEnter     * call SmartStatusline#Update()
 		autocmd WinEnter     * call SmartStatusline#Update()
 		autocmd WinLeave     * call SmartStatusline#Update()
-		autocmd BufWinEnter  * call SmartStatusline#Update()
-		autocmd BufWinLeave  * call SmartStatusline#Update()
-
-		autocmd BufNew       * call SmartStatusline#Update()
-		autocmd BufCreate    * call SmartStatusline#Update()
-		autocmd BufEnter     * call SmartStatusline#Update()
-		autocmd BufDelete    * call SmartStatusline#Update()
 	augroup END
 
 	" Do First Update:
@@ -318,17 +312,10 @@ function! SmartStatusline#Enable()
 endfunction
 
 function! SmartStatusline#Disable()
-	if g:SmartStatuslineEnabled
-		let g:SmartStatuslineEnabled = 0
-		" Delete Update Events:
-		augroup! statusLine
-		" Clear &statusline:
-		call SmartStatusline#Update()
-	endif
+	" Delete Update Events:
+	augroup! statusLine
 endfunction
 
 " Start plugin
-if g:SmartStatuslineEnabled
-	call SmartStatusline#Enable()
-endif
+call SmartStatusline#Enable()
 "endOfFile

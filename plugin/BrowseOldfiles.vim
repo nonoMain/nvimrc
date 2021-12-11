@@ -1,18 +1,14 @@
 "startOfFile
-" Filename: browseFiles.vim
-" Description: broswer for recent existing files
+" Filename: browseFiles.vim Description: broswer for recent existing files
 
-
-if !exists("g:BrowseOldfilesEnabled")
-	let g:BrowseOldfilesEnabled = 0
-endif
-if !g:BrowseOldfilesEnabled
-	finish
+if !(exists("g:Use_devicons_colors"))
+	let g:Use_devicons_colors = 0
 endif
 
 let s:conceal_Hi_Lvl = 10
 let s:conceal_match_id = 99
-let s:historybrowserIsOpen = 0
+let s:last_bufNr = 0
+let s:files_shown = []
 
 if !exists('g:historyIgnore')
 	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
@@ -33,30 +29,11 @@ function! s:openFileUnderCursor() abort
 endfunction
 
 function! s:closeBrowser()
-	let s:historybrowserIsOpen = 0
-	let l:amountOfbuffers = len(tabpagebuflist())
-	let s:historybrowserIsOpen = 0
 	silent! call matchdelete(s:conceal_match_id)
-	if &filetype == "filebroswer" " quit while browsing
-		let l:bufNr = bufnr()
-		if (l:amountOfbuffers > 1)
-			silent exe "bprevious"
-		endif
-		silent exe "bwipeout " . bufNr
-	else " close after opening a file
-		let l:bufNr = bufnr("$")
-		while (bufNr >= 1)
-			if (getbufvar(bufNr, "&filetype") == "filebroswer")
-				silent exe "bwipeout " . bufNr 
-			endif
-			let bufNr-=1
-		endwhile
-	endif
 	unlet s:files_shown
 endfunction
 
 function! s:openBrowser()
-	let s:historybrowserIsOpen = 1
 	let s:files_shown = []
 	let l:ignore = 0
 	let l:symbol = ""
@@ -67,11 +44,11 @@ function! s:openBrowser()
 		if !s:fileExists(l:file) | continue | endif
 		let l:ignore = 0
 		if g:Use_nerdfont
-			let l:symbol = " " .. Devicons#GetPathSymbol(l:file, 'view') .. " ."
+			let l:symbol = "\ " .. myUtils#Devicons#GetPathSymbol(l:file, 'view') .. "\ ."
 		endif
 
 		for l:pattern in s:historyIgnore
-			if  match(l:file, pattern) != -1
+			if  match(l:file, l:pattern) != -1
 				let l:ignore = 1
 				break
 			endif
@@ -89,14 +66,32 @@ function! s:openBrowser()
 	nnoremap <silent> <buffer> <CR> :call <SID>openFileUnderCursor()<CR>
 
 	setlocal nomodifiable noswapfile nospell nowrap
-	setlocal buftype=nofile bufhidden=delete conceallevel=2 filetype=filebroswer
+	setlocal buftype=nofile bufhidden=delete conceallevel=2 filetype=oldfilesBroswer
 endfunction
 
 function! BrowseOldfiles#ToggleHistory()
-	if s:historybrowserIsOpen
+	let l:amountOfbuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+	if &filetype == "oldfilesBroswer" " quit while browsing
+		let l:bufNr = bufnr()
+		if (l:amountOfbuffers > 0)
+			silent execute "buffer " .. s:last_bufNr
+		else
+			silent execute "bwipeout " .. l:bufNr
+		endif
 		call s:closeBrowser()
 	else
+		let s:last_bufNr = bufnr()
 		call s:openBrowser()
 	endif
 endfunction
+
+augroup AutoDeleteBrowseOldFilesHiddenBuffers
+  autocmd!
+  autocmd FileType oldfilesBroswer setlocal bufhidden=wipe
+augroup end
+
+if g:Use_devicons_colors
+	call myUtils#Devicons#ColorFileType('oldfilesBroswer')
+endif
+
 "endOfFile

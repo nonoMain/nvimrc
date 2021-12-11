@@ -25,7 +25,7 @@
 	nnoremap <A-x> <C-x>
 
 " Faster way to open/close netrw (Explorer)
-noremap <silent> <leader>e :call Netrw#ToggleNetrw()<CR>
+noremap <silent> <leader>e :call Netrw#Toggle()<CR>
 noremap <silent> <leader>h :call BrowseOldfiles#ToggleHistory()<CR>
 
 " Get current highlight-group under cursor
@@ -34,6 +34,4 @@ nnoremap <f10> :TSHighlightCapturesUnderCursor<CR>
 let g:UltiSnipsJumpForwardTrigger="<c-x>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" More mappings are at:
-" 1. nvim/configs/plugins/nvim_lsconfig.vim
 "endOfFile

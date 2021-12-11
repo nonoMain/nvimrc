@@ -5,19 +5,12 @@
 	" get the folder that the config goes to (different on each OS)
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
 
-	" Enable Plugin/ plugins
-	let g:BrowseOldfilesEnabled  = 1
-	let g:NetrwPluginEnabled     = 1
-	let g:SmartTablineEnabled    = 1
-	let g:SmartStatuslineEnabled = 1
-
 	" Preferences
 	let g:clearBackground        = 1
 	let g:Use_nerdfont           = 1
 	let g:Use_devicons_colors    = 1
 
-
-" global variables needed for the config (outside of these above)
+" global variables and functions needed for the config (outside of these above)
 	source $MYVIMRCFOLDER/globals.vim
 
 " The vim settings - file settings, color settings, cursor... And mappings
@@ -39,4 +32,5 @@
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua
+
 "endOfFile
