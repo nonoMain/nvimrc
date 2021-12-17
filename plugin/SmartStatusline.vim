@@ -98,9 +98,11 @@ let s:HG.StlSepUBInfo2Bright  = { "FG":g:ECP['infoBg'],            "BG":s:HG['St
 let s:HG.StlSepUBInfo2Reg     = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlReg']["BG"] }
 
 " scan the assignment dict and execute the assignment
-for key in keys(s:HG)
-	call myUtils#BigBrother#HighlightDict(key, s:HG[key])
-endfor
+function! SmartStatusline#Highlight()
+	for key in keys(s:HG)
+		call myUtils#BigBrother#HighlightDict(key, s:HG[key])
+	endfor
+endfunction
 
 function! s:getPathSymbol(win_id) abort
 	let l:tmp = ""
@@ -170,7 +172,6 @@ function! s:generateStatusline(win_id, mode)
 
 	if a:mode == 'active'
 		" the active window updates all the windows all the time
-		let l:tmp .= "%{SmartStatusline#Update()}"
 		let l:tmp .= "%#StlBright#"
 		let l:tmp .=  s:getLeftSide(a:win_id)
 
@@ -293,26 +294,27 @@ function! SmartStatusline#Update()
 		let l:tmp = s:generateStatusline(win_getid(l:window_nr), l:state)
 		call setwinvar(l:window_nr, '&statusline', l:tmp)
 	endfor
-	return ""
 endfunction
 
 function! SmartStatusline#Enable()
 	" Create Update Events:
 	augroup statusLine
 		autocmd!
-		" TODO: fix window stops being 'active' after insert mode
+		autocmd ColorScheme  * call SmartStatusline#Highlight()
 		autocmd BufLeave     * call SmartStatusline#Update()
 		autocmd BufEnter     * call SmartStatusline#Update()
 		autocmd WinEnter     * call SmartStatusline#Update()
 		autocmd WinLeave     * call SmartStatusline#Update()
 	augroup END
 
-	" Do First Update:
+	" Highlight
+	call SmartStatusline#Highlight()
+	" Do First Update
 	call SmartStatusline#Update()
 endfunction
 
 function! SmartStatusline#Disable()
-	" Delete Update Events:
+	" Delete Update Events
 	augroup! statusLine
 endfunction
 

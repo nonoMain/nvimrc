@@ -39,9 +39,11 @@ let s:HG.TabDiagnosticsErr = { "FG":g:ECP.symbolErrFg, "BG":g:ECP.objBg }
 let s:HG.TabLineFill       = { "BG":g:ECP.bg }
 
 " scan the assignment dict and execute the assignment
-for key in keys(s:HG)
-	call myUtils#BigBrother#HighlightDict(key, s:HG[key])
-endfor
+function! SmartTabline#Highlight()
+	for key in keys(s:HG)
+		call myUtils#BigBrother#HighlightDict(key, s:HG[key])
+	endfor
+endfunction
 
 function! GenerateTabline()
 	let l:tmp = ""
@@ -123,7 +125,7 @@ function! s:generateTablable(tabNr, mode)
 	if a:mode == 'active'
 		let l:tmp .= "%>"
 		let l:tmp .= "%#TabLineSel#"
-		let l:tmp .= "\|\ "
+		let l:tmp .= "\ "
 		let l:tmp .= l:fileSymbol
 		let l:tmp .= "\ "
 		let l:tmp .= pathshorten(fnamemodify(l:path, ":~:."))
@@ -133,11 +135,13 @@ function! s:generateTablable(tabNr, mode)
 		endif
 		let l:tmp .= "\ "
 		let l:tmp .= l:diagnosticsSymbol .. "\ "
+		let l:tmp .= "%#TabLine#"
+		let l:tmp .= "\|\ "
 		let l:tmp .= "%<"
 
 	elseif a:mode == 'inactive'
 		let l:tmp .= "%#TabLine#"
-		let l:tmp .= "\|\ "
+		let l:tmp .= "\ "
 		let l:tmp .= l:fileSymbol
 		let l:tmp .= "\ "
 		let l:tmp .= pathshorten(fnamemodify(l:path, ":."))
@@ -150,9 +154,15 @@ function! s:generateTablable(tabNr, mode)
 		let l:tmp .= "\ "
 		let l:tmp .= l:diagnosticsColor
 		let l:tmp .= l:diagnosticsSymbol .. "\ "
+		let l:tmp .= "\|"
 	endif
 	return l:tmp
 endfunction
+
+augroup tabline
+	autocmd!
+	autocmd ColorScheme  * call SmartTabline#Highlight()
+augroup END
 
 set tabline=%!GenerateTabline()
 
