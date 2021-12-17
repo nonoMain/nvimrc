@@ -164,92 +164,100 @@ function! s:getLeftSide(win_id) abort
 	endif
 endfunction
 
-function! s:generateStatusline(win_id, mode)
+function! s:generateActiveStatusline(win_id)
 	let l:bufNr = getwininfo(a:win_id)['variables']['bufnr']
 	let l:maybeBranch = s:getBranch(a:win_id)
 	let l:fileSymbol = s:getPathSymbol(a:win_id)
 	let l:tmp = ""
 
-	if a:mode == 'active'
-		" the active window updates all the windows all the time
-		let l:tmp .= "%#StlBright#"
-		let l:tmp .=  s:getLeftSide(a:win_id)
+	let l:tmp = "%{SmartStatusline#UpdateActive()}"
 
-		if strlen(l:maybeBranch) " if you are in a git branch:
-			let l:tmp .= "%#StlSepBright2UBInfo#" .. s:LtStlSep .. "\ " " seperator
-			let l:tmp .= "%#StlBranch#"
-			let l:tmp .= l:maybeBranch
-			let l:tmp .= "%#StlSepUBInfo2Reg#" .. s:LtStlSep .. "\ " " seperator
-		else
-			let l:tmp .= "%#StlSepBright2Reg#" .. s:LtStlSep .. "\ " " seperator
-		endif
+	" the active window updates all the windows all the time
+	let l:tmp .= "%#StlBright#"
+	let l:tmp .=  s:getLeftSide(a:win_id)
 
-		let l:tmp .= "%#StlReg#"
-		let l:tmp .= "%<" .. s:getPath(a:win_id)
-		let l:tmp .= "%#StlRegBg#"
-		let l:tmp .= "%="
-		let l:tmp .= "%#StlReg#"
-
-		if v:lua.vim.lsp.buf.server_ready() == v:true " if lsp is connected
-			let l:tmp .= "%#StlDiagnosticSep#"
-			let l:tmp .= s:BlockSymbol
-			let l:tmp .= "%#StlDiagnosticSymbol#"
-			let l:tmp .= s:DiagnosticsSymbol .. "\ "
-			let l:tmp .= "%#StlDiagnosticDetail#" .. "\ "
-			if g:saved_windows[a:win_id]['width'] > s:short
-				let l:tmp .= s:ErrorSymbol .. "\ "
-				let l:tmp .= "%#StlUBInfo#"
-				let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").ErrorCount}"
-				let l:tmp .= "%#StlDiagnosticDetail#"
-				let l:tmp .= "\ " .. s:WarningSymbol .. "\ "
-				let l:tmp .= "%#StlUBInfo#"
-				let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").WarningCount}"
-				let l:tmp .= "\ "
-			endif
-		endif
-
-		" BufData
-		let l:tmp .= "%#StlBufDataSep#"
-		let l:tmp .= s:BlockSymbol
-		let l:tmp .= "%#StlBufDataSymbol#"
-		let l:tmp .= l:fileSymbol .. "\ "
-		if g:saved_windows[a:win_id]['width'] > s:medium
-			let l:tmp .= "%#StlUBInfo#" .. "\ "
-			let l:tmp .= "%p"
-			let l:tmp .= "%#StlBufDataDetail#"
-			let l:tmp .= "%%"
-		endif
-		let l:tmp .= "%#StlUBInfo#"
-		let l:tmp .= "\ %l"
-		let l:tmp .= "%#StlBufDataDetail#"
-		let l:tmp .= ","
-		let l:tmp .= "%#StlUBInfo#"
-		let l:tmp .= "%c"
-		if g:saved_windows[a:win_id]['width'] > s:long
-			let l:tmp .= "\ 0"
-			let l:tmp .= "%#StlBufDataDetail#"
-			let l:tmp .= "x"
-			let l:tmp .= "%#StlUBInfo#"
-			let l:tmp .= "\%04b"
-		endif
-
-	elseif a:mode == 'inactive'
-
-		let l:tmp .= "%#statuslineNC#"
-		let l:tmp .= "\ "
-		let l:tmp .=  s:getLeftSide(a:win_id)
-		let l:tmp .= "\ "
+	if strlen(l:maybeBranch) " if you are in a git branch:
+		let l:tmp .= "%#StlSepBright2UBInfo#" .. s:LtStlSep .. "\ " " seperator
+		let l:tmp .= "%#StlBranch#"
 		let l:tmp .= l:maybeBranch
-		let l:tmp .= "\ \│\ "
-		let l:tmp .= "%<" .. s:getPath(a:win_id) .. "%="
-		let l:tmp .= "\│\ "
-		if g:saved_windows[a:win_id]['width'] > s:medium
-			let l:tmp .= "%p%%\ "
-		endif
-		if g:saved_windows[a:win_id]['width'] > s:short
-			let l:tmp .= "%l,%c\ "
-		endif
+		let l:tmp .= "%#StlSepUBInfo2Reg#" .. s:LtStlSep .. "\ " " seperator
+	else
+		let l:tmp .= "%#StlSepBright2Reg#" .. s:LtStlSep .. "\ " " seperator
 	endif
+
+	let l:tmp .= "%#StlReg#"
+	let l:tmp .= "%<" .. s:getPath(a:win_id)
+	let l:tmp .= "%#StlRegBg#"
+	let l:tmp .= "%="
+	let l:tmp .= "%#StlReg#"
+
+	if v:lua.vim.lsp.buf.server_ready() == v:true " if lsp is connected
+		let l:tmp .= "%#StlDiagnosticSep#"
+		let l:tmp .= s:BlockSymbol
+		let l:tmp .= "%#StlDiagnosticSymbol#"
+		let l:tmp .= s:DiagnosticsSymbol .. "\ "
+		if g:saved_windows[a:win_id]['width'] > s:short
+			let l:tmp .= "%#StlDiagnosticDetail#" .. "\ "
+			let l:tmp .= s:ErrorSymbol .. "\ "
+			let l:tmp .= "%#StlUBInfo#"
+			let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").ErrorCount}"
+			let l:tmp .= "%#StlDiagnosticDetail#"
+			let l:tmp .= "\ " .. s:WarningSymbol .. "\ "
+			let l:tmp .= "%#StlUBInfo#"
+			let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").WarningCount}"
+		endif
+		let l:tmp .= "\ "
+	endif
+
+	" BufData
+	let l:tmp .= "%#StlBufDataSep#"
+	let l:tmp .= s:BlockSymbol
+	let l:tmp .= "%#StlBufDataSymbol#"
+	let l:tmp .= l:fileSymbol .. "\ "
+	if g:saved_windows[a:win_id]['width'] > s:medium
+		let l:tmp .= "%#StlUBInfo#" .. "\ "
+		let l:tmp .= "%p"
+		let l:tmp .= "%#StlBufDataDetail#"
+		let l:tmp .= "%%"
+	endif
+	let l:tmp .= "%#StlUBInfo#"
+	let l:tmp .= "\ %l"
+	let l:tmp .= "%#StlBufDataDetail#"
+	let l:tmp .= ","
+	let l:tmp .= "%#StlUBInfo#"
+	let l:tmp .= "%c"
+	if g:saved_windows[a:win_id]['width'] > s:long
+		let l:tmp .= "\ 0"
+		let l:tmp .= "%#StlBufDataDetail#"
+		let l:tmp .= "x"
+		let l:tmp .= "%#StlUBInfo#"
+		let l:tmp .= "\%04b"
+	endif
+
+	return l:tmp
+endfunction
+
+function! s:generateInactiveStatusline(win_id)
+	let l:bufNr = getwininfo(a:win_id)['variables']['bufnr']
+	let l:maybeBranch = s:getBranch(a:win_id)
+	let l:fileSymbol = s:getPathSymbol(a:win_id)
+	let l:tmp = ""
+
+	let l:tmp .= "%#statuslineNC#"
+	let l:tmp .= "\ "
+	let l:tmp .=  s:getLeftSide(a:win_id)
+	let l:tmp .= "\ "
+	let l:tmp .= l:maybeBranch
+	let l:tmp .= "\ \│\ "
+	let l:tmp .= "%<" .. s:getPath(a:win_id) .. "%="
+	let l:tmp .= "\│\ "
+	if g:saved_windows[a:win_id]['width'] > s:medium
+		let l:tmp .= "%p%%\ "
+	endif
+	if g:saved_windows[a:win_id]['width'] > s:short
+		let l:tmp .= "%l,%c\ "
+	endif
+
 	return l:tmp
 endfunction
 
@@ -274,37 +282,37 @@ function! s:update_saved_windows() abort
 	endfor
 endfunction
 
+function! SmartStatusline#UpdateActive()
+	let l:tmp = s:generateActiveStatusline(win_getid())
+	call setwinvar(winnr(), '&statusline', l:tmp)
+	return ""
+endfunction
+
 function! SmartStatusline#Update()
 	let l:curr_window_nr = winnr()
 	let l:last_window_nr = winnr('$')
-	if s:not_to_set(l:curr_window_nr) | return | endif
+	let l:tmp = ""
+
 	call s:update_saved_windows()
-
 	for l:window_nr in range(1, l:last_window_nr)
-		if (l:window_nr == l:curr_window_nr)
-			if s:not_to_set(l:curr_window_nr)
-				continue " skip certin windows
-			else
-				let l:state = 'active'
-			endif
+		if s:not_to_set(l:curr_window_nr)
+			continue " skip certin windows
+		elseif (l:window_nr == l:curr_window_nr)
+			let l:tmp = s:generateActiveStatusline(win_getid(l:window_nr))
 		else
-			let l:state = 'inactive'
+			let l:tmp = s:generateInactiveStatusline(win_getid(l:window_nr))
 		endif
-
-		let l:tmp = s:generateStatusline(win_getid(l:window_nr), l:state)
 		call setwinvar(l:window_nr, '&statusline', l:tmp)
 	endfor
 endfunction
 
 function! SmartStatusline#Enable()
-	" Create Update Events:
+	" Create Update Events
 	augroup statusLine
 		autocmd!
 		autocmd ColorScheme  * call SmartStatusline#Highlight()
-		autocmd BufLeave     * call SmartStatusline#Update()
 		autocmd BufEnter     * call SmartStatusline#Update()
 		autocmd WinEnter     * call SmartStatusline#Update()
-		autocmd WinLeave     * call SmartStatusline#Update()
 	augroup END
 
 	" Highlight
