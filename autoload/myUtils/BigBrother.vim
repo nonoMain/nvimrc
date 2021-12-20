@@ -74,7 +74,7 @@ function! myUtils#BigBrother#GetClosetTermColor(color)
 	let l:best_color = 0
 	let l:best_distance = 0
 
-	for l:key in s:common_colors->keys()
+	for l:key in keys(s:common_colors)
 		let l:curr_distance = s:color_dist(a:color, l:key)
 		if (l:best_color == 0) || (l:curr_distance < l:best_distance)
 			let l:best_color = s:common_colors[l:key]

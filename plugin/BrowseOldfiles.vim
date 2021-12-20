@@ -36,7 +36,7 @@ function! s:openBrowser()
 		if !s:fileExists(l:file) | continue | endif
 		let l:ignore = 0
 		if g:Use_nerdfont
-			let l:symbol = "\ " .. myUtils#Devicons#GetPathSymbol(l:file, 'view') .. "\ ."
+			let l:symbol = "\ [" .. myUtils#Devicons#GetPathSymbol(l:file, 'view') .. "\]"
 		endif
 
 		for l:pattern in s:historyIgnore

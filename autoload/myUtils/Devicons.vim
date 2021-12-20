@@ -226,7 +226,7 @@ function! s:fileToSymbol(path)
 			return s:fileExtentionsToSymbols[key]
 		endif
 	endfor
-	return l:fileExtention
+	return s:fileExtentionsToSymbols['txt']
 endfunction
 
 let g:devicons_colorpallet = {
