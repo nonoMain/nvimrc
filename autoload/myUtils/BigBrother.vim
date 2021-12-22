@@ -1,6 +1,7 @@
 "startOfFile
 " Filename: BigBrother.vim
 "
+
 let s:common_colors = {
 	\ '#000000':  16, '#00005f':  17, '#000087':  18, '#0000af':  19, '#0000d7':  20,
 	\ '#0000ff':  21, '#005f00':  22, '#005f5f':  23, '#005f87':  24, '#005faf':  25,
@@ -128,10 +129,10 @@ endfunction
 " InfoCount    - amount of signs displayed in the buffer that matched with s:InfoCount group
 function! myUtils#BigBrother#GetBufDiagnostics(buf)
 	let l:info_dict ={}
-	let l:info_dict.ErrorCount = v:lua.vim.lsp.diagnostic.get_count(a:buf, "Error")
-	let l:info_dict.WarningCount = v:lua.vim.lsp.diagnostic.get_count(a:buf, "Warning") 
-	let l:info_dict.InfoCount = v:lua.vim.lsp.diagnostic.get_count(a:buf, "Information") 
-	let l:info_dict.HintCount = v:lua.vim.lsp.diagnostic.get_count(a:buf, "Hint") 
+	let l:info_dict.ErrorCount   = len(luaeval("vim.diagnostic.get(" . a:buf . ", { severity = vim.diagnostic.severity.ERROR })"))
+	let l:info_dict.WarningCount = len(luaeval("vim.diagnostic.get(" . a:buf . ", { severity = vim.diagnostic.severity.WARN })"))
+	let l:info_dict.InfoCount    = len(luaeval("vim.diagnostic.get(" . a:buf . ", { severity = vim.diagnostic.severity.INFO })"))
+	let l:info_dict.HintCount    = len(luaeval("vim.diagnostic.get(" . a:buf . ", { severity = vim.diagnostic.severity.HINT })"))
 	return l:info_dict
 endfunction
 

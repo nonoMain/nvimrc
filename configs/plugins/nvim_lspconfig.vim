@@ -60,4 +60,12 @@ EOF
 	nnoremap <silent> <C-k>     :lua vim.lsp.buf.hover()<CR>
 	nnoremap <silent> <C-p>     :lua vim.lsp.diagnostic.goto_prev()<CR>
 	nnoremap <silent> <C-n>     :lua vim.lsp.diagnostic.goto_next()<CR>
+
+" Source all the lsp-configs
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/python_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/c_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua
+
 "endOfFile

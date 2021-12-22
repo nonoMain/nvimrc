@@ -9,12 +9,9 @@
 	" Preferences
 	let g:clearBackground        = 1
 	let g:Use_nerdfont           = 1
-	let g:Use_devicons_colors    = 1
 
 " global variables and functions needed for the config (outside of these above)
 	source $MYVIMRCFOLDER/globals.vim
-
-	source $MYVIMRCFOLDER/configs/mappings.vim
 
 " The plugins call file (vim-plug plugin manager)
 	source $MYVIMRCFOLDER/plugins.vim
@@ -24,12 +21,4 @@
 	source  $MYVIMRCFOLDER/configs/plugins/nvim_cmp.lua
 	source  $MYVIMRCFOLDER/configs/plugins/vim_hexokinase.vim
 	luafile $MYVIMRCFOLDER/configs/plugins/tree_sitter.lua
-
-" The configs for the language servers
-	luafile $MYVIMRCFOLDER/configs/lsp-servers/python_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers/c_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
-	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua
-
 "endOfFile

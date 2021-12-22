@@ -1,10 +1,6 @@
 "startOfFile
 " Filename: browseFiles.vim Description: broswer for recent existing files
 
-if !(exists("g:Use_devicons_colors"))
-	let g:Use_devicons_colors = 0
-endif
-
 let s:last_bufNr = 0
 let s:files_shown = []
 
@@ -80,8 +76,5 @@ augroup AutoDeleteBrowseOldFilesHiddenBuffers
   autocmd FileType oldfilesBroswer setlocal bufhidden=wipe
 augroup end
 
-if g:Use_devicons_colors
-	call myUtils#Devicons#ColorFileType('oldfilesBroswer')
-endif
-
+call myUtils#Devicons#ColorFileType('oldfilesBroswer')
 "endOfFile
