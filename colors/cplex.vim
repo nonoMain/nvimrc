@@ -20,53 +20,50 @@ if !exists("g:clearBackground")
 	let g:clearBackground = 1
 endif
 
-" Color Pallet - C.P
-let s:CP = {
-	\'string'     : '#d7875f',
-	\'comment'    : '#5f875f',
-	\'error'      : '#d70000',
-	\'number'     : '#afd7af',
-	\'bool'       : '#af87d7',
-	\'type'       : '#5fafaf',
-	\'keyword'    : '#87afff',
-	\'repeat'     : '#d787d7',
-	\'function'   : '#d7d7af',
-	\'constant'   : '#d7d7af',
-	\'include'    : '#d75f87',
-	\'object'     : '#e4e4e4',
-	\'operator'   : '#af5f87',
-	\'bracket'    : '#d7875f',
-	\'special'    : '#5fafff',
-\}
 
 " Enviorment's Color Pallet - E.C.P
 let g:ECP = {
-	\'selected'          : '#005f87',
-	\'fg'                : '#e4e4e4',
-	\'objFg'             : '#b2b2b2',
-	\'objBg'             : '#202020',
-	\'non_text'          : '#585858',
-	\'limitLines'        : '#444444',
-	\'cursorLines'       : '#19191d',
-	\'searchHighlight'   : '#005f87',
-	\'searchSelected'    : '#5f5f00',
-	\'visualSelection'   : '#005f87',
-	\'diffAdd'           : '#b2d2b2',
-	\'diffChange'        : '#e2e2b2',
-	\'diffDelete'        : '#e2b2b2',
-	\'infoFg'            : '#585858',
-	\'infoBg'            : '#2a2a2a',
-	\'branchFg'          : '#87afd7',
-	\'symbolWarFg'       : '#b7af5f',
-	\'symbolErrFg'       : '#a70000',
-	\'symbolDiagnostics' : '#a03d65',
-	\'symbolBufData'     : '#3da065',
+\'string'            : '#d7875f',
+\'comment'           : '#5f875f',
+\'error'             : '#d70000',
+\'number'            : '#afd7af',
+\'bool'              : '#af87d7',
+\'type'              : '#5fafaf',
+\'keyword'           : '#87afff',
+\'repeat'            : '#d787d7',
+\'function'          : '#d7d7af',
+\'constant'          : '#d7d7af',
+\'include'           : '#d75f87',
+\'object'            : '#e4e4e4',
+\'operator'          : '#af5f87',
+\'bracket'           : '#d7875f',
+\'special'           : '#5fafff',
+\'selected'          : '#005f87',
+\'fg'                : '#e4e4e4',
+\'objFg'             : '#b2b2b2',
+\'objBg'             : '#202020',
+\'non_text'          : '#585858',
+\'limitLines'        : '#444444',
+\'cursorLines'       : '#19191d',
+\'searchHighlight'   : '#005f87',
+\'searchSelected'    : '#5f5f00',
+\'visualSelection'   : '#005f87',
+\'diffAdd'           : '#b2d2b2',
+\'diffChange'        : '#e2e2b2',
+\'diffDelete'        : '#e2b2b2',
+\'infoFg'            : '#585858',
+\'infoBg'            : '#2a2a2a',
+\'symbolBranch'      : '#87afd7',
+\'symbolWarFg'       : '#b7af5f',
+\'symbolErrFg'       : '#a70000',
+\'symbolDiagnostics' : '#a03d65',
+\'symbolBufData'     : '#3da065',
 \}
 
 if g:clearBackground
-	let g:ECP.bg = 'NONE'    | let g:ECP.T_bg = 'NONE'
+	let g:ECP.bg = 'NONE'
 else
-	let g:ECP.bg = '#141414' | let g:ECP.T_bg = 234
+	let g:ECP.bg = '#141414'
 endif
 " Highlight Groups - H.G
 " Keys:
@@ -75,57 +72,57 @@ endif
 " BG: background color
 "
 " Text syntax highlight groups
-let s:HG = {}
-let s:HG.Normal       = { "FG":g:ECP.fg,               "BG":g:ECP.bg }
-let s:HG.Include      = { "FG":s:CP.include, }
-let s:HG.Comment      = { "FG":s:CP.comment, }
-let s:HG.Constant     = { "FG":s:CP.constant, }
-let s:HG.Delimiter    = { "FG":g:ECP.fg,               "BG":g:ECP.bg }
-let s:HG.String       = { "FG":s:CP.string, }
-let s:HG.Character    = { "FG":s:CP.string, }
-let s:HG.Boolean      = { "FG":s:CP.bool, }
-let s:HG.Number       = { "FG":s:CP.number, }
-let s:HG.Float        = { "FG":s:CP.number, }
-let s:HG.Repeat       = { "FG":s:CP.repeat,            "S":'bold', }
-let s:HG.Keyword      = { "FG":s:CP.keyword,           "S":'bold', }
-let s:HG.Operator     = { "FG":s:CP.operator, }
-let s:HG.Function     = { "FG":s:CP.function, }
-let s:HG.Identifier   = { "FG":s:CP.object, }
-let s:HG.Type         = { "FG":s:CP.type, }
-let s:HG.Directory    = { "FG":s:CP.special, }
-let s:HG.Error        = { "FG":s:CP.error,             "S":'bold', }
-let s:HG.Special      = { "FG":s:CP.special, }
-let s:HG.Folded       = { "FG":s:CP.special,           "BG":g:ECP.non_text, }
+let s:HG = {
+	\'Normal'       : { "FG":g:ECP.fg,               "BG":g:ECP.bg },
+	\'Include'      : { "FG":g:ECP.include, },
+	\'Comment'      : { "FG":g:ECP.comment, },
+	\'Constant'     : { "FG":g:ECP.constant, },
+	\'Delimiter'    : { "FG":g:ECP.fg,               "BG":g:ECP.bg },
+	\'String'       : { "FG":g:ECP.string, },
+	\'Character'    : { "FG":g:ECP.string, },
+	\'Boolean'      : { "FG":g:ECP.bool, },
+	\'Number'       : { "FG":g:ECP.number, },
+	\'Float'        : { "FG":g:ECP.number, },
+	\'Repeat'       : { "FG":g:ECP.repeat,            "S":'bold', },
+	\'Keyword'      : { "FG":g:ECP.keyword,           "S":'bold', },
+	\'Operator'     : { "FG":g:ECP.operator, },
+	\'Function'     : { "FG":g:ECP.function, },
+	\'Identifier'   : { "FG":g:ECP.object, },
+	\'Type'         : { "FG":g:ECP.type, },
+	\'Directory'    : { "FG":g:ECP.special, },
+	\'Error'        : { "FG":g:ECP.error,             "S":'bold', },
+	\'Special'      : { "FG":g:ECP.special, },
+	\'Folded'       : { "FG":g:ECP.special,           "BG":g:ECP.non_text, },
+	\'StatusLine'   : { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, },
+	\'StatusLineNC' : { "FG":g:ECP.objFg,            "BG":g:ECP.bg, },
+	\'Pmenu'        : { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, },
+	\'PmenuSel'     : { "FG":g:ECP.objFg,            "BG":g:ECP.selected, },
+	\'PmenuSbar'    : { "BG":g:ECP.limitLines, },
+	\'PmenuThumb'   : { "BG":g:ECP.selected, },
+	\'TabLineSel'   : { "FG":g:ECP.fg,               "BG":g:ECP.selected, },
+	\'TabLine'      : { "FG":g:ECP.fg,               "BG":g:ECP.objBg, },
+	\'TabLineFill'  : { "BG":g:ECP.objBg, },
+	\'WildMenu'     : { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, },
+	\'LineNr'       : { "FG":g:ECP.objFg, },
+	\'SignColumn'   : { "BG":g:ECP.bg, },
+	\'CursorLineNr' : { "FG":g:ECP.fg, },
+	\'CursorLine'   : { "BG":g:ECP.cursorLines, },
+	\'CursorColumn' : { "BG":g:ECP.cursorLines, },
+	\'Cursor'       : { "S":'reverse', },
+	\'VertSplit'    : { "FG":g:ECP.limitLines, },
+	\'ColorColumn'  : { "BG":g:ECP.cursorLines, },
+	\'IncSearch'    : { "BG":g:ECP.searchSelected, },
+	\'Search'       : { "BG":g:ECP.searchHighlight, },
+	\'Visual'       : { "BG":g:ECP.visualSelection, },
+	\'VisualNOS'    : { "FG":g:ECP.objFg, },
+	\'NonText'      : { "FG":g:ECP.non_text, },
+	\'SpecialKey'   : { "FG":g:ECP.objFg, },
+	\'DiffAdd'      : { "FG":g:ECP.diffAdd, },
+	\'DiffChange'   : { "FG":g:ECP.diffChange, },
+	\'DiffDelete'   : { "FG":g:ECP.diffDelete, },
+\}
 
 " Enviorment highlight groups
-let s:HG.StatusLine   = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
-let s:HG.StatusLineNC = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
-let s:HG.Pmenu        = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
-let s:HG.PmenuSel     = { "FG":g:ECP.objFg,            "BG":g:ECP.selected, }
-let s:HG.PmenuSbar    = { "BG":g:ECP.limitLines, }
-let s:HG.PmenuThumb   = { "BG":g:ECP.selected, }
-let s:HG.TabLineSel   = { "FG":g:ECP.fg,               "BG":g:ECP.selected, }
-let s:HG.TabLine      = { "FG":g:ECP.fg,               "BG":g:ECP.objBg, }
-let s:HG.TabLineFill  = { "BG":g:ECP.objBg, }
-let s:HG.WildMenu     = { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, }
-let s:HG.LineNr       = { "FG":g:ECP.objFg, }
-let s:HG.SignColumn   = { "BG":g:ECP.bg, }
-let s:HG.CursorLineNr = { "FG":g:ECP.fg, }
-let s:HG.CursorLine   = { "BG":g:ECP.cursorLines, }
-let s:HG.CursorColumn = { "BG":g:ECP.cursorLines, }
-let s:HG.Cursor       = { "S":'reverse', }
-let s:HG.VertSplit    = { "FG":g:ECP.limitLines, }
-let s:HG.ColorColumn  = { "BG":g:ECP.cursorLines, }
-let s:HG.IncSearch    = { "BG":g:ECP.searchSelected, }
-let s:HG.Search       = { "BG":g:ECP.searchHighlight, }
-let s:HG.Visual       = { "BG":g:ECP.visualSelection, }
-let s:HG.VisualNOS    = { "FG":g:ECP.objFg, }
-let s:HG.NonText      = { "FG":g:ECP.non_text, }
-let s:HG.SpecialKey   = { "FG":g:ECP.objFg, }
-let s:HG.DiffAdd      = { "FG":g:ECP.diffAdd, }
-let s:HG.DiffChange   = { "FG":g:ECP.diffChange, }
-let s:HG.DiffDelete   = { "FG":g:ECP.diffDelete, }
-
 " scan the assignment dict and execute the assignment
 for key in keys(s:HG)
 	call myUtils#BigBrother#HighlightDict(key, s:HG[key])
@@ -209,6 +206,6 @@ hi! link TSURI                Identifier
 hi! link TSTag                Tag
 hi! link TSTagDelimiter       TagDelimiter
 
-unlet s:CP
+unlet g:ECP
 unlet s:HG
 "endOfFile

@@ -3,6 +3,7 @@
 
 " global/environment variables:
 	" get the folder that the config goes to (different on each OS)
+	let mapleader = ' ' " sets the leader key
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
 
 	" Preferences
@@ -13,8 +14,6 @@
 " global variables and functions needed for the config (outside of these above)
 	source $MYVIMRCFOLDER/globals.vim
 
-" The vim settings - file settings, color settings, cursor... And mappings
-	source $MYVIMRCFOLDER/configs/settings.vim
 	source $MYVIMRCFOLDER/configs/mappings.vim
 
 " The plugins call file (vim-plug plugin manager)

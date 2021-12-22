@@ -1,8 +1,4 @@
 "startOfFile
-" Filename: general.vim
-
-let mapleader = ' ' " sets the leader key
-
 " Color
 	set termguicolors
 	colorscheme cplex
@@ -66,6 +62,6 @@ let mapleader = ' ' " sets the leader key
 	set colorcolumn=80 " length of limit length line
 	set showtabline=2 " always show tabline
 	set noerrorbells " silent errors
-	set fillchars=stlnc:\ ,stl:\|,vert:\│,fold:-,diff:-
+	set fillchars=stlnc:\ ,stl:\ ,vert:\│,fold:-,diff:-
 
 "endOfFile

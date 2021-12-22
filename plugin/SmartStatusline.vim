@@ -1,5 +1,37 @@
 "startOfFile
 " Filename: SmartStatusline.vim
+"
+if !exists("g:ECP")
+	" Enviorment's Color Pallet - E.C.P
+	let g:ECP = {
+		\'selected'          : '#005f87',
+		\'fg'                : '#e4e4e4',
+		\'objFg'             : '#b2b2b2',
+		\'objBg'             : '#202020',
+		\'non_text'          : '#585858',
+		\'limitLines'        : '#444444',
+		\'cursorLines'       : '#19191d',
+		\'searchHighlight'   : '#005f87',
+		\'searchSelected'    : '#5f5f00',
+		\'visualSelection'   : '#005f87',
+		\'diffAdd'           : '#b2d2b2',
+		\'diffChange'        : '#e2e2b2',
+		\'diffDelete'        : '#e2b2b2',
+		\'infoFg'            : '#585858',
+		\'infoBg'            : '#2a2a2a',
+		\'symbolBranch'      : '#87afd7',
+		\'symbolWarFg'       : '#b7af5f',
+		\'symbolErrFg'       : '#a70000',
+		\'symbolDiagnostics' : '#a03d65',
+		\'symbolBufData'     : '#3da065',
+	\}
+
+	if g:clearBackground
+		let g:ECP.bg = 'NONE'
+	else
+		let g:ECP.bg = '#141414'
+	endif
+endif
 
 " Settings for line length"
 let s:long = 100
@@ -47,55 +79,23 @@ let g:saved_windows = {}
 " term:T
 " termfg:TFG
 " termbg:TBG
-
-" Description:
-" highlight group - description
-"
-"  StlReg               - general color
-"  StlRegBg             - general color same but fg and bg are the same (for not showing certin text like ^^^^^^^ in filchars)
-"  StlBright            - main color for theme
-"  StlBranch            - git's branch
-"
-"  StlDiagnosticSep     - color for seperator before diagnostics
-"  StlDiagnosticSymbol  - symbol of diagnostics
-"  StlDiagnosticDetail  - Details of diagnostics
-"
-"  StlBufDataSep        - color for seperator before BufData
-"  StlBufDataSymbol     - symbol of BufData
-"  StlBufDataDetail     - Details of BufData
-"
-"  StlSepBright2Reg     - seperator Bright -> Reg
-"  StlSepBright2UBInfo  - seperator Bright -> UBInfo
-"
-"  StlSepReg2Bright     - seperator Reg -> Bright
-"  StlSepReg2UBInfo     - seperator Reg -> UBInfo
-"
-"  StlSepUBInfo2Bright  - seperator UBInfo -> Bright
-"  StlSepUBInfo2Reg     - seperator UBInfo -> Reg
 "
 " StatusLine highlight groups
 let s:HG = {}
 
-let s:HG.StlReg               = { "FG":g:ECP['objFg'],             "BG":g:ECP['objBg'] }
-let s:HG.StlRegBg             = { "FG":g:ECP['objBg'],             "BG":g:ECP['objBg'] }
+let s:HG.StlReg               = { "FG":g:ECP['objFg'],             "BG":g:ECP['bg'] }
+let s:HG.StlRegBg             = { "FG":g:ECP['bg'],                "BG":g:ECP['bg'] }
 let s:HG.StlBright            = { "FG":g:ECP['objFg'],             "BG":g:ECP['selected'] }
-let s:HG.StlBranch            = { "FG":g:ECP['branchFg'],          "BG":g:ECP['infoBg'] }
-let s:HG.StlUBInfo            = { "FG":g:ECP['infoFg'],            "BG":g:ECP['objBg'] }
+let s:HG.StlBranch            = { "FG":g:ECP['objFg'],            "BG":g:ECP['objBg'] }
+let s:HG.StlUBInfo            = { "FG":g:ECP['objFg'],            "BG":g:ECP['bg'] }
 
-let s:HG.StlDiagnosticSep     = { "FG":g:ECP['symbolDiagnostics'], "BG":g:ECP['objBg'] }
-let s:HG.StlDiagnosticSymbol  = { "FG":g:ECP['objBg'],            "BG":g:ECP['symbolDiagnostics'] }
-let s:HG.StlDiagnosticDetail  = { "FG":g:ECP['symbolDiagnostics'], "BG":g:ECP['objBg'] }
+let s:HG.StlBranchSymbol      = { "FG":g:ECP['symbolBranch'],      "BG":g:ECP['bg'] }
+let s:HG.StlDiagnosticSymbol  = { "FG":g:ECP['symbolDiagnostics'], "BG":g:ECP['bg'] }
+let s:HG.StlBufDataSymbol     = { "FG":g:ECP['symbolBufData'],     "BG":g:ECP['bg'] }
 
-let s:HG.StlBufDataSep        = { "FG":g:ECP['symbolBufData'], "BG":g:ECP['objBg'] }
-let s:HG.StlBufDataSymbol     = { "FG":g:ECP['objBg'],            "BG":g:ECP['symbolBufData'] }
-let s:HG.StlBufDataDetail     = { "FG":g:ECP['symbolBufData'], "BG":g:ECP['objBg'] }
-
-let s:HG.StlSepBright2Reg     = { "FG":s:HG['StlBright']["BG"],    "BG":s:HG['StlReg']["BG"] }
-let s:HG.StlSepBright2UBInfo  = { "FG":s:HG['StlBright']["BG"],    "BG":g:ECP['infoBg'] }
-let s:HG.StlSepReg2Bright     = { "FG":s:HG['StlReg']["BG"],       "BG":s:HG['StlBright']["BG"] }
-let s:HG.StlSepReg2UBInfo     = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlReg']["BG"] }
-let s:HG.StlSepUBInfo2Bright  = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlBright']["BG"] }
-let s:HG.StlSepUBInfo2Reg     = { "FG":g:ECP['infoBg'],            "BG":s:HG['StlReg']["BG"] }
+let s:HG.StlSepBranch2Reg     = { "FG":s:HG.StlBranch["BG"],       "BG":s:HG['StlReg']["BG"] }
+let s:HG.StlSepBright2Branch  = { "FG":s:HG.StlBright["BG"],       "BG":s:HG['StlBranch']["BG"] }
+let s:HG.StlSepBright2Reg     = { "FG":s:HG.StlBright["BG"],       "BG":s:HG['StlReg']["BG"] }
 
 " scan the assignment dict and execute the assignment
 function! SmartStatusline#Highlight()
@@ -137,7 +137,7 @@ function! s:getBranch(win_id) abort
 	let l:maybeBranch = myUtils#BigBrother#GetWinGitBranch()
 	if !strlen(l:maybeBranch) | return "" | endif " no branch
 	if g:saved_windows[a:win_id]['width'] > s:short
-		return s:BranchSymbol .. "\ " .. l:maybeBranch
+		return l:maybeBranch
 	else
 		return ""
 	endif
@@ -150,18 +150,7 @@ function! s:getLeftSide(win_id) abort
 	else
 		let l:symbol = "\ %{&fileformat}"
 	endif
-	if g:saved_windows[a:win_id]['width'] > s:long
-		return l:symbol .. "\ %m%r%w\ b:%n\ "
-
-	elseif g:saved_windows[a:win_id]['width'] > s:medium
-		return "\ %M%R%W\ b:%n\ "
-
-	elseif g:saved_windows[a:win_id]['width'] > s:short
-		return "\ %M%R%W\ b:%n\ "
-
-	else
-		return "\ %M%R%W\ "
-	endif
+	return l:symbol .. "\ b:%n\ "
 endfunction
 
 function! s:generateActiveStatusline(win_id)
@@ -177,10 +166,12 @@ function! s:generateActiveStatusline(win_id)
 	let l:tmp .=  s:getLeftSide(a:win_id)
 
 	if strlen(l:maybeBranch) " if you are in a git branch:
-		let l:tmp .= "%#StlSepBright2UBInfo#" .. s:LtStlSep .. "\ " " seperator
+		let l:tmp .= "%#StlSepBright2Branch#" .. s:LtStlSep .. "\ " " seperator
+		let l:tmp .= "%#StlBranchSymbol#"
+		let l:tmp .= s:BranchSymbol .. "\ "
 		let l:tmp .= "%#StlBranch#"
 		let l:tmp .= l:maybeBranch
-		let l:tmp .= "%#StlSepUBInfo2Reg#" .. s:LtStlSep .. "\ " " seperator
+		let l:tmp .= "%#StlSepBranch2Reg#" .. s:LtStlSep .. "\ " " seperator
 	else
 		let l:tmp .= "%#StlSepBright2Reg#" .. s:LtStlSep .. "\ " " seperator
 	endif
@@ -192,16 +183,12 @@ function! s:generateActiveStatusline(win_id)
 	let l:tmp .= "%#StlReg#"
 
 	if v:lua.vim.lsp.buf.server_ready() == v:true " if lsp is connected
-		let l:tmp .= "%#StlDiagnosticSep#"
-		let l:tmp .= s:BlockSymbol
-		let l:tmp .= "%#StlDiagnosticSymbol#"
-		let l:tmp .= s:DiagnosticsSymbol .. "\ "
 		if g:saved_windows[a:win_id]['width'] > s:short
-			let l:tmp .= "%#StlDiagnosticDetail#" .. "\ "
+			let l:tmp .= "%#StlDiagnosticSymbol#"
 			let l:tmp .= s:ErrorSymbol .. "\ "
 			let l:tmp .= "%#StlUBInfo#"
 			let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").ErrorCount}"
-			let l:tmp .= "%#StlDiagnosticDetail#"
+			let l:tmp .= "%#StlDiagnosticSymbol#"
 			let l:tmp .= "\ " .. s:WarningSymbol .. "\ "
 			let l:tmp .= "%#StlUBInfo#"
 			let l:tmp .= "%{myUtils#BigBrother#GetBufDiagnostics(" .. l:bufNr ..").WarningCount}"
@@ -210,27 +197,18 @@ function! s:generateActiveStatusline(win_id)
 	endif
 
 	" BufData
-	let l:tmp .= "%#StlBufDataSep#"
-	let l:tmp .= s:BlockSymbol
 	let l:tmp .= "%#StlBufDataSymbol#"
 	let l:tmp .= l:fileSymbol .. "\ "
+	let l:tmp .= "%#StlUBInfo#"
 	if g:saved_windows[a:win_id]['width'] > s:medium
-		let l:tmp .= "%#StlUBInfo#" .. "\ "
-		let l:tmp .= "%p"
-		let l:tmp .= "%#StlBufDataDetail#"
-		let l:tmp .= "%%"
+		let l:tmp .= "%P"
 	endif
-	let l:tmp .= "%#StlUBInfo#"
 	let l:tmp .= "\ %l"
-	let l:tmp .= "%#StlBufDataDetail#"
 	let l:tmp .= ","
-	let l:tmp .= "%#StlUBInfo#"
 	let l:tmp .= "%c"
 	if g:saved_windows[a:win_id]['width'] > s:long
 		let l:tmp .= "\ 0"
-		let l:tmp .= "%#StlBufDataDetail#"
 		let l:tmp .= "x"
-		let l:tmp .= "%#StlUBInfo#"
 		let l:tmp .= "\%04b"
 	endif
 
@@ -252,7 +230,7 @@ function! s:generateInactiveStatusline(win_id)
 	let l:tmp .= "%<" .. s:getPath(a:win_id) .. "%="
 	let l:tmp .= "\│\ "
 	if g:saved_windows[a:win_id]['width'] > s:medium
-		let l:tmp .= "%p%%\ "
+		let l:tmp .= "%P\ "
 	endif
 	if g:saved_windows[a:win_id]['width'] > s:short
 		let l:tmp .= "%l,%c\ "
@@ -306,26 +284,16 @@ function! SmartStatusline#Update()
 	endfor
 endfunction
 
-function! SmartStatusline#Enable()
-	" Create Update Events
-	augroup statusLine
-		autocmd!
-		autocmd ColorScheme  * call SmartStatusline#Highlight()
-		autocmd BufEnter     * call SmartStatusline#Update()
-		autocmd WinEnter     * call SmartStatusline#Update()
-	augroup END
+" Create Update Events
+augroup statusLine
+	autocmd!
+	autocmd ColorScheme  * call SmartStatusline#Highlight()
+	autocmd BufEnter     * call SmartStatusline#Update()
+	autocmd WinEnter     * call SmartStatusline#Update()
+augroup END
 
-	" Highlight
-	call SmartStatusline#Highlight()
-	" Do First Update
-	call SmartStatusline#Update()
-endfunction
-
-function! SmartStatusline#Disable()
-	" Delete Update Events
-	augroup! statusLine
-endfunction
-
-" Start plugin
-call SmartStatusline#Enable()
+" Highlight
+call SmartStatusline#Highlight()
+" Do First Update
+call SmartStatusline#Update()
 "endOfFile

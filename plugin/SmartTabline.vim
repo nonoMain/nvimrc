@@ -1,9 +1,40 @@
 "startOfFile
 " Filename: SmartTabline.vim
+"
+if !exists("g:ECP")
+	" Enviorment's Color Pallet - E.C.P
+	let g:ECP = {
+		\'selected'          : '#005f87',
+		\'fg'                : '#e4e4e4',
+		\'objFg'             : '#b2b2b2',
+		\'objBg'             : '#202020',
+		\'non_text'          : '#585858',
+		\'limitLines'        : '#444444',
+		\'cursorLines'       : '#19191d',
+		\'searchHighlight'   : '#005f87',
+		\'searchSelected'    : '#5f5f00',
+		\'visualSelection'   : '#005f87',
+		\'diffAdd'           : '#b2d2b2',
+		\'diffChange'        : '#e2e2b2',
+		\'diffDelete'        : '#e2b2b2',
+		\'infoFg'            : '#585858',
+		\'infoBg'            : '#2a2a2a',
+		\'branchFg'          : '#87afd7',
+		\'symbolWarFg'       : '#b7af5f',
+		\'symbolErrFg'       : '#a70000',
+		\'symbolDiagnostics' : '#a03d65',
+		\'symbolBufData'     : '#3da065',
+	\}
+
+	if g:clearBackground
+		let g:ECP.bg = 'NONE'
+	else
+		let g:ECP.bg = '#141414'
+	endif
+endif
 
 let s:diagnosticsKey = 'diagnostics' " what type of diagnostics there are on all the buffers
 let s:StatusKey      = 'status'      " what is the type of the current buffer and how many modified buffers there are
-
 
 if g:Use_nerdfont
 	let s:diagnosticsOkSymbol = ""
