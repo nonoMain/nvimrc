@@ -117,7 +117,7 @@ function! myUtils#BigBrother#HighlightDict(key, dict)
 	else
 		let l:special='NONE'
 	endif
-	execute "hi " . a:key . " term=" . l:special . " gui=" . l:special . " ctermfg=" . l:ctermfg . " guifg=" . l:guifg . " ctermbg=" . l:ctermbg . " guibg=" . l:guibg
+	execute "highlight " . a:key . " term=" . l:special . " gui=" . l:special . " ctermfg=" . l:ctermfg . " guifg=" . l:guifg . " ctermbg=" . l:ctermbg . " guibg=" . l:guibg
 endfunction
 
 

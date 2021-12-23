@@ -20,113 +20,54 @@ if !exists("g:clearBackground")
 	let g:clearBackground = 1
 endif
 
-
-" Enviorment's Color Pallet - E.C.P
-let g:ECP = {
-\'string'            : '#d7875f',
-\'comment'           : '#5f875f',
-\'error'             : '#d70000',
-\'number'            : '#afd7af',
-\'bool'              : '#af87d7',
-\'type'              : '#5fafaf',
-\'keyword'           : '#87afff',
-\'repeat'            : '#d787d7',
-\'function'          : '#d7d7af',
-\'constant'          : '#d7d7af',
-\'include'           : '#d75f87',
-\'object'            : '#e4e4e4',
-\'operator'          : '#af5f87',
-\'bracket'           : '#d7875f',
-\'special'           : '#5fafff',
-\'selected'          : '#005f87',
-\'fg'                : '#e4e4e4',
-\'objFg'             : '#b2b2b2',
-\'objBg'             : '#202020',
-\'non_text'          : '#585858',
-\'limitLines'        : '#444444',
-\'cursorLines'       : '#19191d',
-\'searchHighlight'   : '#005f87',
-\'searchSelected'    : '#5f5f00',
-\'visualSelection'   : '#005f87',
-\'diffAdd'           : '#b2d2b2',
-\'diffChange'        : '#e2e2b2',
-\'diffDelete'        : '#e2b2b2',
-\'infoFg'            : '#585858',
-\'infoBg'            : '#2a2a2a',
-\'symbolBranch'      : '#87afd7',
-\'symbolWarFg'       : '#b7af5f',
-\'symbolErrFg'       : '#a70000',
-\'symbolDiagnostics' : '#a03d65',
-\'symbolBufData'     : '#3da065',
-\}
-
-if g:clearBackground
-	let g:ECP.bg = 'NONE'
-else
-	let g:ECP.bg = '#141414'
-endif
-" Highlight Groups - H.G
-" Keys:
-" S: Special things like 'bold' 'italic'
-" FG: frontground color
-" BG: background color
-"
-" Text syntax highlight groups
-let s:HG = {
-	\'Normal'       : { "FG":g:ECP.fg,               "BG":g:ECP.bg },
-	\'Include'      : { "FG":g:ECP.include, },
-	\'Comment'      : { "FG":g:ECP.comment, },
-	\'Constant'     : { "FG":g:ECP.constant, },
-	\'Delimiter'    : { "FG":g:ECP.fg,               "BG":g:ECP.bg },
-	\'String'       : { "FG":g:ECP.string, },
-	\'Character'    : { "FG":g:ECP.string, },
-	\'Boolean'      : { "FG":g:ECP.bool, },
-	\'Number'       : { "FG":g:ECP.number, },
-	\'Float'        : { "FG":g:ECP.number, },
-	\'Repeat'       : { "FG":g:ECP.repeat,            "S":'bold', },
-	\'Keyword'      : { "FG":g:ECP.keyword,           "S":'bold', },
-	\'Operator'     : { "FG":g:ECP.operator, },
-	\'Function'     : { "FG":g:ECP.function, },
-	\'Identifier'   : { "FG":g:ECP.object, },
-	\'Type'         : { "FG":g:ECP.type, },
-	\'Directory'    : { "FG":g:ECP.special, },
-	\'Error'        : { "FG":g:ECP.error,             "S":'bold', },
-	\'Special'      : { "FG":g:ECP.special, },
-	\'Folded'       : { "FG":g:ECP.special,           "BG":g:ECP.non_text, },
-	\'StatusLine'   : { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, },
-	\'StatusLineNC' : { "FG":g:ECP.objFg,            "BG":g:ECP.bg, },
-	\'Pmenu'        : { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, },
-	\'PmenuSel'     : { "FG":g:ECP.objFg,            "BG":g:ECP.selected, },
-	\'PmenuSbar'    : { "BG":g:ECP.limitLines, },
-	\'PmenuThumb'   : { "BG":g:ECP.selected, },
-	\'TabLineSel'   : { "FG":g:ECP.fg,               "BG":g:ECP.selected, },
-	\'TabLine'      : { "FG":g:ECP.fg,               "BG":g:ECP.objBg, },
-	\'TabLineFill'  : { "BG":g:ECP.objBg, },
-	\'WildMenu'     : { "FG":g:ECP.objFg,            "BG":g:ECP.objBg, },
-	\'LineNr'       : { "FG":g:ECP.objFg, },
-	\'SignColumn'   : { "BG":g:ECP.bg, },
-	\'CursorLineNr' : { "FG":g:ECP.fg, },
-	\'CursorLine'   : { "BG":g:ECP.cursorLines, },
-	\'CursorColumn' : { "BG":g:ECP.cursorLines, },
-	\'Cursor'       : { "S":'reverse', },
-	\'VertSplit'    : { "FG":g:ECP.limitLines, },
-	\'ColorColumn'  : { "BG":g:ECP.cursorLines, },
-	\'IncSearch'    : { "BG":g:ECP.searchSelected, },
-	\'Search'       : { "BG":g:ECP.searchHighlight, },
-	\'Visual'       : { "BG":g:ECP.visualSelection, },
-	\'VisualNOS'    : { "FG":g:ECP.objFg, },
-	\'NonText'      : { "FG":g:ECP.non_text, },
-	\'SpecialKey'   : { "FG":g:ECP.objFg, },
-	\'DiffAdd'      : { "FG":g:ECP.diffAdd, },
-	\'DiffChange'   : { "FG":g:ECP.diffChange, },
-	\'DiffDelete'   : { "FG":g:ECP.diffDelete, },
-\}
-
-" Enviorment highlight groups
-" scan the assignment dict and execute the assignment
-for key in keys(s:HG)
-	call myUtils#BigBrother#HighlightDict(key, s:HG[key])
-endfor
+" highlights are from 'genereateHighlights.vim' file in the config
+"-------------- Cplex highlights --------------
+highlight Function             guifg=#d7d7af guibg=NONE ctermfg=187 ctermbg=NONE term=NONE gui=NONE
+highlight Keyword              guifg=#87afff guibg=NONE ctermfg=111 ctermbg=NONE term=NONE gui=NONE
+highlight DiffDelete           guifg=#e2b2b2 guibg=NONE ctermfg=181 ctermbg=NONE term=NONE gui=NONE
+highlight StatusLineNC         guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+highlight Comment              guifg=#5f875f guibg=NONE ctermfg=65 ctermbg=NONE term=NONE gui=NONE
+highlight VisualNOS            guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+highlight PmenuSbar            guifg=NONE guibg=#444444 ctermfg=NONE ctermbg=238 term=NONE gui=NONE
+highlight Cursor               guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE term=reverse gui=reverse
+highlight Visual               guifg=NONE guibg=#005f87 ctermfg=NONE ctermbg=24 term=NONE gui=NONE
+highlight WildMenu             guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+highlight CursorLine           guifg=NONE guibg=#19191d ctermfg=NONE ctermbg=234 term=NONE gui=NONE
+highlight CursorLineNr         guifg=#e4e4e4 guibg=NONE ctermfg=254 ctermbg=NONE term=NONE gui=NONE
+highlight Special              guifg=#5fafff guibg=NONE ctermfg=75 ctermbg=NONE term=NONE gui=NONE
+highlight TabLineFill          guifg=NONE guibg=#202020 ctermfg=NONE ctermbg=234 term=NONE gui=NONE
+highlight PmenuSel             guifg=#b2b2b2 guibg=#005f87 ctermfg=249 ctermbg=24 term=NONE gui=NONE
+highlight LineNr               guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+highlight Search               guifg=NONE guibg=#005f87 ctermfg=NONE ctermbg=24 term=NONE gui=NONE
+highlight Directory            guifg=#5fafff guibg=NONE ctermfg=75 ctermbg=NONE term=NONE gui=NONE
+highlight DiffAdd              guifg=#b2d2b2 guibg=NONE ctermfg=151 ctermbg=NONE term=NONE gui=NONE
+highlight Identifier           guifg=#e4e4e4 guibg=NONE ctermfg=254 ctermbg=NONE term=NONE gui=NONE
+highlight DiffChange           guifg=#e2e2b2 guibg=NONE ctermfg=254 ctermbg=NONE term=NONE gui=NONE
+highlight TabLine              guifg=#e4e4e4 guibg=#202020 ctermfg=254 ctermbg=234 term=NONE gui=NONE
+highlight PmenuThumb           guifg=NONE guibg=#005f87 ctermfg=NONE ctermbg=24 term=NONE gui=NONE
+highlight Type                 guifg=#5fafaf guibg=NONE ctermfg=73 ctermbg=NONE term=NONE gui=NONE
+highlight TabLineSel           guifg=#e4e4e4 guibg=#005f87 ctermfg=254 ctermbg=24 term=NONE gui=NONE
+highlight Delimiter            guifg=#e4e4e4 guibg=NONE ctermfg=254 ctermbg=NONE term=NONE gui=NONE
+highlight String               guifg=#d7875f guibg=NONE ctermfg=173 ctermbg=NONE term=NONE gui=NONE
+highlight VertSplit            guifg=#444444 guibg=NONE ctermfg=238 ctermbg=NONE term=NONE gui=NONE
+highlight Error                guifg=#d70000 guibg=NONE ctermfg=160 ctermbg=NONE term=bold gui=bold
+highlight Number               guifg=#afd7af guibg=NONE ctermfg=151 ctermbg=NONE term=NONE gui=NONE
+highlight Pmenu                guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+highlight Include              guifg=#d75f87 guibg=NONE ctermfg=168 ctermbg=NONE term=NONE gui=NONE
+highlight Constant             guifg=#d7d7af guibg=NONE ctermfg=187 ctermbg=NONE term=NONE gui=NONE
+highlight NonText              guifg=#585858 guibg=NONE ctermfg=240 ctermbg=NONE term=NONE gui=NONE
+highlight Character            guifg=#d7875f guibg=NONE ctermfg=173 ctermbg=NONE term=NONE gui=NONE
+highlight SignColumn           guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE term=NONE gui=NONE
+highlight StatusLine           guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+highlight Operator             guifg=#af5f87 guibg=NONE ctermfg=132 ctermbg=NONE term=NONE gui=NONE
+highlight SpecialKey           guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+highlight Normal               guifg=#e4e4e4 guibg=NONE ctermfg=254 ctermbg=NONE term=NONE gui=NONE
+highlight Float                guifg=#afd7af guibg=NONE ctermfg=151 ctermbg=NONE term=NONE gui=NONE
+highlight IncSearch            guifg=NONE guibg=#5f5f00 ctermfg=NONE ctermbg=58 term=NONE gui=NONE
+highlight Folded               guifg=#5fafff guibg=#585858 ctermfg=75 ctermbg=240 term=NONE gui=NONE
+highlight Boolean              guifg=#af87d7 guibg=NONE ctermfg=140 ctermbg=NONE term=NONE gui=NONE
+highlight ColorColumn          guifg=NONE guibg=#19191d ctermfg=NONE ctermbg=234 term=NONE gui=NONE
+highlight Repeat               guifg=#bf87d7 guibg=NONE ctermfg=140 ctermbg=NONE term=NONE gui=NONE
 
 " generic highlight groups
 hi! link Title          Normal
@@ -135,9 +76,12 @@ hi! link Conditional    Repeat
 hi! link Statement      Repeat
 hi! link PreProc        Repeat
 hi! link SpecialComment Special 
+hi! link CursorColumn   CursorLine
+hi! link String         Character
 
 " vim highlight groups
 hi! link vimEnvvar       Constant
+hi! link vimHiKeyList    Constant
 hi! link vimCommand      Keyword
 hi! link vimUsrCmd       Keyword
 hi! link vimIsCommand    Keyword
@@ -205,7 +149,4 @@ hi! link TSLiteral            Literal
 hi! link TSURI                Identifier
 hi! link TSTag                Tag
 hi! link TSTagDelimiter       TagDelimiter
-
-unlet g:ECP
-unlet s:HG
 "endOfFile

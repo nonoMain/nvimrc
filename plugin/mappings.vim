@@ -1,5 +1,5 @@
 "startOfFile
-" Filename: keybindings.vim
+" Filename: mappings.vim
 
 " Faster way to ESC from insert mode:
 	inoremap jk <ESC>

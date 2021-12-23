@@ -1,37 +1,6 @@
 "startOfFile
 " Filename: SmartStatusline.vim
-"
-if !exists("g:ECP")
-	" Enviorment's Color Pallet - E.C.P
-	let g:ECP = {
-		\'selected'          : '#005f87',
-		\'fg'                : '#e4e4e4',
-		\'objFg'             : '#b2b2b2',
-		\'objBg'             : '#202020',
-		\'non_text'          : '#585858',
-		\'limitLines'        : '#444444',
-		\'cursorLines'       : '#19191d',
-		\'searchHighlight'   : '#005f87',
-		\'searchSelected'    : '#5f5f00',
-		\'visualSelection'   : '#005f87',
-		\'diffAdd'           : '#b2d2b2',
-		\'diffChange'        : '#e2e2b2',
-		\'diffDelete'        : '#e2b2b2',
-		\'infoFg'            : '#585858',
-		\'infoBg'            : '#2a2a2a',
-		\'symbolBranch'      : '#87afd7',
-		\'symbolWarFg'       : '#b7af5f',
-		\'symbolErrFg'       : '#a70000',
-		\'symbolDiagnostics' : '#a03d65',
-		\'symbolBufData'     : '#3da065',
-	\}
-
-	if g:clearBackground
-		let g:ECP.bg = 'NONE'
-	else
-		let g:ECP.bg = '#141414'
-	endif
-endif
+" Description: smart status line (shows branch and lsp info)
 
 " Settings for line length"
 let s:long = 100
@@ -58,50 +27,19 @@ endif
 
 let g:saved_windows = {}
 
-" Statusline color Pallet is g:ECP
-" Keys:
-" gui:G
-" guifg:GFG
-" guibg:GBG
-" term:T
-" termfg:TFG
-" termbg:TBG
-"
-" ** using branchFg for both branch and file symbol, if you wish to change one
-" of them without affecting the other add another highlight group and update
-" the specifications in the variables **
-
-" Highlight Groups - s:HG
-" Keys:
-" gui:G
-" guifg:GFG
-" guibg:GBG
-" term:T
-" termfg:TFG
-" termbg:TBG
-"
-" StatusLine highlight groups
-let s:HG = {}
-
-let s:HG.StlReg               = { "FG":g:ECP['objFg'],             "BG":g:ECP['bg'] }
-let s:HG.StlRegBg             = { "FG":g:ECP['bg'],                "BG":g:ECP['bg'] }
-let s:HG.StlBright            = { "FG":g:ECP['objFg'],             "BG":g:ECP['selected'] }
-let s:HG.StlBranch            = { "FG":g:ECP['objFg'],            "BG":g:ECP['objBg'] }
-let s:HG.StlUBInfo            = { "FG":g:ECP['objFg'],            "BG":g:ECP['bg'] }
-
-let s:HG.StlBranchSymbol      = { "FG":g:ECP['symbolBranch'],      "BG":g:ECP['bg'] }
-let s:HG.StlDiagnosticSymbol  = { "FG":g:ECP['symbolDiagnostics'], "BG":g:ECP['bg'] }
-let s:HG.StlBufDataSymbol     = { "FG":g:ECP['symbolBufData'],     "BG":g:ECP['bg'] }
-
-let s:HG.StlSepBranch2Reg     = { "FG":s:HG.StlBranch["BG"],       "BG":s:HG['StlReg']["BG"] }
-let s:HG.StlSepBright2Branch  = { "FG":s:HG.StlBright["BG"],       "BG":s:HG['StlBranch']["BG"] }
-let s:HG.StlSepBright2Reg     = { "FG":s:HG.StlBright["BG"],       "BG":s:HG['StlReg']["BG"] }
-
-" scan the assignment dict and execute the assignment
+"-------------- Statusline highlights --------------
 function! SmartStatusline#Highlight()
-	for key in keys(s:HG)
-		call myUtils#BigBrother#HighlightDict(key, s:HG[key])
-	endfor
+	highlight StlReg               guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+	highlight StlBranchSymbol      guifg=#87afd7 guibg=NONE ctermfg=110 ctermbg=NONE term=BOLD gui=BOLD
+	highlight StlSepBranch2Reg     guifg=#202020 guibg=NONE ctermfg=234 ctermbg=NONE term=NONE gui=NONE
+	highlight StlDiagnosticSymbol  guifg=#a03d65 guibg=NONE ctermfg=131 ctermbg=NONE term=BOLD gui=BOLD
+	highlight StlBranch            guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+	highlight StlSepBright2Reg     guifg=#005f87 guibg=NONE ctermfg=24 ctermbg=NONE term=NONE gui=NONE
+	highlight StlRegBg             guifg=NONE guibg=NONE ctermfg=16 ctermbg=NONE term=NONE gui=NONE
+	highlight StlSepBright2Branch  guifg=#005f87 guibg=#202020 ctermfg=24 ctermbg=234 term=NONE gui=NONE
+	highlight StlBufDataSymbol     guifg=#3da065 guibg=NONE ctermfg=71 ctermbg=NONE term=BOLD gui=BOLD
+	highlight StlUBInfo            guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+	highlight StlBright            guifg=#b2b2b2 guibg=#005f87 ctermfg=249 ctermbg=24 term=NONE gui=NONE
 endfunction
 
 function! s:getPathSymbol(win_id) abort
@@ -285,15 +223,13 @@ function! SmartStatusline#Update()
 endfunction
 
 " Create Update Events
-augroup statusLine
+augroup statusline
 	autocmd!
 	autocmd ColorScheme  * call SmartStatusline#Highlight()
 	autocmd BufEnter     * call SmartStatusline#Update()
 	autocmd WinEnter     * call SmartStatusline#Update()
 augroup END
 
-" Highlight
-call SmartStatusline#Highlight()
 " Do First Update
 call SmartStatusline#Update()
 "endOfFile

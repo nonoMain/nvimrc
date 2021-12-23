@@ -8,19 +8,18 @@
 ## Description
 --------------------------------------------------------------------------------
 
-My (Programmer) configiration for [Neovim](https://github.com/neovim/neovim/).
+My (Programmer) configuration for [Neovim](https://github.com/neovim/neovim/).
 
 1. Using external parser (better imo)
 2. Auto completion from many sources (e.g buffer, Language-server, Parser, paths)
 3. Language-servers integration using built in nvim-lspconfig
-4. Git commands and management from inside the editor
-5. Easy to modify [colorscheme](./colors/cplex.vim)
+4. Git management from inside the editor
+5. [colorscheme](./colors/cplex.vim)
 7. Light [scripts](./plugin)
-	+ [x] History browser
+	+ [x] File history browser
 	+ [x] Status line
+	+ [x] Tab line
 	+ [x] Devicons (with colors for any wanted filetypes)
-	+ [x] Tab line (not like we use tabs or something.. but it's good to have options)
-	- [ ] Easy doc - less soon
 
 and other usefull tweaks.
 
@@ -32,15 +31,15 @@ Tested on:
 ## Notes
 --------------------------------------------------------------------------------
 
-* First and foremost this configiration was made for my use so it may not be 'right' for you,
+* First and foremost this configuration was made for my use so it may not be 'right' for you,
 I deeply encourage any one that uses vim to customize it for themselves
 and for their type of use (as I mentioned, for me it is mainly programming)
 
-* This config has been tested so far on linux (and on windows with little changes)
+* This config has been tested so far on Linux (and on windows with little changes)
 and is planned to work in a manner that most systems and terminal emulators will
 run well.
 
-* There are a lot of parts in this configiration that need things to go right and be installed (compilers, Language-servers, etc)
+* There are a lot of parts in this configuration that need things to go right and be installed (compilers, Language-servers, etc)
 so for that reason everything used here comes with links for the original pages
 (didn't included them because they'd bloat the repo and won't be up to date)
 
@@ -50,7 +49,7 @@ so set them for your paths
 ## Requirements
 --------------------------------------------------------------------------------
 
-### The requirements for the configiration
+### The requirements for the configuration
 
 * [Neovim v0.5+](https://github.com/neovim/neovim/releases/)
 * [Git](https://git-scm.com/downloads/)
@@ -72,26 +71,28 @@ so set them for your paths
 Flags:
 (a) - automatically runs (Doesn't need to get sourced to init)
 (s) - does need to be sourced to init
-(n) - doesnt releated to the editor directly or at all
+(n) - doesnt releated to the editor directly (or at all)
 (.) - same as the one above it
 
 nvim/
 |- init.vim                 F(a) File that initializes the editor's behavior
-|- plugins.vim              F(s) Specifies the plugins that need to be installed or loaded (for the plugin manager)
+|- plugins.vim              F(s) Specifies the plugins that need to be installed or loaded and configured (for the plugin manager)
 |- README.md                F(n) You'r here, inforamtion about this repo
-|- after/                   D(a) Overrule or add to the system-wide configiration
-|  |- ftplugin/             D(a) File type specific configiration
+|- after/                   D(a) Overrule or add to the system-wide configuration
+|  |- ftplugin/             D(a) File type specific configuration
 |- autoload/                D(a) Place to put scripts that will load automatically and can be accessed from anywhere
-|  |- plug.vim              F(a) The plugin manager (vim-plug)
-|  |- plugged/              D(a) All the installed plugins are here
+|  |- plug.vim              F(.) The plugin manager (vim-plug)
+|  |- plugged/              D(.) All the installed plugins are here
+|  |- myUtils/              D(.) My utils for the configuration (e.g Devicons, lspinfo, coloring, ..)
 |- colors/                  D(a) Colorschemes
-|- configs/                 D(s) All the configirations
-|  |- lsp-servers/          F(.) Lsp-servers configiration
-|  |- plugins/              F(.) Plugins configirations
-|  |- settings.vim          F(.) General settings
-|  |- mappings.vim          F(.) General mappings
-|- releated/                D(n) Files for editor releated things (e.g Language-servers's setup script)
+|- |- cplex.vim             F(.) my colorscheme (feel free to suggest your own!)
+|- configs/                 D(s) All the configurations for non-native things
+|  |- lsp-servers/          F(.) Lsp-servers configuration
+|  |- plugins/              F(.) Plugins configurations
+|- releated/                D(n) Files for editor releated things (e.g Language-servers's setup script and file for generating your own highlight lists)
 |- plugin/                  D(a) External scripts used by the editor or the user
+|  |- sets.vim              F(.) All the 'set ..' command so the main settings for vim
+|  |- mappings.vim          F(.) Most of the mappings (if you don't see here a mapping you look for then check inside the specific plugin's config)
 ```
 
 ## Plugins
@@ -106,7 +107,8 @@ Lua plugin for auto completions
 + [cmp-path](https://github.com/hrsh7th/cmp-path/)           - cmp-path path completions
 + [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp/)       - nvim-lsp lsp completions
 + [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua/)       - nvim-lua lua's api completions
-+ [cmp-nvim-ultisnips](https://github.com/hrsh7th/cmp-nvim-ultisnips/) - nvim-ultisnips snippets completions
++ [cmp-nvim-ultisnips](https://github.com/quangnguyen30192/cmp-nvim-ultisnips/) - nvim-ultisnips snippets completions
++ [lspkind-nvim](https://github.com/hrsh7th/lspkind-nvim/)
 Auto completion for neovim
 > Works well and doesn't come with more features then necessary
 
@@ -142,7 +144,7 @@ Enables using the `.` for repeating a plugin map
 > "Repeat.vim remaps `.` in a way that plugins can tap into it." - From it's README.markdown
 
 10. [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)
-Preview colors by coloring their value in their color (e.g #ffffff will be displyed in white)
+Preview colors by coloring their value in their color [e.g #ffffff will be displyed in white (also the word white will be displyed in white]
 > A true life saver when working on front-end color tables or any other place where coloring by rgb/hex/hsl values
 
 ## Language-servers

@@ -1,5 +1,6 @@
 "startOfFile
-" Filename: browseFiles.vim Description: broswer for recent existing files
+" Filename: BrowseOldfiles.vim
+" Description: broswer for recent existing files
 
 let s:last_bufNr = 0
 let s:files_shown = []

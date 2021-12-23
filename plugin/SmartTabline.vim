@@ -1,41 +1,7 @@
 "startOfFile
 " Filename: SmartTabline.vim
+" Description: smart tab line (shows lsp info)
 "
-if !exists("g:ECP")
-	" Enviorment's Color Pallet - E.C.P
-	let g:ECP = {
-		\'selected'          : '#005f87',
-		\'fg'                : '#e4e4e4',
-		\'objFg'             : '#b2b2b2',
-		\'objBg'             : '#202020',
-		\'non_text'          : '#585858',
-		\'limitLines'        : '#444444',
-		\'cursorLines'       : '#19191d',
-		\'searchHighlight'   : '#005f87',
-		\'searchSelected'    : '#5f5f00',
-		\'visualSelection'   : '#005f87',
-		\'diffAdd'           : '#b2d2b2',
-		\'diffChange'        : '#e2e2b2',
-		\'diffDelete'        : '#e2b2b2',
-		\'infoFg'            : '#585858',
-		\'infoBg'            : '#2a2a2a',
-		\'branchFg'          : '#87afd7',
-		\'symbolWarFg'       : '#b7af5f',
-		\'symbolErrFg'       : '#a70000',
-		\'symbolDiagnostics' : '#a03d65',
-		\'symbolBufData'     : '#3da065',
-	\}
-
-	if g:clearBackground
-		let g:ECP.bg = 'NONE'
-	else
-		let g:ECP.bg = '#141414'
-	endif
-endif
-
-let s:diagnosticsKey = 'diagnostics' " what type of diagnostics there are on all the buffers
-let s:StatusKey      = 'status'      " what is the type of the current buffer and how many modified buffers there are
-
 if g:Use_nerdfont
 	let s:diagnosticsOkSymbol = ""
 	let s:diagnosticsWarSymbol = ""
@@ -60,20 +26,14 @@ endif
 "  TabDiagnosticsErr   - tab symbols when there are errors
 "  TabLineFill    - background of the tabline
 
-" StatusLine highlight groups
-let s:HG = {}
-let s:HG.TabLineSel        = { "FG":g:ECP.objFg,       "BG":g:ECP.selected }
-let s:HG.TabLine           = { "FG":g:ECP.objFg,       "BG":g:ECP.objBg }
-let s:HG.TabDiagnosticsReg = { "FG":g:ECP.objFg,       "BG":g:ECP.objBg }
-let s:HG.TabDiagnosticsWar = { "FG":g:ECP.symbolWarFg, "BG":g:ECP.objBg }
-let s:HG.TabDiagnosticsErr = { "FG":g:ECP.symbolErrFg, "BG":g:ECP.objBg }
-let s:HG.TabLineFill       = { "BG":g:ECP.bg }
-
-" scan the assignment dict and execute the assignment
+"-------------- Tabline highlights --------------
 function! SmartTabline#Highlight()
-	for key in keys(s:HG)
-		call myUtils#BigBrother#HighlightDict(key, s:HG[key])
-	endfor
+	highlight TabLine              guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+	highlight TabDiagnosticsReg    guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+	highlight TabLineSel           guifg=#b2b2b2 guibg=#005f87 ctermfg=249 ctermbg=24 term=NONE gui=NONE
+	highlight TabDiagnosticsWar    guifg=#b7af5f guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+	highlight TabLineFill          guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE term=NONE gui=NONE
+	highlight TabDiagnosticsErr    guifg=#a70000 guibg=#202020 ctermfg=124 ctermbg=234 term=NONE gui=NONE
 endfunction
 
 function! GenerateTabline()

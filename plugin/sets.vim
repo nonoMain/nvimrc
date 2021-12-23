@@ -1,4 +1,5 @@
 "startOfFile
+" Filename: sets.vim
 " Color
 	set termguicolors
 	colorscheme cplex
@@ -24,7 +25,6 @@
 
 " Indentation settings:
 	set tabstop=4 " how many spaces a tab is
-	set shiftwidth=4 " how many spaces for every level of indentation
 	set autoindent " preserve indentation
 	set smartindent " smart indentation for languages
 	set noexpandtab " keep tabs as tabs
@@ -47,8 +47,8 @@
 	filetype on
 	filetype plugin on
 	set swapfile
-	set encoding=utf-8 nobomb
-	set fileencoding=utf-8 nobomb
+	set encoding=utf-8
+	set fileencoding=utf-8
 	set fdm=indent " set folds method to indent
 	" set foldlevel to the current max in the file for easier folding:
 	augroup foldTeller
@@ -63,5 +63,7 @@
 	set showtabline=2 " always show tabline
 	set noerrorbells " silent errors
 	set fillchars=stlnc:\ ,stl:\ ,vert:\│,fold:-,diff:-
+
+	autocmd FileType markdown,text setlocal spell
 
 "endOfFile
