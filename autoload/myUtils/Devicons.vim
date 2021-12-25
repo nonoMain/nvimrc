@@ -265,11 +265,11 @@ let g:devicons_color_icons_dict = {
 
 function! myUtils#Devicons#GetSystemSymbol()
 	let format = ''
-	if &fileformat ==? 'unix'
+	if has('unix')
 		let format = s:getDistro()
-	elseif &fileformat ==? 'dos'
+	elseif has('win32')
 		let format = ''
-	elseif &fileformat ==? 'mac' || has('macunix')
+	elseif has('macunix')
 		let format = ''
 	endif
 	return format

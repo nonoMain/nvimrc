@@ -65,6 +65,12 @@
 	set noerrorbells " silent errors
 	set fillchars=stlnc:\ ,stl:\ ,vert:\│,fold:-,diff:-
 
+	if has('win32')
+		set viminfo=!,'250,<50,s10,h,rA:,rB:
+	else
+		set viminfo=!,'250,<50,s10,h
+	endif
+
 	autocmd FileType markdown,text setlocal spell
 
 "endOfFile
