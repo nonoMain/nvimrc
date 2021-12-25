@@ -19,6 +19,7 @@ My (Programmer) configuration for [Neovim](https://github.com/neovim/neovim/).
 	+ [x] File history browser
 	+ [x] Status line
 	+ [x] Tab line
+	+ [x] Window maximizer
 	+ [x] Devicons (with colors for any wanted filetypes)
 
 and other usefull tweaks.
@@ -103,12 +104,13 @@ Plugin manager is [vim-plug](https://github.com/junegunn/vim-plug)
 1. [nvim-cmp](https://github.com/hrsh7th/nvim-cmp/)
 Lua plugin for auto completions 
 > if your moving from nvim-compe to nvim-cmp beware that now everything is in its own plugin now so...
-+ [cmp-buffer](https://github.com/hrsh7th/cmp-buffer/)         - nvim-cmp buffer completions
-+ [cmp-path](https://github.com/hrsh7th/cmp-path/)           - cmp-path path completions
-+ [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp/)       - nvim-lsp lsp completions
-+ [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua/)       - nvim-lua lua's api completions
++ [cmp-buffer](https://github.com/hrsh7th/cmp-buffer/) - nvim-cmp buffer completions
++ [cmp-path](https://github.com/hrsh7th/cmp-path/) - cmp-path path completions
++ [cmp-spell](https://github.com/f3fora/cmp-spell/) - vim's spell completions
++ [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp/) - nvim-lsp lsp completions
++ [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua/) - nvim-lua lua's api completions
 + [cmp-nvim-ultisnips](https://github.com/quangnguyen30192/cmp-nvim-ultisnips/) - nvim-ultisnips snippets completions
-+ [lspkind-nvim](https://github.com/hrsh7th/lspkind-nvim/)
++ [lspkind-nvim](https://github.com/hrsh7th/lspkind-nvim/) - lsp types
 Auto completion for neovim
 > Works well and doesn't come with more features then necessary
 

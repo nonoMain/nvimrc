@@ -43,6 +43,7 @@ cmp.setup {
 			vim_item.menu = ({
 				buffer = "[buf]",
 				path = "[PATH]",
+				spell = "[SPELL]",
 				nvim_lsp = "[LSP]",
 				ultisnips = "[snips]",
 			}) [entry.source.name]
