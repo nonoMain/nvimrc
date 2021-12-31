@@ -1,7 +1,9 @@
+extends text
+
 # Snippets 
 priority -50
 
-snippet #ifndef "#ifndef ... #define ... #endif"
+snippet #ifndef "#ifndef ... #define ... #endif" b
 #ifndef ${1/([A-Za-z0-9_]+).*/$1/}
 #define ${1:SYMBOL}
 #endif /* $1 */
@@ -13,7 +15,7 @@ $0
 #endif
 endsnippet
 
-snippet main "main() (main)"
+snippet main "main() (main)" b
 int main(int argc, char *argv[])
 {
 	$0
