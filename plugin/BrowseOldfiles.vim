@@ -6,7 +6,10 @@ let s:last_bufNr = 0
 let s:files_shown = []
 
 if !exists('g:historyIgnore')
-	let s:historyIgnore = [ 'vim\/runtime\/doc\/.*.txt' ]
+	let s:historyIgnore = [
+	\ 'vim\/runtime\/doc\/.*.txt',
+	\ 'nvim\/.*\/doc\/.*.txt',
+	\ ]
 endif
 
 function! s:fileExists(path)

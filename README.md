@@ -56,7 +56,7 @@ so set them for your paths
 * [Git](https://git-scm.com/downloads/)
 * [Python3](https://www.python.org/)
 > for windows users I recommend getting [MinGW](https://www.mingw-w64.org/) because it comes with make and gcc
-* [Make](https://www.gnu.org/software/make/)
+* [Make](https://www.gnu.org/software/make/) - for installing certain plugins (also helps with building projects in general)
 * C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) with libstdc++ installed! **(windows users!)**
 * [Go language](https://golang.org/dl/) - for the color formats coloring plugin (if your not gonna work with color formats you'd be better just remove 'vim-hexokinase' plugin and forget about this one)
 
