@@ -1,22 +1,22 @@
 # Default snippets
 
 snippet date "current date"
-`date +%d/%m/%y`
+`!v strftime("%d/%m/%y")`
 endsnippet
 
 snippet time "current time"
-`date +%R:%S`
+`!v strftime("%H:%M:%S")`
 endsnippet
 
 snippet datetime "current date & time"
-`date +%d/%m/%y\ %R:%S`
+`!v strftime("%d/%m/%y %H:%M:%S")`
 endsnippet
 
 snippet doc "document the current file" b
 File Documentation
 Filename: `!v expand("%:t")`
 Author:${1: `!v expand("$USER")`}
-last updated: `date +%d/%m/%y\ %R:%S`
+last updated: `!v strftime("%d/%m/%y %H:%M:%S")`
 Description:
 $2
 TODO:
