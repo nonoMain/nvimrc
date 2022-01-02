@@ -32,7 +32,7 @@ function! SmartTabline#Highlight()
 	highlight TabDiagnosticsReg    guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
 	highlight TabLineSel           guifg=#b2b2b2 guibg=#005f87 ctermfg=249 ctermbg=24 term=NONE gui=NONE
 	highlight TabDiagnosticsWar    guifg=#b7af5f guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
-	highlight TabLineFill          guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE term=NONE gui=NONE
+	highlight TabLineFill          guifg=NONE guibg=#202020 ctermfg=NONE ctermbg=234 term=NONE gui=NONE
 	highlight TabDiagnosticsErr    guifg=#a70000 guibg=#202020 ctermfg=124 ctermbg=234 term=NONE gui=NONE
 endfunction
 

@@ -1,5 +1,24 @@
 extends text
 
+snippet #base "basic defines" b
+#ifndef BASE_DEFINES
+
+#define ZERO 0x0
+#define FALSE ZERO
+#define TRUE !FALSE
+
+#ifndef NULL
+#define NULL ((void*)ZERO)
+#endif /* NULL */
+
+#define MIN_LOWER_ASCII 97  // 'a'
+#define MIN_UPPER_ASCII 65  // 'A'
+#define MAX_LOWER_ASCII 122 // 'z'
+#define MAX_UPPER_ASCII 90  // 'Z'
+
+#endif /* BASE_DEFINES */
+endsnippet
+
 snippet #ifndef "#ifndef ... #define ... #endif" b
 #ifndef ${1/([A-Za-z0-9_]+).*/$1/}
 #define ${1:SYMBOL}
@@ -109,7 +128,7 @@ endsnippet
 
 snippet fund "function declaration" b
 /*
-${4: does stuff}
+${4:does stuff}
 input: ${5:$3}
 output: ${6:$1}
 */

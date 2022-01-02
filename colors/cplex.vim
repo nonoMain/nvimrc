@@ -25,7 +25,7 @@ endif
 highlight Function             guifg=#d7d7af guibg=NONE ctermfg=187 ctermbg=NONE term=NONE gui=NONE
 highlight Keyword              guifg=#87afff guibg=NONE ctermfg=111 ctermbg=NONE term=NONE gui=NONE
 highlight DiffDelete           guifg=#e2b2b2 guibg=NONE ctermfg=181 ctermbg=NONE term=NONE gui=NONE
-highlight StatusLineNC         guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+highlight StatusLineNC         guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
 highlight Comment              guifg=#5f875f guibg=NONE ctermfg=65 ctermbg=NONE term=NONE gui=NONE
 highlight VisualNOS            guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
 highlight PmenuSbar            guifg=NONE guibg=#444444 ctermfg=NONE ctermbg=238 term=NONE gui=NONE

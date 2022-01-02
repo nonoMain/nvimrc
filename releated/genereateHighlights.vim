@@ -107,7 +107,7 @@ let s:CplexHighlights = {
 	\'Special'      : { "FG":s:ECP.special, },
 	\'Folded'       : { "FG":s:ECP.special,           "BG":s:ECP.non_text, },
 	\'StatusLine'   : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
-	\'StatusLineNC' : { "FG":s:ECP.objFg,             "BG":s:ECP.bg, },
+	\'StatusLineNC' : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
 	\'Pmenu'        : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
 	\'PmenuSel'     : { "FG":s:ECP.objFg,             "BG":s:ECP.selected, },
 	\'PmenuSbar'    : { "BG":s:ECP.limitLines, },
@@ -135,14 +135,14 @@ let s:CplexHighlights = {
 \}
 
 let s:StatusLineHighlights = {
-	\'StlReg'               : { "FG":s:ECP.objFg,             "BG":s:ECP.bg, },
-	\'StlRegBg'             : { "FG":s:ECP.bg,                "BG":s:ECP.bg, },
+	\'StlReg'               : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
+	\'StlRegBg'             : { "FG":s:ECP.objBg,                "BG":s:ECP.objBg, },
 	\'StlBright'            : { "FG":s:ECP.objFg,             "BG":s:ECP.selected, },
 	\'StlBranch'            : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
-	\'StlUBInfo'            : { "FG":s:ECP.objFg,             "BG":s:ECP.bg, },
-	\'StlBranchSymbol'      : { "FG":s:ECP.symbolBranch,      "BG":s:ECP.bg,         "S":'BOLD', },
-	\'StlDiagnosticSymbol'  : { "FG":s:ECP.symbolDiagnostics, "BG":s:ECP.bg,         "S":'BOLD', },
-	\'StlBufDataSymbol'     : { "FG":s:ECP.symbolBufData,     "BG":s:ECP.bg,         "S":'BOLD', },
+	\'StlUBInfo'            : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
+	\'StlBranchSymbol'      : { "FG":s:ECP.symbolBranch,      "BG":s:ECP.objBg,         "S":'BOLD', },
+	\'StlDiagnosticSymbol'  : { "FG":s:ECP.symbolDiagnostics, "BG":s:ECP.objBg,         "S":'BOLD', },
+	\'StlBufDataSymbol'     : { "FG":s:ECP.symbolBufData,     "BG":s:ECP.objBg,         "S":'BOLD', },
 \}
 " next few are based on other keys..
 let s:StatusLineHighlights.StlSepBranch2Reg     = { "FG":s:StatusLineHighlights.StlBranch["BG"],       "BG":s:StatusLineHighlights['StlReg']["BG"], }
@@ -155,7 +155,7 @@ let s:TablineHighlights = {
 	\'TabDiagnosticsReg' : { "FG":s:ECP.objFg,       "BG":s:ECP.objBg, },
 	\'TabDiagnosticsWar' : { "FG":s:ECP.symbolWarFg, "BG":s:ECP.objBg, },
 	\'TabDiagnosticsErr' : { "FG":s:ECP.symbolErrFg, "BG":s:ECP.objBg, },
-	\'TabLineFill'       : { "BG":s:ECP.bg, },
+	\'TabLineFill'       : { "BG":s:ECP.objBg, },
 \}
 
 call writefile(['" This file was genereated with genereateHighlights.vim file'], s:filename, "a")

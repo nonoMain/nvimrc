@@ -29,16 +29,16 @@ let g:saved_windows = {}
 
 "-------------- Statusline highlights --------------
 function! SmartStatusline#Highlight()
-	highlight StlReg               guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
-	highlight StlBranchSymbol      guifg=#87afd7 guibg=NONE ctermfg=110 ctermbg=NONE term=BOLD gui=BOLD
-	highlight StlSepBranch2Reg     guifg=#202020 guibg=NONE ctermfg=234 ctermbg=NONE term=NONE gui=NONE
-	highlight StlDiagnosticSymbol  guifg=#a03d65 guibg=NONE ctermfg=131 ctermbg=NONE term=BOLD gui=BOLD
+	highlight StlReg               guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+	highlight StlBranchSymbol      guifg=#87afd7 guibg=#202020 ctermfg=110 ctermbg=234 term=BOLD gui=BOLD
+	highlight StlSepBranch2Reg     guifg=#202020 guibg=#202020 ctermfg=234 ctermbg=234 term=NONE gui=NONE
+	highlight StlDiagnosticSymbol  guifg=#a03d65 guibg=#202020 ctermfg=131 ctermbg=234 term=BOLD gui=BOLD
 	highlight StlBranch            guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
-	highlight StlSepBright2Reg     guifg=#005f87 guibg=NONE ctermfg=24 ctermbg=NONE term=NONE gui=NONE
-	highlight StlRegBg             guifg=NONE guibg=NONE ctermfg=16 ctermbg=NONE term=NONE gui=NONE
+	highlight StlSepBright2Reg     guifg=#005f87 guibg=#202020 ctermfg=24 ctermbg=234 term=NONE gui=NONE
+	highlight StlRegBg             guifg=#202020 guibg=#202020 ctermfg=234 ctermbg=234 term=NONE gui=NONE
 	highlight StlSepBright2Branch  guifg=#005f87 guibg=#202020 ctermfg=24 ctermbg=234 term=NONE gui=NONE
-	highlight StlBufDataSymbol     guifg=#3da065 guibg=NONE ctermfg=71 ctermbg=NONE term=BOLD gui=BOLD
-	highlight StlUBInfo            guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
+	highlight StlBufDataSymbol     guifg=#3da065 guibg=#202020 ctermfg=71 ctermbg=234 term=BOLD gui=BOLD
+	highlight StlUBInfo            guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
 	highlight StlBright            guifg=#b2b2b2 guibg=#005f87 ctermfg=249 ctermbg=24 term=NONE gui=NONE
 endfunction
 
