@@ -42,6 +42,7 @@
 " Buffer
 	set updatetime=500
 	set hidden " navigate to another buffer without saving current buffer
+	set nowrap " don't wrap lines at the end
 
 " File
 	filetype on
