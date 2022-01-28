@@ -175,13 +175,13 @@ All the language-servers installing is inside [setup_lang_servers](./releated/se
 ### [colorscheme](./colors/cplex.vim)
 ![colorscheme on clear terminal](https://github.com/nonoMain/nvimrc/blob/master/pictures/colorscheme.png?raw=true)
 
+### [Statusline](./plugin/SmartStatusline.vim)
+![statusline](https://github.com/nonoMain/nvimrc/blob/master/pictures/statusline.png/?raw=true)
+
 ### [history browser](./plugin/BrowseOldfiles.vim)
 ![file history browser](https://github.com/nonoMain/nvimrc/blob/master/pictures/history_file_browser.png?raw=true)
 
-### [Tabline](./plugin/SmartTabline.vim) tab types: ` Selected | Normal | Modified | Warning | Error `
+### [Tabline](./plugin/SmartTabline.vim)  ` Selected , Normal , Modified , Warning , Error `
 ![tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tabline.png?raw=true)
-
-### [Statusline](./plugin/SmartStatusline.vim)
-![statusline](https://github.com/nonoMain/nvimrc/blob/master/pictures/statusline.png/?raw=true)
 
 //endOfFile
