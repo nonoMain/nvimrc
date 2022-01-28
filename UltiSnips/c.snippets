@@ -7,14 +7,19 @@ snippet #base "basic defines" b
 #define FALSE ZERO
 #define TRUE !FALSE
 
-#ifndef NULL
-#define NULL ((void*)ZERO)
-#endif /* NULL */
-
 #define MIN_LOWER_ASCII 97  // 'a'
 #define MIN_UPPER_ASCII 65  // 'A'
 #define MAX_LOWER_ASCII 122 // 'z'
 #define MAX_UPPER_ASCII 90  // 'Z'
+
+#ifndef NULL
+#define NULL ((void*)ZERO)
+#endif /* NULL */
+
+typedef char BYTE;
+#ifndef __cplusplus
+typedef BYTE bool;
+#endif
 
 #endif /* BASE_DEFINES */
 endsnippet

@@ -1,4 +1,5 @@
 "startOfFile
+"
 " Filename: mappings.vim
 
 " Faster way to ESC from insert mode:

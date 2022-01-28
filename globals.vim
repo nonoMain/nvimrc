@@ -10,4 +10,6 @@ let g:lua_ls_path        = expand("$HOME") .. "/.ls-servers/lua-language-server"
 let g:python_ls_path     = expand("$HOME") .. "/.ls-servers/pyright-ls"
 let g:vim_ls_path        = expand("$HOME") .. "/.ls-servers/vim-language-server"
 
+let g:python_recommended_style = 0
+
 "endOfFile

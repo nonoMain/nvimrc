@@ -10,33 +10,33 @@
 
 My (Programmer) configuration for [Neovim](https://github.com/neovim/neovim/).
 
-1. Using external parser (better imo)
-2. Auto completion from many sources (e.g buffer, Language-server, Parser, paths)
-3. Language-servers integration using built in nvim-lspconfig
-4. Git management from inside the editor
-5. [colorscheme](./colors/cplex.vim)
-7. Light [scripts](./plugin)
+1. Auto completion
+2. Language-servers integration using built in nvim-lspconfig and and [install script](./releated/setup_lang_servers.sh)
+3. Git management from inside the editor
+4. Using the tree-sitter parser (better IMO)
+5. [cplex colorscheme](./colors/cplex.vim) | [link to vim colors schemes](https://vimcolorschemes.com/nonomain/nvimrc)
+6. Usefull & Light [scripts](./plugin)
 	+ [x] File history browser
 	+ [x] Status line
 	+ [x] Tab line
+	+ [x] Devicons (that are easy to configure)
 	+ [x] Window maximizer
-	+ [x] Devicons (with colors for any wanted filetypes)
 
-and other usefull tweaks.
+and of course some other settings mappings and tweaks that help me code faster.
 
 Tested on:
 + [x] Linux
-+ [x] Windows
++ [x] Windows (install script not available in batch yet)
 - [ ] Mac - not soon
 
 ## Notes
 --------------------------------------------------------------------------------
 
-* First and foremost this configuration was made for my use so it may not be 'right' for you,
+* First and foremost this configuration was made for my use so it may not be 'the right one' for you,
 I deeply encourage any one that uses vim to customize it for themselves
 and for their type of use (as I mentioned, for me it is mainly programming)
 
-* This config has been tested so far on Linux (and on windows with little changes)
+* This configuration has been tested so far on Linux and on windows (windows needs a bit more tweaking to get it just right)
 and is planned to work in a manner that most systems and terminal emulators will
 run well.
 
@@ -44,7 +44,7 @@ run well.
 so for that reason everything used here comes with links for the original pages
 (didn't included them because they'd bloat the repo and won't be up to date)
 
-* All the paths for thins such as servers and files outside of the config are in the [globals](./globals.vim)
+* All the paths for thins such as servers and files outside of the configuration are in the [globals](./globals.vim)
 so set them for your paths
 
 ## Requirements
@@ -169,25 +169,19 @@ All the language-servers installing is inside [setup_lang_servers](./releated/se
 * [sumneko-lua_ls](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
 > Usefull to have if your customizing your Neovim
 
-## Pics
+## Pictures
 --------------------------------------------------------------------------------
 
-### [Tabline](./plugin/SmartTabline.vim)
+### [colorscheme](./colors/cplex.vim)
+![colorscheme on clear terminal](https://github.com/nonoMain/nvimrc/blob/master/pictures/colorscheme.png?raw=true)
+
+### [Tabline](./plugin/SmartTabline.vim) tab types: ` Selected | Normal | Modified | Warning | Error `
 ![tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tabline.png?raw=true)
-
-types:
-| selected | normal | modified | warning | error |
-
-![show types in tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tablinetypes.png?raw=true)
 
 ### [Statusline](./plugin/SmartStatusline.vim)
 ![statusline](https://github.com/nonoMain/nvimrc/blob/master/pictures/statusline.png/?raw=true)
 
 ### [history browser](./plugin/BrowseOldfiles.vim)
 ![file history browser](https://github.com/nonoMain/nvimrc/blob/master/pictures/history_file_browser.png?raw=true)
-
-### [colorscheme](./colors/cplex.vim)
-![colorscheme without background](https://github.com/nonoMain/nvimrc/blob/master/pictures/clearcolorscheme.png?raw=true)
-![colorscheme with background](https://github.com/nonoMain/nvimrc/blob/master/pictures/darkcolorscheme.png?raw=true)
 
 //endOfFile

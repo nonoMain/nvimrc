@@ -145,6 +145,7 @@ function! s:generateTablable(tabNr, mode)
 		let l:tmp .= "\ "
 		let l:tmp .= l:diagnosticsColor
 		let l:tmp .= l:diagnosticsSymbol .. "\ "
+		let l:tmp .= "%#TabLine#"
 		let l:tmp .= "\|"
 	endif
 	return l:tmp
