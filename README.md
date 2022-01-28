@@ -14,7 +14,7 @@ My (Programmer) configuration for [Neovim](https://github.com/neovim/neovim/).
 2. Language-servers integration using built in nvim-lspconfig and and [install script](./releated/setup_lang_servers.sh)
 3. Git management from inside the editor
 4. Using the tree-sitter parser (better IMO)
-5. [cplex colorscheme](./colors/cplex.vim) | [link to vim colors schemes](https://vimcolorschemes.com/nonomain/nvimrc)
+5. [cplex colorscheme](./colors/cplex.vim) | [link to it's vimcolorsschemes page](https://vimcolorschemes.com/nonomain/nvimrc)
 6. Usefull & Light [scripts](./plugin)
 	+ [x] File history browser
 	+ [x] Status line
@@ -52,7 +52,7 @@ so set them for your paths
 
 ### The requirements for the configuration
 
-* [Neovim v0.5+](https://github.com/neovim/neovim/releases/)
+* [Neovim v0.6+](https://github.com/neovim/neovim/releases/)
 * [Git](https://git-scm.com/downloads/)
 * [Python3](https://www.python.org/)
 > for windows users I recommend getting [MinGW](https://www.mingw-w64.org/) because it comes with make and gcc
@@ -175,13 +175,13 @@ All the language-servers installing is inside [setup_lang_servers](./releated/se
 ### [colorscheme](./colors/cplex.vim)
 ![colorscheme on clear terminal](https://github.com/nonoMain/nvimrc/blob/master/pictures/colorscheme.png?raw=true)
 
+### [history browser](./plugin/BrowseOldfiles.vim)
+![file history browser](https://github.com/nonoMain/nvimrc/blob/master/pictures/history_file_browser.png?raw=true)
+
 ### [Tabline](./plugin/SmartTabline.vim) tab types: ` Selected | Normal | Modified | Warning | Error `
 ![tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tabline.png?raw=true)
 
 ### [Statusline](./plugin/SmartStatusline.vim)
 ![statusline](https://github.com/nonoMain/nvimrc/blob/master/pictures/statusline.png/?raw=true)
-
-### [history browser](./plugin/BrowseOldfiles.vim)
-![file history browser](https://github.com/nonoMain/nvimrc/blob/master/pictures/history_file_browser.png?raw=true)
 
 //endOfFile
