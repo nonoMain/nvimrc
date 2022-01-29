@@ -15,12 +15,12 @@ My (Programmer) configuration for [Neovim](https://github.com/neovim/neovim/).
 3. Git management from inside the editor
 4. Using the tree-sitter parser (better IMO)
 5. [cplex colorscheme](./colors/cplex.vim) | [link to it's vimcolorsschemes page](https://vimcolorschemes.com/nonomain/nvimrc)
-6. Usefull & Light [scripts](./plugin)
-	+ [x] File history browser
-	+ [x] Status line
-	+ [x] Tab line
-	+ [x] Devicons (that are easy to configure)
-	+ [x] Window maximizer
+6. Usefull & Light scripts
+	+ [File history browser](./plugin/BrowseOldfiles.vim)
+	+ [Status line](./plugin/SmartStatusline.vim)
+	+ [Tab line](./plugin/SmartTabline.vim)
+	+ [Window maximizer](./plugin/Maximize.vim)
+7. [Mini utils](./autoload/myUtils/)
 
 and of course some other settings mappings and tweaks that help me code faster.
 

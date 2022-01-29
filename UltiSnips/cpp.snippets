@@ -18,12 +18,12 @@ snippet beginend "$1.begin(), $1.end() (beginend)"
 ${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
 endsnippet
 
-snippet cl "class .. (class)"
+snippet class "class .. (class)"
 class ${1:`!v expand("%:t:r")`}
 {
 public:
-	${1/(\w+).*/$1/} (${2:arguments});
-	virtual ~${1/(\w+).*/$1/} ();
+	${1/(\w+).*/$1/}(${2:args});
+	~${1/(\w+).*/$1/}();
 
 private:
 	${0:/* data */}
