@@ -7,7 +7,7 @@ local sysname = vim.loop.os_uname().sysname
 local env = {
   HOME = vim.loop.os_homedir(),
   JDTLS_HOME = vim.g.java_ls_path,
-  JAVA_HOME = vim.g.jdt_java_home,
+  JAVA_HOME = vim.g.jdt_java_home_path,
   WORKSPACE = vim.g.jdt_workspace,
   JAR = vim.g.jdt_jar_path,
 }
@@ -17,9 +17,11 @@ local function get_workspace_dir()
 end
 
 local function get_java_executable()
-  local executable = env.JAVA_HOME and util.path.join(env.JAVA_HOME, 'bin', 'java') or 'java'
-
-  return sysname:match 'Windows' and executable .. '.exe' or executable
+	if sysname:match 'Windows' then
+		return env.JAVA_HOME .. '.exe'
+	else
+		return env.JAVA_HOME
+	end
 end
 
 local function get_jdtls_config()
