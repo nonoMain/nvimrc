@@ -4,8 +4,6 @@ snippet #base "basic defines" b
 #ifndef BASE_DEFINES
 
 #define ZERO 0x0
-#define FALSE ZERO
-#define TRUE !FALSE
 
 #define MIN_LOWER_ASCII 97  // 'a'
 #define MIN_UPPER_ASCII 65  // 'A'
@@ -19,6 +17,8 @@ snippet #base "basic defines" b
 typedef char BYTE;
 #ifndef __cplusplus
 typedef BYTE bool;
+#define FALSE ZERO
+#define TRUE !FALSE
 #endif
 
 #endif /* BASE_DEFINES */
@@ -149,7 +149,7 @@ printf("$1\n"$0);
 endsnippet
 
 snippet for "for loop (for)"
-for (${1:i = 0}; $2 < ${2:flag}; ${3:$2++})
+for (${1:int i = 0}; ${2: flag1} < ${3:flag2}; ${4:i++})
 {
 	$0
 }
