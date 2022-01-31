@@ -26,8 +26,8 @@ and of course some other settings mappings and tweaks that help me code faster.
 
 Tested on:
 + [x] Linux
++ [x] Mac
 + [x] Windows (install script not available in batch yet)
-- [ ] Mac - soon
 
 ## Notes
 --------------------------------------------------------------------------------
