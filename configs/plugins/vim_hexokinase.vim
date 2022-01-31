@@ -1,5 +1,9 @@
-"startOfFile
+"	File Documentation
 " Filename: vim_hexokinase.vim
+" Author: nonomain
+" last updated: 31/01/22 17:46:12
+" Description:
+"	configuration for the nvim_lsconfig plugin
 
 " options are:
 " - virtual
@@ -19,4 +23,3 @@ let g:Hexokinase_optInPatterns = [
 \     'hsla',
 \     'colour_names'
 \ ]
-"endOfFile

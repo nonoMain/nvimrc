@@ -1,5 +1,9 @@
-"startOfFile
+" File Documentation
 " Filename: plugins.vim
+" Author: nonomain
+" last updated: 31/01/22 17:49:38
+" Description:
+" 	file used to list plugins to plug to the editor
 
 " To install vim-plug (the used plugin manager):
 
@@ -57,4 +61,3 @@ call plug#end()
 	source  $MYVIMRCFOLDER/configs/plugins/nvim_cmp.lua
 	source  $MYVIMRCFOLDER/configs/plugins/vim_hexokinase.vim
 	luafile $MYVIMRCFOLDER/configs/plugins/tree_sitter.lua
-"endOfFile

@@ -1,5 +1,9 @@
---startOfFile
+-- File Documentation
 -- Filename: java_lsconfig.lua
+-- Author: nonomain
+-- last updated: 31/01/22 17:36:59
+-- Description:
+--	configuration for the lsp of eclipse-jdt
 
 local util = require 'lspconfig.util'
 local sysname = vim.loop.os_uname().sysname
@@ -63,5 +67,3 @@ require'lspconfig'.jdtls.setup
 		"java",
 	}
 }
-
---endOfFile

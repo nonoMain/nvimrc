@@ -1,5 +1,9 @@
-"startOfFile
-" Filename: nvim_lsconfig.vim
+" File Documentation
+" Filename: nvim_lspconfig.vim
+" Author: nonomain
+" last updated: 31/01/22 17:44:26
+" Description:
+"	configuration for the nvim_lsconfig plugin
 
 lua << EOF
 require('lspkind').init({
@@ -67,5 +71,3 @@ EOF
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua
-
-"endOfFile

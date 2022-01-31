@@ -1,5 +1,13 @@
+# File Documentation
+# Filename: install_lang_servers.sh
+# Author: nonomain
+# last updated: 31/01/22 17:51:38
+# Description:
+# 	script that installs all the needed ls-servers to INSTALLDIR variable (outside of things like clang that are installed with a specific package manager)
+
+INSTALLDIR='.ls-servers'
 ##--------functions--------##
-setup_pyright ()
+install_pyright ()
 {
 	start_pwd=$PWD
 	mkdir pyright-ls
@@ -8,7 +16,7 @@ setup_pyright ()
 	cd $start_pwd
 }
 
-setup_jdtls ()
+install_jdtls ()
 {
 	start_pwd=$PWD
 	mkdir eclipse-jdt-ls
@@ -20,7 +28,7 @@ setup_jdtls ()
 	cd $start_pwd
 }
 
-setup_lua_langauge_server ()
+install_lua_langauge_server ()
 {
 	start_pwd=$PWD
 	git clone https://github.com/sumneko/lua-language-server
@@ -33,7 +41,7 @@ setup_lua_langauge_server ()
 	cd $start_pwd
 }
 
-setup_vim-language-server ()
+install_vim-language-server ()
 {
 	start_pwd=$PWD
 	mkdir vim-language-server
@@ -44,10 +52,10 @@ setup_vim-language-server ()
 
 ##----------code-----------##
 cd $HOME
-mkdir $HOME/.ls-servers
-cd $HOME/.ls-servers
+mkdir $HOME/$INSTALLDIR
+cd $HOME/$INSTALLDIR
 
-setup_pyright
-setup_jdtls
-setup_lua_langauge_server
-setup_vim-language-server
+install_pyright
+install_jdtls
+install_lua_langauge_server
+install_vim-language-server

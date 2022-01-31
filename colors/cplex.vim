@@ -1,8 +1,9 @@
-"startOfFile
+" File Documentation
 " Filename: cplex.vim
-" Author: nonoMain
-" Version: 2.3
-" Description: colorscheme
+" Author: nonomain
+" last updated: 31/01/22 17:47:02
+" Description:
+" 	dark colorscheme
 
 " TODO:
 " add links to Startify and diff

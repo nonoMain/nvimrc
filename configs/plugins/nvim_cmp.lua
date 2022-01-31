@@ -1,5 +1,9 @@
---startOfFile
+--	File Documentation
 -- Filename: nvim_cmp.lua
+-- Author: nonomain
+-- last updated: 31/01/22 17:43:27
+-- Description:
+--	configuration for the nvim_cmp plugin
 
 vim.o.completeopt = "menu,menuone,noselect"
 local cmp = require'cmp'
@@ -56,5 +60,3 @@ cmp.setup {
 		ghost_text = false,
 	},
 }
-
---endOfFile

@@ -1,5 +1,9 @@
-"startOfFile
+" File Documentation
 " Filename: init.vim
+" Author: nonomain
+" last updated: 31/01/22 17:48:45
+" Description:
+" 	init file for the editor behavior
 
 " global/environment variables:
 	" get the folder that the config goes to (different on each OS)
@@ -14,4 +18,3 @@
 
 " The plugins call file (vim-plug plugin manager)
 	source $MYVIMRCFOLDER/plugins.vim
-"endOfFile

@@ -1,8 +1,9 @@
-"startOfFile
+" File Documentation
 " Filename: genereateHighlights.vim
-" Author: nonoMain
-" Version: 2.3
-" Description: genereates all the required highlights for this configuration
+" Author: nonomain
+" last updated: 31/01/22 17:50:04
+" Description:
+"	genereates all the required highlights for this configuration
 
 let s:filename = $MYVIMRCFOLDER .. "/genereated_highlights.vim"
 

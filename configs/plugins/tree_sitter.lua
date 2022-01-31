@@ -1,5 +1,9 @@
---startOfFile
+--	File Documentation
 -- Filename: tree_sitter.lua
+-- Author: nonomain
+-- last updated: 31/01/22 17:45:39
+-- Description:
+--	configuration for the nvim_cmp plugin
 
 require'nvim-treesitter.configs'.setup
 {
@@ -35,4 +39,3 @@ require'nvim-treesitter.configs'.setup
 		},
 	}
 }
---endOfFile

@@ -1,5 +1,9 @@
---startOfFile
+-- File Documentation
 -- Filename: lua_lsconfig.lua
+-- Author: nonomain
+-- last updated: 31/01/22 17:38:37
+-- Description:
+--	configuration for the lsp of lua-language-server
 
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 
@@ -33,4 +37,3 @@ require'lspconfig'.sumneko_lua.setup {
 		}
 	}
 }
---endOfFile
