@@ -163,10 +163,13 @@ All the language-servers installing is inside [setup_lang_servers](./releated/se
 * [eclipse-jdt-ls](https://github.com/eclipse/eclipse.jdt.ls) - Java language server - [config](./configs/lsp-servers/java_lsconfig.lua)
 > Eclipse's ls, many say that it is hard to configure but it's the best out there
 
+* [gopls](https://github.com/golang/tools/tree/master/gopls) - Golang language server - [config](./configs/lsp-servers/golang_lsconfig.lua)
+> The official Go language server developed by the Go team
+
 * [vim-language-server](https://github.com/iamcco/vim-language-server) - Vim script language server - [config](./configs/lsp-servers/vim_lsconfig.lua)
 > Usefull to have if your customizing your Vim
 
-* [sumneko-lua_ls](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
+* [sumneko-lua-ls](https://github.com/sumneko/lua-language-server) - Lua language server - [config](./configs/lsp-servers/lua_lsconfig.lua)
 > Usefull to have if your customizing your Neovim
 
 ## Pictures
