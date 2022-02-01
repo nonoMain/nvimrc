@@ -1,3 +1,4 @@
+priority 1
 extends text
 snippet class "class" b
 public class ${1:`!v expand("%:t:r")`}
@@ -24,12 +25,12 @@ try
 endsnippet
 
 ## Print
-snippet print "print" b
-System.out.print($1);$0
+snippet print "print"
+System.out.print($0);
 endsnippet
 
-snippet println "println"  b
-System.out.println($1);$0
+snippet println "println"
+System.out.println($0);
 endsnippet
 
 snippet sleep "try sleep catch" b

@@ -68,6 +68,7 @@ EOF
 " Source all the lsp-configs
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/python_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/c_lsconfig.lua
+	luafile $MYVIMRCFOLDER/configs/lsp-servers/golang_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/java_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/lua_lsconfig.lua
 	luafile $MYVIMRCFOLDER/configs/lsp-servers/vim_lsconfig.lua

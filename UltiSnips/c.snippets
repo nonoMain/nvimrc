@@ -1,3 +1,4 @@
+priority 1
 extends text
 
 snippet #base "basic defines" b
@@ -37,7 +38,7 @@ $0
 endsnippet
 
 snippet main "main() (main)" b
-int main(int argc, char *argv[])
+int main(${1:int argc, char *argv[]})
 {
 	$0
 	return 0;
@@ -149,7 +150,7 @@ printf("$1\n"$0);
 endsnippet
 
 snippet for "for loop (for)"
-for (${1:int i = 0}; ${2: flag1} < ${3:flag2}; ${4:i++})
+for (${1:int i = 0}; ${2:i} < ${3:10}; ${4:i++})
 {
 	$0
 }
