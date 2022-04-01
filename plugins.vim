@@ -51,6 +51,8 @@ call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 " Colorizer
 	Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
+	Plug 'github/copilot.vim'
+
 call plug#end()
 
 "autocmd VimEnter * PlugInstall
@@ -61,3 +63,4 @@ call plug#end()
 	source  $MYVIMRCFOLDER/configs/plugins/nvim_cmp.lua
 	source  $MYVIMRCFOLDER/configs/plugins/vim_hexokinase.vim
 	luafile $MYVIMRCFOLDER/configs/plugins/tree_sitter.lua
+	source $MYVIMRCFOLDER/configs/plugins/copilot.vim

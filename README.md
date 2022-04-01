@@ -1,6 +1,4 @@
-//startOfFile
-
-# NVIMRC V1.7
+# NVIMRC V1.7.2
 
 ## Author
 * [nonoMain](https://github.com/nonoMain) - Noam Daniel Eliyahu
@@ -149,6 +147,10 @@ Enables using the `.` for repeating a plugin map
 Preview colors by coloring their value in their color [e.g #ffffff will be displyed in white (also the word white will be displyed in white]
 > A true life saver when working on front-end color tables or any other place where coloring by rgb/hex/hsl values
 
+11. [vim-copilot](https://github.com/github/copilot.vim/)
+Github's AI pair programmer which suggests wise completions as you type
+> A very interesting tool which we all need to follow closely and carefully
+
 ## Language-servers
 --------------------------------------------------------------------------------
 
@@ -186,5 +188,3 @@ All the language-servers installing is inside [setup_lang_servers](./releated/se
 
 ### [Tabline](./plugin/SmartTabline.vim)  ` Selected , Normal , Modified , Warning , Error `
 ![tabline](https://github.com/nonoMain/nvimrc/blob/master/pictures/tabline.png?raw=true)
-
-//endOfFile
