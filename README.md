@@ -48,21 +48,22 @@ so set them for your paths
 ## Requirements
 --------------------------------------------------------------------------------
 
-
 ### The requirements for the configuration
 
-| Requirement                                                                         | Used for                                 | Stuff that need it                                                     | Notes                                                                                                   |
-|-------------------------------------------------------------------------------------|------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| [Neovim v0.6+](https://github.com/neovim/neovim/releases/)                          |                                          |                                                                        |                                                                                                         |
-| [Git](https://git-scm.com/downloads/)¬                                              |                                          |                                                                        |                                                                                                         |
-| [Python3](https://www.python.org/)                                                  |                                          |                                                                        |                                                                                                         |
-| Note for windows users: for windows users I recommend getting [MinGW](https://www.mingw-w64.org/) because it comes with make and gcc                                                                                                                                                                              |
-| [Make](https://www.gnu.org/software/make/)                                          | for builds of some of the plugins        |                                                                        |                                                                                                         |
-| C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html))                   | compile c plugins and libraries          | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/) | with libstdc++ installed! **(windows users!)**                                                          |
-| [Go language](https://golang.org/dl/)                                               | compile go plugins (same as c compiler)  | [vim-hexokinase](https://github.com/RRethy/vim-hexokinase/)            |                                                                                                         |
-| Recommended                                                                         |                                          |                                                                        |                                                                                                         |
-| [nerd font](https://www.nerdfonts.com/) supported terminal (I use 'Hack Nerd Font') | Style..                                  | your eyes                                                              | If you want to use it set `let g:Use_nerdfonts = ?` to 1 and if not then to 0 in [init.vim](./init.vim) |
-| [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)      | More options with the tree-sitter parser |                                                                        |                                                                                                         |
+* [Neovim v0.6+](https://github.com/neovim/neovim/releases/)
+* [Git](https://git-scm.com/downloads/)
+* [Python3](https://www.python.org/)
+> for windows users I recommend getting [MinGW](https://www.mingw-w64.org/) because it comes with make and gcc
+* [Make](https://www.gnu.org/software/make/) - for installing certain plugins (also helps with building projects in general)
+* C-compiler (e.g [gcc](https://gcc.gnu.org/install/download.html)) with libstdc++ installed! **(windows users!)**
+* [Go language](https://golang.org/dl/) - for the color formats coloring plugin
+* [Node.js](https://nodejs.org/)
+
+### Recommended:
+* [nerd font](https://www.nerdfonts.com/) supported terminal (I use 'Hack Nerd Font')
+> If you want to use it set `let g:Use_nerdfonts = ?` to 1 and if not then to 0 in [init.vim](./init.vim)
+* [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/tree/master/cli/)
+> More options with the tree-sitter parser
 
 ## Repo layout
 --------------------------------------------------------------------------------
