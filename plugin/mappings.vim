@@ -26,9 +26,10 @@
 	nnoremap <A-x> <C-x>
 
 " Faster way to open/close netrw (Explorer)
-noremap <silent> <leader>e :call Netrw#Toggle()<CR>
-noremap <silent> <leader>h :call BrowseOldfiles#ToggleHistory()<CR>
-noremap <silent> <leader>m :call Maximize#Toggle()<CR>
+nnoremap <silent> <leader>e :call Netrw#Toggle()<CR>
+nnoremap <silent> <leader>h :call BrowseOldfiles#ToggleHistory()<CR>
+nnoremap <silent> <leader>m :call Maximize#Toggle()<CR>
+nnoremap <silent> <leader>n :tabnew<CR>
 
 " Get current highlight-group under cursor
 nnoremap <f10> :TSHighlightCapturesUnderCursor<CR>

@@ -61,7 +61,6 @@
 	set backspace=indent,eol,start
 	set lazyredraw " Smart redraw
 	set colorcolumn=80 " length of limit length line
-	set showtabline=2 " always show tabline
 	set noerrorbells " silent errors
 	set fillchars=stlnc:\ ,stl:\ ,vert:\│,fold:-,diff:-
 
