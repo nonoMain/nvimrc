@@ -42,7 +42,7 @@
 " Buffer
 	set updatetime=500
 	set hidden " navigate to another buffer without saving current buffer
-	set nowrap " don't wrap lines at the end
+	set wrap " wrap lines at the end
 
 " File
 	filetype on
@@ -60,7 +60,7 @@
 " Other
 	set backspace=indent,eol,start
 	set lazyredraw " Smart redraw
-	set colorcolumn=80 " length of limit length line
+	set colorcolumn=100 " default suggested length for a line
 	set noerrorbells " silent errors
 	set fillchars=stlnc:\ ,stl:\ ,vert:\│,fold:-,diff:-
 
