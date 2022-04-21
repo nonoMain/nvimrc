@@ -231,5 +231,5 @@ augroup statusline
 augroup END
 
 " Do First Update
-call SmartStatusline#Update()
+"call SmartStatusline#Update()
 "endOfFile

@@ -28,6 +28,7 @@ highlight Keyword              guifg=#87afff guibg=NONE ctermfg=111 ctermbg=NONE
 highlight DiffDelete           guifg=#e2b2b2 guibg=NONE ctermfg=181 ctermbg=NONE term=NONE gui=NONE
 highlight StatusLineNC         guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
 highlight Comment              guifg=#5f875f guibg=NONE ctermfg=65 ctermbg=NONE term=NONE gui=NONE
+highlight ModeMsg              guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
 highlight VisualNOS            guifg=#b2b2b2 guibg=NONE ctermfg=249 ctermbg=NONE term=NONE gui=NONE
 highlight PmenuSbar            guifg=NONE guibg=#444444 ctermfg=NONE ctermbg=238 term=NONE gui=NONE
 highlight Cursor               guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE term=reverse gui=reverse
@@ -47,13 +48,13 @@ highlight DiffChange           guifg=#e2e2b2 guibg=NONE ctermfg=254 ctermbg=NONE
 highlight TabLine              guifg=#e4e4e4 guibg=#202020 ctermfg=254 ctermbg=234 term=NONE gui=NONE
 highlight PmenuThumb           guifg=NONE guibg=#005f87 ctermfg=NONE ctermbg=24 term=NONE gui=NONE
 highlight Type                 guifg=#5fafaf guibg=NONE ctermfg=73 ctermbg=NONE term=NONE gui=NONE
-highlight TabLineSel           guifg=#e4e4e4 guibg=#005f87 ctermfg=254 ctermbg=24 term=NONE gui=NONE
 highlight Delimiter            guifg=#e4e4e4 guibg=NONE ctermfg=254 ctermbg=NONE term=NONE gui=NONE
+highlight Pmenu                guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
 highlight String               guifg=#d7875f guibg=NONE ctermfg=173 ctermbg=NONE term=NONE gui=NONE
 highlight VertSplit            guifg=#444444 guibg=NONE ctermfg=238 ctermbg=NONE term=NONE gui=NONE
 highlight Error                guifg=#d70000 guibg=NONE ctermfg=160 ctermbg=NONE term=bold gui=bold
 highlight Number               guifg=#afd7af guibg=NONE ctermfg=151 ctermbg=NONE term=NONE gui=NONE
-highlight Pmenu                guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
+highlight TabLineSel           guifg=#e4e4e4 guibg=#005f87 ctermfg=254 ctermbg=24 term=NONE gui=NONE
 highlight Include              guifg=#d75f87 guibg=NONE ctermfg=168 ctermbg=NONE term=NONE gui=NONE
 highlight Constant             guifg=#d7d7af guibg=NONE ctermfg=187 ctermbg=NONE term=NONE gui=NONE
 highlight NonText              guifg=#585858 guibg=NONE ctermfg=240 ctermbg=NONE term=NONE gui=NONE

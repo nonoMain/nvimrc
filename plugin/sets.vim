@@ -58,6 +58,9 @@
 	augroup END
 
 " Other
+	set showmatch " show matching brackets
+	set showmode " show current mode
+	set showtabline=2 " show tabline
 	set backspace=indent,eol,start
 	set lazyredraw " Smart redraw
 	set colorcolumn=100 " default suggested length for a line

@@ -118,6 +118,7 @@ let s:CplexHighlights = {
 	\'TabLineFill'  : { "BG":s:ECP.objBg, },
 	\'WildMenu'     : { "FG":s:ECP.objFg,             "BG":s:ECP.objBg, },
 	\'LineNr'       : { "FG":s:ECP.objFg, },
+	\'ModeMsg'       : { "FG":s:ECP.objFg, },
 	\'SignColumn'   : { "BG":s:ECP.bg, },
 	\'CursorLineNr' : { "FG":s:ECP.fg, },
 	\'CursorLine'   : { "BG":s:ECP.cursorLines, },
@@ -159,19 +160,21 @@ let s:TablineHighlights = {
 	\'TabLineFill'       : { "BG":s:ECP.objBg, },
 \}
 
-call writefile(['" This file was genereated with genereateHighlights.vim file'], s:filename, "a")
+function! g:Genereate_highlights()
+	call writefile(['" This file was genereated with genereateHighlights.vim file'], s:filename, "a")
 
-call writefile(['"-------------- Cplex highlights --------------'], s:filename, "a")
-for key in keys(s:CplexHighlights)
-	call s:AppendColorToFile(key, s:CplexHighlights[key])
-endfor
+	call writefile(['"-------------- Cplex highlights --------------'], s:filename, "a")
+	for key in keys(s:CplexHighlights)
+		call s:AppendColorToFile(key, s:CplexHighlights[key])
+	endfor
 
-call writefile(['"-------------- Statusline highlights --------------'], s:filename, "a")
-for key in keys(s:StatusLineHighlights)
-	call s:AppendColorToFile(key, s:StatusLineHighlights[key])
-endfor
+	call writefile(['"-------------- Statusline highlights --------------'], s:filename, "a")
+	for key in keys(s:StatusLineHighlights)
+		call s:AppendColorToFile(key, s:StatusLineHighlights[key])
+	endfor
 
-call writefile(['"-------------- Tabline highlights --------------'], s:filename, "a")
-for key in keys(s:TablineHighlights)
-	call s:AppendColorToFile(key, s:TablineHighlights[key])
-endfor
+	call writefile(['"-------------- Tabline highlights --------------'], s:filename, "a")
+	for key in keys(s:TablineHighlights)
+		call s:AppendColorToFile(key, s:TablineHighlights[key])
+	endfor
+endfunction
