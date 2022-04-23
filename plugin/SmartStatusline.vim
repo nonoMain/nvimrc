@@ -3,11 +3,11 @@
 " Description: smart status line (shows branch and lsp info)
 
 " Settings for line length"
-let s:long = 100
-let s:medium = 75
-let s:short = 58
+let s:long_width = 100
+let s:medium_width = 75
+let s:short_width = 58
 
-if g:Use_nerdfont
+if g:Use_devicons
 	let s:LtStlSep = ""
 	let s:RtStlSep = ""
 	let s:BlockSymbol = ""
@@ -25,8 +25,6 @@ else
 	let s:WarningSymbol = "W"
 endif
 
-let g:saved_windows = {}
-
 "-------------- Statusline highlights --------------
 function! SmartStatusline#Highlight()
 	highlight StlReg               guifg=#b2b2b2 guibg=#202020 ctermfg=249 ctermbg=234 term=NONE gui=NONE
@@ -42,11 +40,39 @@ function! SmartStatusline#Highlight()
 	highlight StlBright            guifg=#b2b2b2 guibg=#005f87 ctermfg=249 ctermbg=24 term=NONE gui=NONE
 endfunction
 
-function! s:getPathSymbol(win_id) abort
+function! s:getFullPath(bufnr)
+	if a:bufnr == 0
+		return ""
+	endif
+	let l:path = getbufinfo(bufname(a:bufnr))[0]['name']
+	if l:path == ""
+		return ""
+	endif
+	return l:path
+endfunction
+
+function! s:getPathSized(win_id)
+	let l:width = winwidth(a:win_id)
+	let l:bufnr = winbufnr(a:win_id)
+	let l:path = s:getFullPath(l:bufnr)
+	if l:width > s:long_width
+		return l:path " full path
+	elseif l:width > s:medium_width
+		return fnamemodify(l:path, ":.") " relative path
+	elseif l:width > s:short_width
+		return pathshorten(fnamemodify(l:path, ":.")) " relative path shortened by pathshorten
+	else
+		return fnamemodify(l:path, ":t") " path tail
+	endif
+endfunction
+
+function! s:getPathType(win_id) abort
 	let l:tmp = ""
-	let l:path = g:saved_windows[a:win_id]['path']
-	if g:saved_windows[a:win_id]['width'] > s:short
-		if g:Use_nerdfont
+	let l:path = s:getFullPath(winbufnr(a:win_id))
+	let l:width = winwidth(a:win_id)
+	let l:tmp = ""
+	if l:width > s:short_width
+		if g:Use_devicons
 			let l:tmp .= myUtils#Devicons#GetPathSymbol(l:path, 1)
 		else
 			let l:tmp .= fnamemodify(l:path, ":e")
@@ -55,26 +81,10 @@ function! s:getPathSymbol(win_id) abort
 	return l:tmp
 endfunction
 
-function! s:getPath(win_id) abort
-	let l:path = g:saved_windows[a:win_id]['path']
-	if g:saved_windows[a:win_id]['width'] > s:long
-		return l:path " full path
-
-	elseif g:saved_windows[a:win_id]['width'] > s:medium
-		return fnamemodify(l:path, ":.") " relative path
-
-	elseif g:saved_windows[a:win_id]['width'] > s:short
-		return pathshorten(fnamemodify(l:path, ":."))
-
-	else
-		return fnamemodify(l:path, ":t")
-	endif
-endfunction
-
 function! s:getBranch(win_id) abort
 	let l:maybeBranch = myUtils#BigBrother#GetWinGitBranch()
 	if !strlen(l:maybeBranch) | return "" | endif " no branch
-	if g:saved_windows[a:win_id]['width'] > s:short
+	if winwidth(a:win_id) > s:short_width
 		return l:maybeBranch
 	else
 		return ""
@@ -83,7 +93,7 @@ endfunction
 
 function! s:getLeftSide(win_id) abort
 	let l:symbol = ""
-	if g:Use_nerdfont
+	if g:Use_devicons
 		let l:symbol = "\ %{myUtils#Devicons#GetSystemSymbol()}"
 	else
 		let l:symbol = "\ %{&fileformat}"
@@ -92,9 +102,10 @@ function! s:getLeftSide(win_id) abort
 endfunction
 
 function! s:generateActiveStatusline(win_id)
+	let l:width = winwidth(a:win_id)
 	let l:bufNr = getwininfo(a:win_id)['variables']['bufnr']
 	let l:maybeBranch = s:getBranch(a:win_id)
-	let l:fileSymbol = s:getPathSymbol(a:win_id)
+	let l:fileSymbol = s:getPathType(a:win_id)
 	let l:tmp = ""
 
 	let l:tmp = "%{SmartStatusline#UpdateActive()}"
@@ -115,13 +126,13 @@ function! s:generateActiveStatusline(win_id)
 	endif
 
 	let l:tmp .= "%#StlReg#"
-	let l:tmp .= "%<" .. s:getPath(a:win_id)
+	let l:tmp .= "%<" .. s:getPathSized(a:win_id)
 	let l:tmp .= "%#StlRegBg#"
 	let l:tmp .= "%="
 	let l:tmp .= "%#StlReg#"
 
 	if v:lua.vim.lsp.buf.server_ready() == v:true " if lsp is connected
-		if g:saved_windows[a:win_id]['width'] > s:short
+		if l:width > s:short_width
 			let l:tmp .= "%#StlDiagnosticSymbol#"
 			let l:tmp .= s:ErrorSymbol .. "\ "
 			let l:tmp .= "%#StlUBInfo#"
@@ -138,13 +149,13 @@ function! s:generateActiveStatusline(win_id)
 	let l:tmp .= "%#StlBufDataSymbol#"
 	let l:tmp .= l:fileSymbol .. "\ "
 	let l:tmp .= "%#StlUBInfo#"
-	if g:saved_windows[a:win_id]['width'] > s:medium
+	if l:width > s:medium_width
 		let l:tmp .= "%P"
 	endif
 	let l:tmp .= "\ %l"
 	let l:tmp .= ","
 	let l:tmp .= "%c"
-	if g:saved_windows[a:win_id]['width'] > s:long
+	if l:width > s:long_width
 		let l:tmp .= "\ 0"
 		let l:tmp .= "x"
 		let l:tmp .= "\%04b"
@@ -154,23 +165,27 @@ function! s:generateActiveStatusline(win_id)
 endfunction
 
 function! s:generateInactiveStatusline(win_id)
+	let l:width = winwidth(a:win_id)
 	let l:bufNr = getwininfo(a:win_id)['variables']['bufnr']
 	let l:maybeBranch = s:getBranch(a:win_id)
-	let l:fileSymbol = s:getPathSymbol(a:win_id)
+	let l:fileSymbol = s:getPathType(a:win_id)
 	let l:tmp = ""
 
 	let l:tmp .= "%#statuslineNC#"
 	let l:tmp .= "\ "
 	let l:tmp .=  s:getLeftSide(a:win_id)
+	if strlen(l:maybeBranch) " if you are in a git branch:
+	let l:tmp .= s:BranchSymbol .. "\ "
 	let l:tmp .= "\ "
 	let l:tmp .= l:maybeBranch
+	endif
 	let l:tmp .= "\ \│\ "
-	let l:tmp .= "%<" .. s:getPath(a:win_id) .. "%="
+	let l:tmp .= "%<" .. s:getPathSized(a:win_id) .. "%="
 	let l:tmp .= "\│\ "
-	if g:saved_windows[a:win_id]['width'] > s:medium
+	if l:width > s:medium_width
 		let l:tmp .= "%P\ "
 	endif
-	if g:saved_windows[a:win_id]['width'] > s:short
+	if l:width > s:short_width
 		let l:tmp .= "%l,%c\ "
 	endif
 
@@ -179,23 +194,6 @@ endfunction
 
 function! s:not_to_set(win_id)
 	return win_gettype(a:win_id) ==# 'popup' || win_gettype(a:win_id) ==# 'autocmd'
-endfunction
-
-function! s:update_saved_windows() abort
-	if exists("g:saved_windows") | unlet g:saved_windows | let g:saved_windows = {} | endif
-	let l:last_window_nr = winnr('$')
-	for l:window_nr in range(1, l:last_window_nr)
-		let l:win_id = win_getid(l:window_nr)
-		let l:tmpwin = getwininfo(l:win_id)[0]
-		let l:tmpbuf = getbufinfo(bufname(l:tmpwin['bufnr']))[0]
-		let g:saved_windows[l:win_id] = l:tmpwin
-
-		if getbufvar(l:tmpwin['bufnr'], "&filetype") == "netrw"
-			let g:saved_windows[l:win_id]['path'] = l:tmpwin['variables']['netrw_rexdir']
-		else
-			let g:saved_windows[l:win_id]['path'] = l:tmpbuf['name']
-		endif
-	endfor
 endfunction
 
 function! SmartStatusline#UpdateActive()
@@ -209,7 +207,6 @@ function! SmartStatusline#Update()
 	let l:last_window_nr = winnr('$')
 	let l:tmp = ""
 
-	call s:update_saved_windows()
 	for l:window_nr in range(1, l:last_window_nr)
 		if s:not_to_set(l:curr_window_nr)
 			continue " skip certin windows
@@ -228,8 +225,5 @@ augroup statusline
 	autocmd ColorScheme  * call SmartStatusline#Highlight()
 	autocmd BufEnter     * call SmartStatusline#Update()
 	autocmd WinEnter     * call SmartStatusline#Update()
+	autocmd VimResized   * call SmartStatusline#Update()
 augroup END
-
-" Do First Update
-"call SmartStatusline#Update()
-"endOfFile

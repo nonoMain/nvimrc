@@ -1,5 +1,5 @@
 -- File Documentation
--- Filename: lua_lsconfig.lua
+-- Filename: sumneko_lua_lsconfig.lua
 -- Author: nonomain
 -- last updated: 31/01/22 17:38:37
 -- Description:
@@ -14,6 +14,7 @@ local sumneko_binary = ""
 
 sumneko_root_path = SERVER_PATH
 sumneko_binary = SERVER_PATH .. "/bin/lua-language-server"
+
 
 require'lspconfig'.sumneko_lua.setup {
 	cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
@@ -35,5 +36,7 @@ require'lspconfig'.sumneko_lua.setup {
 				maxPreload = 10000
 			}
 		}
-	}
+	};
+	on_attach = vim.g.on_attach_lspconfig_global;
+	handlers = vim.g.handlers_lspconfig_global;
 }

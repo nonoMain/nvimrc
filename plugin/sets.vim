@@ -17,7 +17,7 @@
 
 " List
 	set list " show tabs, end of lines and trailing spaces
-	if g:Use_nerdfont
+	if g:Use_devicons
 		set listchars=tab:\ ,eol:¬,trail:~,extends:>,precedes:< " ·
 	else
 		set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:< " ·
@@ -42,7 +42,7 @@
 " Buffer
 	set updatetime=500
 	set hidden " navigate to another buffer without saving current buffer
-	set wrap " wrap lines at the end
+	set nowrap " don't wrap lines at the end
 
 " File
 	filetype on
@@ -71,6 +71,12 @@
 		set viminfo=!,'250,<50,s10,h,rA:,rB:
 	else
 		set viminfo=!,'250,<50,s10,h
+	endif
+
+	if has('nvim-0.7.0')
+		set laststatus=3
+	else
+		set laststatus=2
 	endif
 
 	autocmd FileType markdown,text setlocal spell

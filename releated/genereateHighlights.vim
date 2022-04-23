@@ -88,6 +88,7 @@ let s:ECP = {
 
 let s:CplexHighlights = {
 	\'Normal'       : { "FG":s:ECP.fg,                "BG":s:ECP.bg },
+	\'NormalFloat'  : { "FG":s:ECP.fg,                "BG":s:ECP.bg },
 	\'Include'      : { "FG":s:ECP.include, },
 	\'Comment'      : { "FG":s:ECP.comment, },
 	\'Constant'     : { "FG":s:ECP.constant, },
@@ -125,6 +126,7 @@ let s:CplexHighlights = {
 	\'ColorColumn'  : { "BG":s:ECP.cursorLines, },
 	\'Cursor'       : { "S":'reverse', },
 	\'VertSplit'    : { "FG":s:ECP.limitLines, },
+	\'WinSeparator' : { "FG":s:ECP.limitLines, },
 	\'IncSearch'    : { "BG":s:ECP.searchSelected, },
 	\'Search'       : { "BG":s:ECP.searchHighlight, },
 	\'Visual'       : { "BG":s:ECP.visualSelection, },
@@ -160,7 +162,7 @@ let s:TablineHighlights = {
 	\'TabLineFill'       : { "BG":s:ECP.objBg, },
 \}
 
-function! g:Genereate_highlights()
+function! s:genereate_highlights()
 	call writefile(['" This file was genereated with genereateHighlights.vim file'], s:filename, "a")
 
 	call writefile(['"-------------- Cplex highlights --------------'], s:filename, "a")
@@ -178,3 +180,5 @@ function! g:Genereate_highlights()
 		call s:AppendColorToFile(key, s:TablineHighlights[key])
 	endfor
 endfunction
+
+call s:genereate_highlights()

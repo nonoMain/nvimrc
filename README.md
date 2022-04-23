@@ -3,6 +3,14 @@
 ## Author
 * [nonoMain](https://github.com/nonoMain) - Noam Daniel Eliyahu
 
+## TODO
+--------------------------------------------------------------------------------
+- [ ] Update readme
+- [ ] Add telescope
+- [ ] Add bash language server
+- [ ] Reformat and fill snippets for new languages
+- [ ] Update version to v1.8
+
 ## Description
 --------------------------------------------------------------------------------
 

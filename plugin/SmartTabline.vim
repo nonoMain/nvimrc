@@ -2,7 +2,7 @@
 " Filename: SmartTabline.vim
 " Description: smart tab line (shows lsp info)
 "
-if g:Use_nerdfont
+if g:Use_devicons
 	let s:diagnosticsOkSymbol = ""
 	let s:diagnosticsWarSymbol = ""
 	let s:diagnosticsErrSymbol = ""
@@ -47,7 +47,7 @@ function! GenerateTabline()
 	endfor
 	let l:tmp .= '%#TabLineFill#%T'
 	if tabpagenr('$') > 1
-		let l:tmp .= (g:Use_nerdfont)? "%=%#TabLine#\ \ " : "%=%#TabLine#\ X\ "
+		let l:tmp .= (g:Use_devicons)? "%=%#TabLine#\ \ " : "%=%#TabLine#\ X\ "
 	endif
 	return l:tmp
 endfunction
@@ -79,8 +79,8 @@ function! s:getModCount(tabNr)
 	let l:count = 0
 
 	let buflist = tabpagebuflist(a:tabNr)
-	let buflist = uniq(buflist)
-	for buf in buflist
+	let uBuflist = uniq(buflist)
+	for buf in uBuflist
 		" check how many are modified
 		if getbufvar(buf, "&modified")
 			let l:count += 1
@@ -101,7 +101,7 @@ function! s:generateTablable(tabNr, mode)
 	let l:diagnosticsColor = "%#TabDiagnosticsReg#"
 	let l:diagnosticsSymbol = s:diagnosticsOkSymbol
 
-	if exists('g:Use_nerdfont') && g:Use_nerdfont
+	if exists('g:Use_devicons') && g:Use_devicons
 		let l:fileSymbol = myUtils#Devicons#GetPathSymbol(l:path, 1)
 	endif
 

@@ -13,9 +13,20 @@ require'nvim-treesitter.configs'.setup
 	},
 	ignore_install = {}, -- List of parsers to ignore installing
 	ensure_installed = { -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+-- tools
+		"vim",
+		"make",
+		"cmake",
+		"latex",
+-- formats
+		"yaml",
+		"json",
+		"html",
+-- languages
 		"c",
 		"cpp",
 		"python",
+		"go",
 		"lua",
 		"bash",
 		"java",

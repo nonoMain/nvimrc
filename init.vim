@@ -11,7 +11,7 @@
 	let $MYVIMRCFOLDER = fnamemodify($MYVIMRC, ":p:h")
 
 	" Preferences
-	let g:Use_nerdfont = 1
+	let g:Use_devicons = 1
 
 " global variables and functions needed for the config (outside of these above)
 	source $MYVIMRCFOLDER/globals.vim

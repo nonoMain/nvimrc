@@ -1,5 +1,5 @@
 -- File Documentation
--- Filename: java_lsconfig.lua
+-- Filename: jdtls_lsconfig.lua
 -- Author: nonomain
 -- last updated: 31/01/22 17:36:59
 -- Description:
@@ -40,6 +40,7 @@ local function get_jdtls_config()
 	end
 end
 
+
 require'lspconfig'.jdtls.setup
 {
 	cmd = {
@@ -62,8 +63,10 @@ require'lspconfig'.jdtls.setup
 		get_jdtls_config(),
 		'-data',
 		get_workspace_dir(),
-    },
+    };
 	filetypes = {
 		"java",
-	}
+	};
+	on_attach = vim.g.on_attach_lspconfig_global;
+	handlers = vim.g.handlers_lspconfig_global;
 }

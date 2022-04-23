@@ -1,5 +1,5 @@
 -- File Documentation
--- Filename: c_lsconfig.lua
+-- Filename: clangd_lsconfig.lua
 -- Author: nonomain
 -- last updated: 31/01/22 17:36:12
 -- Description:
@@ -16,4 +16,6 @@ require'lspconfig'.clangd.setup
 		"objc",
 		"objcpp",
 	};
+	on_attach = vim.g.on_attach_lspconfig_global;
+	handlers = vim.g.handlers_lspconfig_global;
 }

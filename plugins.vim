@@ -20,12 +20,12 @@ call plug#begin($MYVIMRCFOLDER .. '/autoload/plugged')
 " Autocompletion (for lsp and snippets)
 	Plug 'hrsh7th/nvim-cmp'
 	Plug 'hrsh7th/cmp-buffer'
+	Plug 'hrsh7th/cmp-cmdline'
 	Plug 'hrsh7th/cmp-path'
 	Plug 'f3fora/cmp-spell'
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'hrsh7th/cmp-nvim-lua'
 	Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-	Plug 'hrsh7th/lspkind-nvim'
 
 " Nvim's built in lsp
  	Plug 'neovim/nvim-lspconfig'
@@ -59,8 +59,8 @@ call plug#end()
 "autocmd VimEnter * PlugInstall | source $MYVIMRC
 
 " Configs for the plugins
-	source  $MYVIMRCFOLDER/configs/plugins/nvim_lspconfig.vim
+	source $MYVIMRCFOLDER/configs/plugins/copilot.vim
 	source  $MYVIMRCFOLDER/configs/plugins/nvim_cmp.lua
 	source  $MYVIMRCFOLDER/configs/plugins/vim_hexokinase.vim
 	luafile $MYVIMRCFOLDER/configs/plugins/tree_sitter.lua
-	source $MYVIMRCFOLDER/configs/plugins/copilot.vim
+	luafile  $MYVIMRCFOLDER/configs/plugins/nvim_lspconfig.lua
