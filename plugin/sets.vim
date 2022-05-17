@@ -58,6 +58,7 @@
 	augroup END
 
 " Other
+	set mouse=a " use mouse
 	set showmatch " show matching brackets
 	set showmode " show current mode
 	set showtabline=2 " show tabline

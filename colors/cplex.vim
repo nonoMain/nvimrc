@@ -5,10 +5,6 @@
 " Description:
 " 	dark colorscheme
 
-" TODO:
-" add links to Startify and diff
-" finish normal hi groups
-
 " settings
 set background=dark
 hi clear
@@ -128,7 +124,7 @@ hi! link TSNamespace          Namespace
 hi! link TSParameter          Identifier
 hi! link TSParameterReference Identifier
 hi! link TSMethod             Function
-hi! link TSField              Field
+hi! link TSField              Identifier
 hi! link TSProperty           Property
 hi! link TSConstructor        Constructor
 hi! link TSConditional        Conditional
